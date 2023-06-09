@@ -14,17 +14,20 @@ public class MainSystemsPack : EcsSystemsPack {
 
     AddPack<GetUnityDataSystems>();
 
+    /*
     Add<TestPlayerInputSys>(); // *************************
     Add<ProcessBehaviorSys>(); // *************************
     Add<TestAISys>();          // *************************
-
+    */
     AddPack<MovementSystems>();
+    /*
     AddPack<UnitSystems>();
     AddPack<WeaponSystems>();
     AddPack<BattleSystems>();
 
     AddPack<CameraShakeSystems>();
 
+    */
     AddPack<SetUnityDataSystems>();
 
     AddPack<DestroyEvents>();
@@ -35,10 +38,7 @@ public class MainSystemsPack : EcsSystemsPack {
 
   private void AddWorldsDebug() {
 #if UNITY_EDITOR
-    AddByInstance(
-      new EcsWorldDebugSystem(
-        nameSettings: new NameSettings(
-          bakeComponents: true)));
+    AddByInstance(new EcsWorldDebugSystem(nameSettings: new NameSettings(bakeComponents: true)));
 #endif
   }
 }
