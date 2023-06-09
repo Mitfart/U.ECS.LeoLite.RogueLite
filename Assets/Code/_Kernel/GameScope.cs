@@ -1,5 +1,6 @@
 ﻿using Engine;
 using Events;
+using Infrastructure.Loading;
 using VContainer;
 using VContainer.Unity;
 
@@ -27,18 +28,11 @@ namespace Code._Kernel {
 
 
     private void RegSceneLoader() {
-      /*
-      _di
-        .Bind<ISceneLoader>()
-        .To<SceneLoader>()
-        .AsSingle();
-      */
+      _di.Register<ISceneLoader, SceneLoader>(Lifetime.Singleton);
     }
 
     private void BindInputControls() {
-      /*
-      Container.Bind<Controls>().AsSingle();
-      */
+      _di.Register<Controls>(Lifetime.Singleton);
     }
 
     private void BindEngine() {
