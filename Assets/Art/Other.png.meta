@@ -840,7 +840,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Other_44
+      name: 1px
       rect:
         serializedVersion: 2
         x: 64
@@ -1291,6 +1291,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      1px: 678784463
       Other_0: -792926791
       Other_1: -1552096640
       Other_10: 957149756
@@ -1330,7 +1331,6 @@ TextureImporter:
       Other_41: 717793433
       Other_42: -1945440395
       Other_43: 1755164030
-      Other_44: 678784463
       Other_45: -1818166116
       Other_46: 354858110
       Other_47: 629786607
