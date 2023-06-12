@@ -378,7 +378,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Other_13
+      name: Sword
       rect:
         serializedVersion: 2
         x: 68
@@ -399,7 +399,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Other_14
+      name: Gun
       rect:
         serializedVersion: 2
         x: 83
@@ -1029,7 +1029,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Other_53
+      name: Bullet
       rect:
         serializedVersion: 2
         x: 24
@@ -1292,13 +1292,13 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       1px: 678784463
+      Bullet: -1896362785
+      Gun: 2022856523
       Other_0: -792926791
       Other_1: -1552096640
       Other_10: 957149756
       Other_11: 1428574189
       Other_12: 833795090
-      Other_13: -356603299
-      Other_14: 2022856523
       Other_15: 1956029594
       Other_16: -1491931235
       Other_17: -115922706
@@ -1340,7 +1340,6 @@ TextureImporter:
       Other_50: 1568577318
       Other_51: -253642769
       Other_52: 21787334
-      Other_53: -1896362785
       Other_54: -594158217
       Other_55: 659580699
       Other_56: 1575964661
@@ -1356,6 +1355,7 @@ TextureImporter:
       Other_7: -730109381
       Other_8: 1318839380
       Other_9: 1379885305
+      Sword: -356603299
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

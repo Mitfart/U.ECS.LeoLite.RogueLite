@@ -5,21 +5,21 @@ namespace Infrastructure.StateMachine.States {
   public class LoadLevelState : GameState, IDataRequireState<string> {
     private readonly Controls _controls;
 
-    private readonly ISceneLoader _sceneLoader;
-    //private readonly ILoadingCurtain _loadingCurtain;
+    private readonly ISceneLoader    _sceneLoader;
+    private readonly ILoadingCurtain _loadingCurtain;
 
     private string _sceneName;
 
 
 
     public LoadLevelState(
-      ISceneLoader sceneLoader,
-      Controls     controls //, ILoadingCurtain   loadingCurtain
+      ISceneLoader    sceneLoader,
+      ILoadingCurtain loadingCurtain,
+      Controls        controls
     ) {
-      _sceneLoader = sceneLoader;
-      _controls    = controls;
-
-      //_loadingCurtain   = loadingCurtain;
+      _sceneLoader    = sceneLoader;
+      _loadingCurtain = loadingCurtain;
+      _controls       = controls;
     }
 
     public IDataRequireState<string> SetData(string data) {
@@ -32,13 +32,13 @@ namespace Infrastructure.StateMachine.States {
     public override void Enter() {
       _controls.Disable();
 
-      //_loadingCurtain.Show();
+      _loadingCurtain.Show();
 
       StartLoadScene();
     }
 
     public override void Exit() {
-      //_loadingCurtain.Hide();
+      _loadingCurtain.Hide();
     }
 
 
@@ -46,11 +46,11 @@ namespace Infrastructure.StateMachine.States {
     private void StartLoadScene() {
 #if UNITY_EDITOR
       if (SceneManager.GetActiveScene().name != _sceneName)
+#endif
         _sceneLoader.Load(_sceneName, OnLoaded);
+#if UNITY_EDITOR
       else
         OnLoaded();
-#else
-            _sceneLoader.Load(_sceneName, OnLoaded);
 #endif
     }
 

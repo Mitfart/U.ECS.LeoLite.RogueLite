@@ -1,9 +1,8 @@
 using Engine.Ecs;
-using Extentions;
 using VContainer;
 
 namespace Events {
-  public class DestroyEvents : EcsSystemsPack {
+  public class ClearEventsPack : EcsSystemsPack {
     private const int EVENTS_CAPACITY = 128;
     
     protected override void RegisterSystems() {
@@ -11,10 +10,8 @@ namespace Events {
         res =>
           res.Resolve<EventsBus>()
              .GetDestroyEventsSystem(EVENTS_CAPACITY)
-             .IncReplicant<HitEvent>()
+             //.IncReplicant<HitEvent>()
       );
     }
   }
-
-  public struct HitEvent : IEvent { }
 }

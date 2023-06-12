@@ -1,37 +1,22 @@
 using Engine.Ecs;
 using Events;
-using Extentions;
 using Mitfart.LeoECSLite.UniLeo;
 using Mitfart.LeoECSLite.UnityIntegration.Plugins.Mitfart.LeoECSLite.UnityIntegration.Runtime;
 using Mitfart.LeoECSLite.UnityIntegration.Plugins.Mitfart.LeoECSLite.UnityIntegration.Runtime.Name;
 using Movement;
+using Player;
 using UnityRef;
 
 public class MainSystemsPack : EcsSystemsPack {
   protected override void RegisterSystems() {
-    /*
-    AddPack<DestroySystems>();
-    */
-
     AddPack<GetUnityDataSystems>();
+    
+    AddPack<PlayerSystems>();
 
-    /*
-    Add<TestPlayerInputSys>(); // *************************
-    Add<ProcessBehaviorSys>(); // *************************
-    Add<TestAISys>();          // *************************
-    */
     AddPack<MovementSystems>();
-    /*
-    AddPack<UnitSystems>();
-    AddPack<WeaponSystems>();
-    AddPack<BattleSystems>();
-
-    AddPack<CameraShakeSystems>();
-
-    */
     AddPack<SetUnityDataSystems>();
 
-    AddPack<DestroyEvents>();
+    AddPack<ClearEventsPack>();
     Add<ConvertSceneSys>();
 
     AddWorldsDebug();

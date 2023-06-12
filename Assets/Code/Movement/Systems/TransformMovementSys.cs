@@ -31,7 +31,6 @@ namespace Movement {
       _world = systems.GetWorld();
       _filter = _world.Filter<EcsTransform>()
                       .Inc<MoveDirection>()
-                      .Exc<Rigidbody2DRef>()
                       .End();
 
       _transformPool     = _world.GetPool<EcsTransform>();

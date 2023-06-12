@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Engine.Ecs;
 using Leopotam.EcsLite;
+using Mitfart.LeoECSLite.UniLeo;
 
 namespace Engine {
   public sealed class EcsEngine : IEngine {
@@ -13,6 +14,7 @@ namespace Engine {
     public EcsEngine(EcsWorld world, IEnumerable<IEcsSystem> systems) {
       _systems = new EscExtendedSystems(world);
       AddSystems(systems);
+      EcsWorldsLocator.RegisterAllFrom(_systems);
     }
 
 

@@ -514,7 +514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 397922083585101211}
   m_Layer: 0
-  m_Name: Player_Long
+  m_Name: Unit_Long
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

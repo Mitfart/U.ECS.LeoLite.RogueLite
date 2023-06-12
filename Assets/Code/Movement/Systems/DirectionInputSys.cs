@@ -25,8 +25,8 @@ namespace Movement {
     public void Init(IEcsSystems systems) {
       _world = systems.GetWorld();
       _filter = _world
-               .Filter<MoveDirection>()
-               .Inc<DirectionInput>()
+               .Filter<DirectionInput>()
+               .Inc<MoveDirection>()
                .Inc<EcsTransform>()
                .End();
 
