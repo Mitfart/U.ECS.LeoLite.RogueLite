@@ -1,6 +1,6 @@
 using Leopotam.EcsLite;
 
-namespace Extentions {
+namespace Engine.Ecs {
   public interface IEcsFixedRunSystem {
     void FixedRun(IEcsSystems systems);
   }

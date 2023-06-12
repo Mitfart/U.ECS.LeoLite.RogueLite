@@ -2,7 +2,7 @@ using System;
 using Leopotam.EcsLite;
 using VContainer;
 
-namespace Extentions {
+namespace Engine.Ecs {
   public abstract class EcsSystemsPack {
     private IContainerBuilder _di;
 

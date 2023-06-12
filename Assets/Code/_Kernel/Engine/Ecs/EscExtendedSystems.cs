@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Leopotam.EcsLite;
 
-namespace Extentions {
+namespace Engine.Ecs {
   public class EscExtendedSystems : EcsSystems {
     private readonly List<IEcsFixedRunSystem> _fixedRunSystems;
 
