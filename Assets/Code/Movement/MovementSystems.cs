@@ -7,6 +7,8 @@ namespace Movement {
 
       Add<TransformMovementSys>();
       Add<PhysicsMovementSys>();
+      
+      Add<SmoothTransformSys>();
     }
   }
 }

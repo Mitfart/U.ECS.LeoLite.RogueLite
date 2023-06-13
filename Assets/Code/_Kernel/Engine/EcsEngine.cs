@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Engine.Ecs;
 using Leopotam.EcsLite;
-using Mitfart.LeoECSLite.UniLeo;
 
 namespace Engine {
   public sealed class EcsEngine : IEngine {
@@ -14,19 +13,23 @@ namespace Engine {
     public EcsEngine(EcsWorld world, IEnumerable<IEcsSystem> systems) {
       _systems = new EscExtendedSystems(world);
       AddSystems(systems);
-      EcsWorldsLocator.RegisterAllFrom(_systems);
     }
 
 
 // @formatter:off
-    public void Initialize() => _systems.Init();
     public void Tick()       { if (_enabled) _systems.Run(); }
     public void FixedTick()  { if (_enabled) _systems.FixedRun(); }
-    public void Dispose()    => _systems.Destroy();
-
-    public void Start() => _enabled = true;
-    public void Stop()  => _enabled = false;
-// @formatter:on
+    
+    public void Start() {
+      _systems.Init();
+      _enabled = true;
+    }
+    
+    public void Stop() {
+      _enabled = false;
+      _systems.Destroy();
+    }
+    // @formatter:on
 
 
 

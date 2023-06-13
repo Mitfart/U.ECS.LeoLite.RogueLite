@@ -18,20 +18,23 @@ namespace Movement {
       float delta        = Time.fixedDeltaTime;
       float dividedDelta = 1f / delta;
 
+
       foreach (int e in _filter) {
         Rigidbody2D         rb         = _rigidbodyLinkPool.Get(e).Component;
-        Vector3             input      = _moveDirectionPool.Get(e).value.normalized;
-        float               maxSpeed   = _speedPool.Get(e).value;
+        Vector2             input      = _moveDirectionPool.Get(e).value;
+        float               speed      = _speedPool.Get(e).value;
         ref PhysicsMovement parameters = ref _movementPool.Get(e);
 
         Vector2 curVel    = rb.velocity;
-        Vector3 targetVel = input * maxSpeed;
+        Vector2 targetVel = input * speed;
+        
 
         float velDot   = Vector2.Dot(input, curVel.normalized);
         float accel    = parameters.Accel    * parameters.AccelDotFactor.Evaluate(velDot);
         float maxAccel = parameters.MaxAccel * parameters.MaxAccelDotFactor.Evaluate(velDot);
 
         var nextVel = Vector2.MoveTowards(curVel, targetVel, accel * delta);
+
 
         Vector2 requiredAccel = (nextVel - curVel) * dividedDelta;
 
@@ -42,13 +45,16 @@ namespace Movement {
     }
 
     public void Init(IEcsSystems systems) {
-      _world  = systems.GetWorld();
-      _filter = _world.Filter<MoveDirection>().Inc<Rigidbody2DRef>().End();
+      _world = systems.GetWorld();
+      _filter = _world.Filter<MoveDirection>()
+                      .Inc<Rigidbody2DRef>()
+                      .Inc<PhysicsMovement>()
+                      .End();
 
       _rigidbodyLinkPool = _world.GetPool<Rigidbody2DRef>();
       _moveDirectionPool = _world.GetPool<MoveDirection>();
 
-      _speedPool = _world.GetPool<Speed>();
+      _speedPool    = _world.GetPool<Speed>();
       _movementPool = _world.GetPool<PhysicsMovement>();
     }
   }

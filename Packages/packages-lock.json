@@ -12,14 +12,14 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "8b7ecf52bd9cf770eaba73799399b0d3fa8079da"
+      "hash": "3da1962ccf68ee871a613f5f2a5a4ddf3eb4dccd"
     },
     "com.mitfart.leoecslite.unity-integration": {
       "version": "https://github.com/Mitfart/LeoECSLite.UnityIntegration.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "09fe2f74de93c0501f533a242400e80368686ab7"
+      "hash": "2252f907a8da5df5cd8a94015cab3ebc32b95762"
     },
     "com.unity.2d.animation": {
       "version": "7.0.10",

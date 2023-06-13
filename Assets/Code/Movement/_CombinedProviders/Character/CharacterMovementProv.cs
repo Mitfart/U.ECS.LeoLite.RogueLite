@@ -7,7 +7,7 @@ namespace Movement.Character {
   [DisallowMultipleComponent]
   public class CharacterMovementProv : EcsScrProvider<CharacterMovement, ScrPhysicsMovement> {
     public override void Convert(int e, EcsWorld world) {
-      CharacterMovement p = scrParams.Get();
+      CharacterMovement p = scrComponent.GetComponent();
 
       world.GetPool<Speed>().Set(e, Speed(p));
       world.GetPool<PhysicsMovement>().Set(e, PhysicsMovement(p));

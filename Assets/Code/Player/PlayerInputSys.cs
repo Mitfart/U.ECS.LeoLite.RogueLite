@@ -17,8 +17,10 @@ namespace Movement {
     }
 
     public void Run(IEcsSystems systems) {
+      var input = _controls.Game.Move.ReadValue<Vector2>();
+      
       foreach (int e in _filter)
-        _moveDirectionPool.Get(e).value = _controls.Game.Move.ReadValue<Vector2>().normalized;
+        _moveDirectionPool.Get(e).value = input;
     }
 
     public void Init(IEcsSystems systems) {

@@ -31,6 +31,7 @@ namespace Movement {
       _world = systems.GetWorld();
       _filter = _world.Filter<EcsTransform>()
                       .Inc<MoveDirection>()
+                      .Exc<PhysicsMovement>()
                       .End();
 
       _transformPool     = _world.GetPool<EcsTransform>();

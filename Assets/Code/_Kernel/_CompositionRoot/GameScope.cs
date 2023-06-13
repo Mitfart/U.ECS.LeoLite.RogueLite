@@ -42,7 +42,7 @@ public class GameScope : LifetimeScope {
     new MainSystemsPack().Install(_di);
     _di.Register(_ => new EcsWorld(), Lifetime.Singleton);
     _di.Register<EventsBus>(Lifetime.Singleton);
-    _di.Register<IEngine, EcsEngine>(Lifetime.Singleton);
+    _di.Register<EcsEngine>(Lifetime.Singleton).AsImplementedInterfaces();
   }
 
   private void RegGameStateMachine() {
