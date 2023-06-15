@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TEST
   m_EditorClassIdentifier: 
   value:
-    <MaxSpeed>k__BackingField: 8
+    <Speed>k__BackingField: 10
     <Accel>k__BackingField: 160
     <MaxAccel>k__BackingField: 140
     <AccelDotFactor>k__BackingField:

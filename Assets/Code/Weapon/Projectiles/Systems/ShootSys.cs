@@ -13,11 +13,11 @@ namespace Battle.Weapon.Projectiles {
   public class ShootSys : IEcsRunSystem, IEcsInitSystem {
     private readonly IObjectResolver _di; // *****************
 
-    private EcsPool<EcsTransform>      _displacementPool;
-    private EcsFilter                  _filter;
-    private Transform                  _insContainer; // *****************
-    private EcsPool<IsAttacking>       _isShootingPool;
-    private EcsPool<Projectiles> _projectilesPool;
+    private EcsPool<EcsTransform> _displacementPool;
+    private EcsFilter             _filter;
+    private Transform             _insContainer; // *****************
+    private EcsPool<IsAttacking>  _isShootingPool;
+    private EcsPool<Projectiles>  _projectilesPool;
 
     private EcsPool<ProjectilesSpawnOrigins> _shootOriginsPool;
     private EcsPool<SpreadAngle>             _spreadAnglePool;
@@ -26,6 +26,7 @@ namespace Battle.Weapon.Projectiles {
     public ShootSys(IObjectResolver di) {
       _di = di;
     } // *****************
+
 
 
     public void Run(IEcsSystems systems) {

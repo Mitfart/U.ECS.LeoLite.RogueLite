@@ -6,6 +6,7 @@ using UnityRef;
 using Events;
 using Player;
 using Battle;
+using Battle.Weapon;
 using Movement;
 
 public class MainSystemsPack : EcsSystemsPack {
@@ -15,6 +16,7 @@ public class MainSystemsPack : EcsSystemsPack {
 
     AddPack<PlayerSystems>();
     AddPack<MovementSystems>();
+    AddPack<WeaponSystems>();
     AddPack<BattleSystems>();
 
     AddPack<SetUnityDataSystems>();
