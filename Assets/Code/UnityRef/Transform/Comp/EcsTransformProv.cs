@@ -1,5 +1,5 @@
 using System;
-using Extentions;
+using Extensions.Ecs;
 using Leopotam.EcsLite;
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using Unity.VisualScripting;

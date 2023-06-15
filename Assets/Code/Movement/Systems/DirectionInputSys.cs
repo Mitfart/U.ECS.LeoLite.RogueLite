@@ -1,6 +1,6 @@
+using Extras.Direction.Extensions;
 using Leopotam.EcsLite;
 using UnityRef;
-using UnityRef.Transform.Extras.Direction;
 
 namespace Movement {
   public class DirectionInputSys : IEcsRunSystem, IEcsInitSystem {
@@ -29,7 +29,7 @@ namespace Movement {
                .Inc<MoveDirection>()
                .Inc<EcsTransform>()
                .End();
-
+      
       _moveDirectionPool  = _world.GetPool<MoveDirection>();
       _directionInputPool = _world.GetPool<DirectionInput>();
       _displacementPool   = _world.GetPool<EcsTransform>();

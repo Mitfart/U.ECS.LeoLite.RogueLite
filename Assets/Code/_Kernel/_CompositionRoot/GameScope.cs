@@ -1,4 +1,5 @@
-﻿using Engine;
+﻿using Debug;
+using Engine;
 using Events;
 using Infrastructure;
 using Infrastructure.Loading;
@@ -19,12 +20,13 @@ public class GameScope : LifetimeScope {
     RegSceneLoader();
     RegLoadingCurtain();
     RegInputControls();
+    RegGizmosService();
     RegEngine();
     RegGameStateMachine();
   }
 
-    
-    
+
+
   private void RegSceneLoader() {
     _di.Register<ISceneLoader, SceneLoader>(Lifetime.Singleton);
   }
@@ -33,9 +35,14 @@ public class GameScope : LifetimeScope {
     _di.Register<ILoadingCurtain>(_ => Instantiate(Resources.Load<LoadingCurtain>(ResourcesPath.LOADING_CURTAIN)), Lifetime.Singleton);
   }
 
-    
+
   private void RegInputControls() {
     _di.Register<Controls>(Lifetime.Singleton);
+  }
+
+
+  private void RegGizmosService() {
+    _di.Register(_ => Instantiate(Resources.Load<GizmosService>(ResourcesPath.GIZMOS_SERVICE)), Lifetime.Singleton);
   }
 
   private void RegEngine() {

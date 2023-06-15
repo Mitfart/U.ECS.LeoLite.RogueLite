@@ -1,7 +1,8 @@
 using System;
 using UnityEngine;
+using UnityRef;
 
-namespace UnityRef.Transform.Extras.Direction {
+namespace Extras.Direction.Extensions {
   public static class DirectionExt {
     public static Vector3 GetDirection(this EcsTransform ecsTransform, Direction direction) {
       return direction switch {

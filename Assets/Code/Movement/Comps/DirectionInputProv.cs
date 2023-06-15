@@ -1,7 +1,7 @@
 using System;
+using Extras.Direction;
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
-using UnityRef.Transform.Extras.Direction;
 
 namespace Movement {
   [DisallowMultipleComponent] public class DirectionInputProv : EcsProvider<DirectionInput> { }

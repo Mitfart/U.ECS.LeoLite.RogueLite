@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Debug.Gizmos {
+namespace Debug {
   public class GizmosService : MonoBehaviour {
     private HashSet<Action> _prevToDraw;
     private HashSet<Action> _toDraw;
@@ -12,12 +12,10 @@ namespace Debug.Gizmos {
     public bool IsPaused { get; private set; }
 
 
-    
-    public void Draw(Action draw) {
-      if (!IsActive)
-        return;
 
-      _toDraw.Add(draw);
+    public void Draw(Action draw) {
+      if (IsActive)
+        _toDraw.Add(draw);
     }
 
 
@@ -37,8 +35,8 @@ namespace Debug.Gizmos {
 
       IsActive = false;
       _toDraw.Clear();
-      _toDraw = null;
       _prevToDraw.Clear();
+      _toDraw     = null;
       _prevToDraw = null;
     }
 
@@ -56,30 +54,36 @@ namespace Debug.Gizmos {
         return;
 
       if (IsPaused)
-        (_prevToDraw, _toDraw) = (_toDraw, _prevToDraw);
+        DrawPrev();
 
       foreach (Action drawAction in _toDraw) {
         drawAction.Invoke();
-        UnityEngine.Gizmos.color  = Color.white;
-        UnityEngine.Gizmos.matrix = Matrix4x4.identity;
+        ResetGizmos();
       }
 
-      (_prevToDraw, _toDraw) = (_toDraw, _prevToDraw);
+      DrawPrev();
       _toDraw.Clear();
       IsPaused = true;
     }
 
-    private void LateUpdate() {
-      // hack: only knowing way to check for pause in the same frame
-      IsPaused = false;
+
+
+
+    private void OnEnable()  => On();
+    private void OnDisable() => Off();
+
+    // hack: only knowing way to check for pause in the same frame
+    private void LateUpdate() => IsPaused = false;
+
+
+
+    private void DrawPrev() {
+      (_prevToDraw, _toDraw) = (_toDraw, _prevToDraw);
     }
 
-    private void OnEnable() {
-      On();
-    }
-
-    private void OnDisable() {
-      Off();
+    private static void ResetGizmos() {
+      Gizmos.color  = Color.white;
+      Gizmos.matrix = Matrix4x4.identity;
     }
   }
 }

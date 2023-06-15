@@ -1,4 +1,4 @@
-namespace UnityRef.Transform.Extras.Direction {
+namespace Extras.Direction {
   public enum Direction {
     Up,
     Down,

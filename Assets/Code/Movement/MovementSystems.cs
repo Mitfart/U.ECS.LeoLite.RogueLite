@@ -1,4 +1,5 @@
 using Engine.Ecs;
+using Movement.Smooth;
 
 namespace Movement {
   public class MovementSystems : EcsSystemsPack {

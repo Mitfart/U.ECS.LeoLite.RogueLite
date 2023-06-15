@@ -8,7 +8,7 @@ namespace Movement.Character {
 
   [Serializable]
   public struct CharacterMovement {
-    [field: SerializeField] public float          MaxSpeed          { get; private set; }
+    [field: SerializeField] public float          Speed             { get; private set; }
     [field: SerializeField] public float          Accel             { get; private set; }
     [field: SerializeField] public float          MaxAccel          { get; private set; }
     [field: SerializeField] public AnimationCurve AccelDotFactor    { get; private set; }

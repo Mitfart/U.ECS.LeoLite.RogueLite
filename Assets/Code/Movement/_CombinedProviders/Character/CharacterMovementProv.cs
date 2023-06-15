@@ -1,4 +1,4 @@
-using Extentions;
+using Extensions.Ecs;
 using Leopotam.EcsLite;
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
@@ -18,7 +18,7 @@ namespace Movement.Character {
 
 
 
-    private static Speed Speed(CharacterMovement v) => new() { value = v.MaxSpeed * v.Scale };
+    private static Speed Speed(CharacterMovement v) => new() { value = v.Speed * v.Scale };
 
     private static PhysicsMovement PhysicsMovement(CharacterMovement v)
       => new() {

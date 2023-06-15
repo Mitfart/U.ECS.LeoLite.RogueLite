@@ -1,6 +1,6 @@
 using Leopotam.EcsLite;
 
-namespace Events {
+namespace Extensions.Ecs {
   public sealed class DelHereSys<T> : IEcsRunSystem, IEcsInitSystem where T : struct {
     private EcsFilter  _filter;
     private EcsPool<T> _tPool;

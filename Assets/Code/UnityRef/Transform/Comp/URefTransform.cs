@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace UnityRef {
   [Serializable]
-  public struct URefTransform : IEcsURef<UnityEngine.Transform> {
-    [field: SerializeField] public UnityEngine.Transform Component { get; set; }
+  public struct URefTransform : IEcsURef<Transform> {
+    [field: SerializeField] public Transform Component { get; set; }
   }
 }

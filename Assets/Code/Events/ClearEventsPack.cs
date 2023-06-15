@@ -1,3 +1,4 @@
+using Battle.HitBoxes;
 using Engine.Ecs;
 using VContainer;
 
@@ -10,7 +11,7 @@ namespace Events {
         res =>
           res.Resolve<EventsBus>()
              .GetDestroyEventsSystem(EVENTS_CAPACITY)
-             //.IncReplicant<HitEvent>()
+             .IncReplicant<HitEvent>()
       );
     }
   }

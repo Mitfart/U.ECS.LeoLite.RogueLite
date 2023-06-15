@@ -26,7 +26,7 @@ namespace UnityRef {
       this.scale    = scale == default ? Vector3.one : Vector3.zero;
     }
 
-    public EcsTransform(UnityEngine.Transform transform) : this(
+    public EcsTransform(Transform transform) : this(
       transform.localPosition,
       transform.localRotation,
       transform.localScale

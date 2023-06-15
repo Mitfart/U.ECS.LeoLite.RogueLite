@@ -1,8 +1,8 @@
 ﻿using Leopotam.EcsLite;
-using Player;
+using Movement;
 using UnityEngine;
 
-namespace Movement {
+namespace Player {
   public class PlayerInputSys : IEcsRunSystem, IEcsInitSystem {
     private readonly Controls  _controls;
     private          EcsWorld  _world;

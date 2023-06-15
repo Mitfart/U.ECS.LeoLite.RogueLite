@@ -1,18 +1,14 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Movement {
+namespace Movement.Smooth {
   [Serializable]
   // Explaination: https://www.youtube.com/watch?v=KPoeNZZ6H4s&t=105s
   public class SmoothVector3 {
 // @formatter:off
-    private const float MIN_FREQUENCY      = .01f;  private const float MAX_FREQUENCY      = 15f;
-    private const float MIN_DAMPING        = .01f;  private const float MAX_DAMPING        = 1f;
-    private const float MIN_RESPONSIVENESS = -5f;   private const float MAX_RESPONSIVENESS = 5f;
-
-    [SerializeField][Range(MIN_FREQUENCY,      MAX_FREQUENCY)]      private float frequency = 5f;
-    [SerializeField][Range(MIN_DAMPING,        MAX_DAMPING)]        private float damping   = .5f;
-    [SerializeField][Range(MIN_RESPONSIVENESS, MAX_RESPONSIVENESS)] private float responsiveness;
+    [SerializeField][Range(.01f, 15f)] private float frequency = 5f;
+    [SerializeField][Range(.01f,  1f)] private float damping   = .5f;
+    [SerializeField][Range( -5f,  5f)] private float responsiveness;
 // @formatter:on
 
     public Vector3 State => _state;
@@ -20,7 +16,7 @@ namespace Movement {
     public float Freaquency {
       get => frequency;
       set {
-        frequency = Mathf.Clamp(value, MIN_FREQUENCY, MAX_FREQUENCY);
+        frequency = value;
         ReCalcK();
       }
     }
@@ -28,7 +24,7 @@ namespace Movement {
     public float Damping {
       get => damping;
       set {
-        damping = Mathf.Clamp(value, MIN_DAMPING, MAX_DAMPING);
+        damping = value;
         ReCalcK();
       }
     }
@@ -36,7 +32,7 @@ namespace Movement {
     public float Responsiveness {
       get => responsiveness;
       set {
-        responsiveness = Mathf.Clamp(value, MIN_RESPONSIVENESS, MAX_RESPONSIVENESS);
+        responsiveness = value;
         ReCalcK();
       }
     }

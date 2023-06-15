@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityRef;
 
-namespace Movement {
+namespace Movement.Smooth {
   public class SmoothTransformSys : IEcsRunSystem, IEcsInitSystem {
     private EcsWorld  _world;
     private EcsFilter _filter;

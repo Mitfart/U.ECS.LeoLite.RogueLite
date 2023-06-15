@@ -1,4 +1,4 @@
-using Extentions;
+using Extensions.Ecs;
 using Leopotam.EcsLite;
 using UnityEngine;
 using UnityRef;
