@@ -11,6 +11,33 @@ namespace Debug {
     public bool IsActive { get; private set; }
     public bool IsPaused { get; private set; }
 
+    // hack: only knowing way to check for pause in the same frame
+    private void LateUpdate() => IsPaused = false;
+
+
+
+    private void OnEnable()  => On();
+    private void OnDisable() => Off();
+
+
+
+    private void OnDrawGizmos() {
+      if (!IsActive)
+        return;
+
+      if (IsPaused)
+        DrawPrev();
+
+      foreach (Action drawAction in _toDraw) {
+        drawAction.Invoke();
+        ResetGizmos();
+      }
+
+      DrawPrev();
+      _toDraw.Clear();
+      IsPaused = true;
+    }
+
 
 
     public void Draw(Action draw) {
@@ -46,34 +73,6 @@ namespace Debug {
       else
         On();
     }
-
-
-
-    private void OnDrawGizmos() {
-      if (!IsActive)
-        return;
-
-      if (IsPaused)
-        DrawPrev();
-
-      foreach (Action drawAction in _toDraw) {
-        drawAction.Invoke();
-        ResetGizmos();
-      }
-
-      DrawPrev();
-      _toDraw.Clear();
-      IsPaused = true;
-    }
-
-
-
-
-    private void OnEnable()  => On();
-    private void OnDisable() => Off();
-
-    // hack: only knowing way to check for pause in the same frame
-    private void LateUpdate() => IsPaused = false;
 
 
 

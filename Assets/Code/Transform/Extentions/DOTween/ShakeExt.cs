@@ -4,7 +4,7 @@ using DG.Tweening.Core.Enums;
 using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace UnityRef.Extentions.DOTween {
+namespace Extentions.DOTween {
   public static class ShakeExt {
     public static Tweener GetShakePositionTween(
       this EcsPool<EcsTransform> pool,
@@ -19,8 +19,8 @@ namespace UnityRef.Extentions.DOTween {
     ) {
       if (duration > 0.0)
         return DG.Tweening.DOTween.Shake(
-                    () => pool.Get(entity).position,
-                    x => pool.Get(entity).position = x,
+                    () => pool.Get(entity).Position,
+                    x => pool.Get(entity).Position = x,
                     duration,
                     strength,
                     vibrato,
@@ -49,8 +49,8 @@ namespace UnityRef.Extentions.DOTween {
     ) {
       if (duration > 0.0)
         return DG.Tweening.DOTween.Shake(
-                    () => pool.Get(entity).EulerAngles,
-                    x => pool.Get(entity).rotation = Quaternion.Euler(x),
+                    () => pool.Get(entity).EulerAngles(),
+                    x => pool.Get(entity).Rotation = Quaternion.Euler(x),
                     duration,
                     strength,
                     vibrato,

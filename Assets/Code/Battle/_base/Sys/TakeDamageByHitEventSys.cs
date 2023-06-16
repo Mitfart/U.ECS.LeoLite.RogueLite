@@ -5,8 +5,8 @@ using Leopotam.EcsLite;
 
 namespace Battle {
   public class TakeDamageByHitEventSys : IEcsRunSystem, IEcsInitSystem {
-    private          EcsWorld  _world;
     private readonly EventsBus _eventBus;
+    private          EcsWorld  _world;
 
     private EcsPool<Health> _healthPool;
     private EcsPool<Damage> _damagePool;
@@ -15,6 +15,14 @@ namespace Battle {
 
     public TakeDamageByHitEventSys(EventsBus eventBus) {
       _eventBus = eventBus;
+    }
+
+
+    public void Init(IEcsSystems systems) {
+      _world = systems.GetWorld();
+
+      _healthPool = _world.GetPool<Health>();
+      _damagePool = _world.GetPool<Damage>();
     }
 
     public void Run(IEcsSystems systems) {
@@ -30,14 +38,6 @@ namespace Battle {
 
         health.cur -= damage.value;
       }
-    }
-
-
-    public void Init(IEcsSystems systems) {
-      _world = systems.GetWorld();
-
-      _healthPool = _world.GetPool<Health>();
-      _damagePool = _world.GetPool<Damage>();
     }
   }
 }

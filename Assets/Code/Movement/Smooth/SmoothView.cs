@@ -24,9 +24,9 @@ namespace Movement.Smooth {
       const float SCALE = 1;
 
       var smoothClone = new SmoothVector3 {
-        Freaquency     = value.Freaquency,     //
-        Damping        = value.Damping,        //
-        Responsiveness = value.Responsiveness, //
+        Freaquency     = value.Freaquency,    //
+        Damping        = value.Damping,       //
+        Responsiveness = value.Responsiveness //
       };
 
       Vector3 origin  = transform.position;

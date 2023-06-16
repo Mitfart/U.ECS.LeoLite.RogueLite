@@ -1,14 +1,14 @@
-using Battle.Weapon;
-using Battle.Weapon.Aim;
-using Battle.Weapon.Ammo;
-using Battle.Weapon.Ammo._base;
-using Battle.Weapon.Ammo.Reload;
-using Battle.Weapon.Attack;
 using Extensions.Ecs;
 using Leopotam.EcsLite;
 using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Weapon;
+using Weapon.Aim;
+using Weapon.Ammo;
+using Weapon.Ammo._base;
+using Weapon.Ammo.Reload;
+using Weapon.Attack;
 
 namespace _Lab {
   public class TestPlayerInputSys : IEcsRunSystem, IEcsInitSystem {
@@ -30,14 +30,14 @@ namespace _Lab {
       bool    shootBtnUp   = MouseUtils.RightBtnUp();
       bool    reloadKey    = Keyboard.current.rKey.wasPressedThisFrame;
 
-      foreach (int e in _filter) {
-        foreach (EcsPackedEntity activeWeapon in _activeWeaponPool.Get(e).weapons) {
-          if (!activeWeapon.Unpack(_world, out int e2))
+      foreach (int playerE in _filter) {
+        foreach (EcsPackedEntity activeWeapon in _activeWeaponPool.Get(playerE).weapons) {
+          if (!activeWeapon.Unpack(_world, out int weaponE))
             continue;
 
-          ShootOrStop(e2, shootBtnDown, shootBtnUp);
-          ReloadIfEmpty(e2, shootBtnDown, reloadKey);
-          AimAtMouse(e, mousePos);
+          ShootOrStop(weaponE, shootBtnDown, shootBtnUp);
+          ReloadIfEmpty(weaponE, shootBtnDown, reloadKey);
+          AimAtMouse(playerE, mousePos);
         }
       }
     }
@@ -58,23 +58,23 @@ namespace _Lab {
 
 
 
-    private void ShootOrStop(int e2, bool shootBtnDown, bool shootBtnUp) {
+    private void ShootOrStop(int weaponE, bool shootBtnDown, bool shootBtnUp) {
       if (shootBtnDown)
-        _wantShootPool.TryAdd(e2);
+        _wantShootPool.TryAdd(weaponE);
       else if (shootBtnUp)
-        _wantShootPool.TryDel(e2);
+        _wantShootPool.TryDel(weaponE);
     }
 
-    private void ReloadIfEmpty(int e2, bool shootBtnDown, bool reload) {
-      bool magazineIsEmpty = _magazinePool.TryGet(e2, out Magazine magazine) && magazine.IsEmpty();
+    private void ReloadIfEmpty(int weaponE, bool shootBtnDown, bool reload) {
+      bool magazineIsEmpty = _magazinePool.TryGet(weaponE, out Magazine magazine) && magazine.IsEmpty();
 
-      if (reload || (magazineIsEmpty && (shootBtnDown || _autoReloadPool.Has(e2))))
-        _wantReloadPool.TryAdd(e2);
+      if (reload || (magazineIsEmpty && (shootBtnDown || _autoReloadPool.Has(weaponE))))
+        _wantReloadPool.TryAdd(weaponE);
     }
 
-    private void AimAtMouse(int e, Vector2 mousePos) {
-      if (_aimPositionPool.Has(e))
-        _aimPositionPool.Get(e).value = mousePos;
+    private void AimAtMouse(int playerE, Vector2 mousePos) {
+      if (_aimPositionPool.Has(playerE))
+        _aimPositionPool.Get(playerE).value = mousePos;
     }
   }
 }

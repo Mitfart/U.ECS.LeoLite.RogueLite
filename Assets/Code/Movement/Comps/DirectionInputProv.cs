@@ -1,5 +1,4 @@
 using System;
-using Extras.Direction;
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
@@ -8,6 +7,6 @@ namespace Movement {
 
   [Serializable]
   public struct DirectionInput {
-    public Direction value;
+    public Direction.Direction value;
   }
 }

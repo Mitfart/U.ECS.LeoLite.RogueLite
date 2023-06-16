@@ -6,7 +6,7 @@ using Mitfart.LeoECSLite.UniLeo;
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace Battle.Weapon.Projectiles {
+namespace Weapon.Projectiles {
   [DisallowMultipleComponent]
   public class ProjectilesProv : BaseEcsProvider {
     public List<ConvertToEntity> projectiles;

@@ -16,6 +16,13 @@ namespace Engine {
     }
 
 
+
+    private void AddSystems(IEnumerable<IEcsSystem> systems) {
+      foreach (IEcsSystem system in systems)
+        _systems.Add(system);
+    }
+
+
 // @formatter:off
     public void Tick()       { if (_enabled) _systems.Run(); }
     public void FixedTick()  { if (_enabled) _systems.FixedRun(); }
@@ -30,12 +37,5 @@ namespace Engine {
       _systems.Destroy();
     }
     // @formatter:on
-
-
-
-    private void AddSystems(IEnumerable<IEcsSystem> systems) {
-      foreach (IEcsSystem system in systems)
-        _systems.Add(system);
-    }
   }
 }

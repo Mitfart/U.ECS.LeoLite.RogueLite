@@ -9,13 +9,13 @@ namespace Infrastructure {
   public class Bootstrap : MonoBehaviour {
     private IGameStateMachine _gameStateMachine;
 
+    private void Awake() => DontDestroyOnLoad(this);
+    private void Start() => _gameStateMachine.Enter<BootstrapState>();
+
 
     [Inject]
     private void Construct(IGameStateMachine gameStateMachine) {
       _gameStateMachine = gameStateMachine;
     }
-
-    private void Awake() => DontDestroyOnLoad(this);
-    private void Start() => _gameStateMachine.Enter<BootstrapState>();
   }
 }

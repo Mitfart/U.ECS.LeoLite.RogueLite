@@ -1,6 +1,6 @@
-using Battle.Weapon.Ammo._base;
+using Weapon.Ammo._base;
 
-namespace Battle.Weapon.Ammo {
+namespace Weapon.Ammo {
   public static class Ext {
     public static bool IsFull(this Magazine magazine) => magazine.amount == magazine.size;
 

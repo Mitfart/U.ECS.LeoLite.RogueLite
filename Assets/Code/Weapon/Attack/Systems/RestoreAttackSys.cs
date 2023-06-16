@@ -2,7 +2,7 @@ using Extensions.Ecs;
 using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace Battle.Weapon.Attack {
+namespace Weapon.Attack {
   public class RestoreAttackSys : IEcsRunSystem, IEcsInitSystem {
     private EcsPool<BlockAttack> _cantAttackPool;
     private EcsFilter            _filter;

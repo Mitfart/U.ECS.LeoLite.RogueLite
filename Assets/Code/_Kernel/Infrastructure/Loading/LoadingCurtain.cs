@@ -36,8 +36,8 @@ namespace Infrastructure.Loading {
 
     private IEnumerator HideRoutine() {
       group.alpha = 1f;
-      
-      _startTime  = Time.time;
+
+      _startTime = Time.time;
       var passedTime = 0f;
 
       while (passedTime < fadeDuration) {

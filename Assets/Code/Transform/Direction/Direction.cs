@@ -1,4 +1,4 @@
-namespace Extras.Direction {
+namespace Direction {
   public enum Direction {
     Up,
     Down,

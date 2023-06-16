@@ -28,7 +28,7 @@ namespace _Lab {
         throw new Exception("Camera no set!");
 
       Ray ray = camera.ScreenPointToRay(Pos());
-      Physics.Raycast(ray, out RaycastHit hit, layerMask);
+      UnityEngine.Physics.Raycast(ray, out RaycastHit hit, layerMask);
       return hit.point;
     }
 

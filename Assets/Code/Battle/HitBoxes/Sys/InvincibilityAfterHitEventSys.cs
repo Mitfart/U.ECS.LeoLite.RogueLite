@@ -18,6 +18,13 @@ namespace Battle.HitBoxes.Sys {
       _eventsBus = eventsBus;
     }
 
+    public void Init(IEcsSystems systems) {
+      _world = systems.GetWorld();
+
+      _invinciblePool            = _world.GetPool<Invincible>();
+      _invincibilityDurationPool = _world.GetPool<InvincibilityDuration>();
+    }
+
     public void Run(IEcsSystems systems) {
       foreach (int ev in _eventsBus.GetEventBodies(out EcsPool<HitEvent> hitEventPool)) {
         ref HitEvent hitEvent = ref hitEventPool.Get(ev);
@@ -36,13 +43,6 @@ namespace Battle.HitBoxes.Sys {
         MakeInvincible(takerE);
       }
     }
-    
-    public void Init(IEcsSystems systems) {
-      _world = systems.GetWorld();
-
-      _invinciblePool            = _world.GetPool<Invincible>();
-      _invincibilityDurationPool = _world.GetPool<InvincibilityDuration>();
-    }
 
 
 
@@ -50,7 +50,7 @@ namespace Battle.HitBoxes.Sys {
       => _invincibilityDurationPool.TryGet(takerE, out InvincibilityDuration duration)
         ? duration.value
         : 0f;
-    
+
     private void MakeNotInvincible(int     takerE) => _invinciblePool.Del(takerE);
     private bool PassInvincibilityTime(int takerE) => Time.time - _invinciblePool.Get(takerE).startTime > _invinciblePool.Get(takerE).duration;
     private void MakeInvincible(int        takerE) => _invinciblePool.Add(takerE).duration = Duration(takerE);

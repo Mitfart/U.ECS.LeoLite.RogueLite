@@ -5,13 +5,14 @@ namespace Movement.Smooth {
   [Serializable]
   // Explaination: https://www.youtube.com/watch?v=KPoeNZZ6H4s&t=105s
   public class SmoothVector3 {
-// @formatter:off
-    [SerializeField][Range(.01f, 15f)] private float frequency = 5f;
-    [SerializeField][Range(.01f,  1f)] private float damping   = .5f;
-    [SerializeField][Range( -5f,  5f)] private float responsiveness;
-// @formatter:on
+    private Vector3 _deltaState;
 
-    public Vector3 State => _state;
+    private float _k1, _k2, _k3;
+
+
+    private Vector3 _prevInput;
+
+    public Vector3 State { get; private set; }
 
     public float Freaquency {
       get => frequency;
@@ -38,24 +39,17 @@ namespace Movement.Smooth {
     }
 
 
-    private Vector3 _prevInput;
-    private Vector3 _state;
-    private Vector3 _deltaState;
-
-    private float _k1, _k2, _k3;
-
-
 
     public void Init(Vector3 input) {
       _prevInput = input;
-      _state     = input;
+      State      = input;
       ReCalcK();
     }
 
     // Explaination: https://www.youtube.com/watch?v=KPoeNZZ6H4s&t=105s
     public Vector3 Update(float delta, Vector3 input, Vector3? deltaInput = null) {
       Calc(input, CalcDeltaInput(input, delta), delta);
-      return _state;
+      return State;
     }
 
 
@@ -67,13 +61,13 @@ namespace Movement.Smooth {
     }
 
     private void Calc(Vector3 input, Vector3 deltaInput, float delta) {
-      _state      += delta * _deltaState;
+      State       += delta * _deltaState;
       _deltaState += delta * KDeltaState(input, deltaInput, delta);
     }
 
     private Vector3 KDeltaState(Vector3 input, Vector3 deltaInput, float delta) => (KInput(input, deltaInput) - KState()) / K2Stable(delta);
     private Vector3 KInput(Vector3      input, Vector3 deltaInput) => input + _k3 * deltaInput;
-    private Vector3 KState() => _state + _k1 * _deltaState;
+    private Vector3 KState() => State + _k1 * _deltaState;
 
     private float K2Stable(float delta)
       => Mathf.Max(
@@ -90,5 +84,11 @@ namespace Movement.Smooth {
       _k2 = 1                        / (piF2 * piF2);
       _k3 = responsiveness * damping / piF2;
     }
+
+// @formatter:off
+    [SerializeField][Range(.01f, 15f)] private float frequency = 5f;
+    [SerializeField][Range(.01f,  1f)] private float damping   = .5f;
+    [SerializeField][Range( -5f,  5f)] private float responsiveness;
+// @formatter:on
   }
 }

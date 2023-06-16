@@ -1,16 +1,29 @@
-using Battle.Weapon.Attack;
 using Extensions.Ecs;
 using Leopotam.EcsLite;
+using Weapon.Attack;
 
-namespace Battle.Weapon.Ammo._base {
+namespace Weapon.Ammo._base {
   public class ReduceAmmoSys : IEcsRunSystem, IEcsInitSystem {
     private EcsWorld  _world;
     private EcsFilter _filter;
 
     private EcsPool<Magazine>    _magazinePool;
-    private EcsPool<Ammo>  _ammoPool;
+    private EcsPool<Ammo>        _ammoPool;
     private EcsPool<IsAttacking> _isAttackingPool;
     private EcsPool<BlockAttack> _blockAttackPool;
+
+    public void Init(IEcsSystems systems) {
+      _world = systems.GetWorld();
+      _filter = _world.Filter<Weapon>()
+                      .Inc<Magazine>()
+                      .Exc<BlockAttack>()
+                      .End();
+
+      _magazinePool    = _world.GetPool<Magazine>();
+      _blockAttackPool = _world.GetPool<BlockAttack>();
+      _ammoPool        = _world.GetPool<Ammo>();
+      _isAttackingPool = _world.GetPool<IsAttacking>();
+    }
 
 
 
@@ -30,19 +43,6 @@ namespace Battle.Weapon.Ammo._base {
 
         UnblockAttack(e);
       }
-    }
-
-    public void Init(IEcsSystems systems) {
-      _world = systems.GetWorld();
-      _filter = _world.Filter<Weapon>()
-                      .Inc<Magazine>()
-                      .Exc<BlockAttack>()
-                      .End();
-
-      _magazinePool    = _world.GetPool<Magazine>();
-      _blockAttackPool = _world.GetPool<BlockAttack>();
-      _ammoPool        = _world.GetPool<Ammo>();
-      _isAttackingPool = _world.GetPool<IsAttacking>();
     }
 
 

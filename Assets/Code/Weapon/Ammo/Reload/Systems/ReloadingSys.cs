@@ -1,10 +1,10 @@
-using Battle.Weapon.Ammo._base;
-using Battle.Weapon.Attack;
 using Extensions.Ecs;
 using Leopotam.EcsLite;
 using UnityEngine;
+using Weapon.Ammo._base;
+using Weapon.Attack;
 
-namespace Battle.Weapon.Ammo.Reload {
+namespace Weapon.Ammo.Reload {
   public class ReloadingSys : IEcsRunSystem, IEcsInitSystem {
     private EcsPool<_base.Ammo>  _ammoPool;
     private EcsPool<BlockAttack> _cantShootPool;

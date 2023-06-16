@@ -1,4 +1,4 @@
-using Extras.Direction.Extensions;
+using Direction.Extensions;
 using Leopotam.EcsLite;
 using UnityRef;
 
@@ -11,7 +11,20 @@ namespace Movement {
     private EcsPool<EcsTransform>   _displacementPool;
     private EcsPool<MoveDirection>  _moveDirectionPool;
 
-    
+    public void Init(IEcsSystems systems) {
+      _world = systems.GetWorld();
+      _filter = _world
+               .Filter<DirectionInput>()
+               .Inc<MoveDirection>()
+               .Inc<EcsTransform>()
+               .End();
+
+      _moveDirectionPool  = _world.GetPool<MoveDirection>();
+      _directionInputPool = _world.GetPool<DirectionInput>();
+      _displacementPool   = _world.GetPool<EcsTransform>();
+    }
+
+
     public void Run(IEcsSystems systems) {
       foreach (int e in _filter) {
         ref MoveDirection  moveDirection  = ref _moveDirectionPool.Get(e);
@@ -20,19 +33,6 @@ namespace Movement {
 
         moveDirection.value = transform.GetDirection(directionInput.value);
       }
-    }
-    
-    public void Init(IEcsSystems systems) {
-      _world = systems.GetWorld();
-      _filter = _world
-               .Filter<DirectionInput>()
-               .Inc<MoveDirection>()
-               .Inc<EcsTransform>()
-               .End();
-      
-      _moveDirectionPool  = _world.GetPool<MoveDirection>();
-      _directionInputPool = _world.GetPool<DirectionInput>();
-      _displacementPool   = _world.GetPool<EcsTransform>();
     }
   }
 }

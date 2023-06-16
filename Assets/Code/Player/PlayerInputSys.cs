@@ -11,16 +11,9 @@ namespace Player {
     private EcsPool<MoveDirection> _moveDirectionPool;
 
 
-    
+
     public PlayerInputSys(Controls controls) {
       _controls = controls;
-    }
-
-    public void Run(IEcsSystems systems) {
-      var input = _controls.Game.Move.ReadValue<Vector2>();
-      
-      foreach (int e in _filter)
-        _moveDirectionPool.Get(e).value = input;
     }
 
     public void Init(IEcsSystems systems) {
@@ -30,7 +23,14 @@ namespace Player {
                .Inc<MoveDirection>()
                .End();
 
-      _moveDirectionPool  = _world.GetPool<MoveDirection>();
+      _moveDirectionPool = _world.GetPool<MoveDirection>();
+    }
+
+    public void Run(IEcsSystems systems) {
+      Vector2 input = _controls.Game.Move.ReadValue<Vector2>();
+
+      foreach (int e in _filter)
+        _moveDirectionPool.Get(e).value = input;
     }
   }
 }

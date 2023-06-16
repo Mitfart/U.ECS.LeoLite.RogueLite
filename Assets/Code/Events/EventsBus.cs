@@ -42,9 +42,7 @@ namespace Events {
       return ref eventsPool.Add(eventEntity);
     }
 
-    public bool HasEventSingleton<T>() where T : struct, ISingletonEvent {
-      return _singletons.ContainsKey(typeof(T));
-    }
+    public bool HasEventSingleton<T>() where T : struct, ISingletonEvent => _singletons.ContainsKey(typeof(T));
 
 
     public bool HasEventSingleton<T>(out T eventBody) where T : struct, ISingletonEvent {
@@ -112,9 +110,7 @@ namespace Events {
 
     #region DestroyEventsSystem
 
-    public DestroyEventsSystem GetDestroyEventsSystem(int capacity = 16) {
-      return new DestroyEventsSystem(this, capacity);
-    }
+    public DestroyEventsSystem GetDestroyEventsSystem(int capacity = 16) => new DestroyEventsSystem(this, capacity);
 
     public class DestroyEventsSystem : IEcsRunSystem {
       private readonly List<Action> _destructionActions;

@@ -2,7 +2,7 @@ using System;
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace Battle.Weapon.Attack {
+namespace Weapon.Attack {
   [DisallowMultipleComponent] public class RestoreAttackTimerProv : EcsProvider<RestoreAttackTimer> { }
 
   [Serializable]

@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Debug.Gizmos.Editor {
+namespace Debug.Editor {
   [CustomEditor(typeof(GizmosService))]
   public class GizmosServiceEditor : UnityEditor.Editor {
     public override void OnInspectorGUI() {
@@ -22,7 +22,7 @@ namespace Debug.Gizmos.Editor {
         script.Off();
       GUILayout.EndHorizontal();
       GUI.enabled = enabled;
-      
+
       if (GUILayout.Button("Toggle"))
         script.Toggle();
     }

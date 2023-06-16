@@ -8,7 +8,7 @@ namespace Infrastructure.StateMachine.States {
 
 
     public GameLoopState(IEngine engine, Controls controls) {
-      _engine        = engine;
+      _engine   = engine;
       _controls = controls;
     }
 

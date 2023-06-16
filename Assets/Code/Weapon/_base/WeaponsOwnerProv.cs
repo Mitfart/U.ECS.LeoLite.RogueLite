@@ -6,7 +6,7 @@ using Mitfart.LeoECSLite.UniLeo;
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace Battle.Weapon {
+namespace Weapon {
   [DisallowMultipleComponent]
   public class WeaponsOwnerProv : BaseEcsProvider {
     [field: SerializeField] public List<WeaponProv> Weapons { get; private set; }

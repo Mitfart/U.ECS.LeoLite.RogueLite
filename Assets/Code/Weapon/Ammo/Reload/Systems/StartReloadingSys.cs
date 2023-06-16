@@ -2,7 +2,7 @@ using Extensions.Ecs;
 using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace Battle.Weapon.Ammo.Reload {
+namespace Weapon.Ammo.Reload {
   public class StartReloadingSys : IEcsRunSystem, IEcsInitSystem {
     private EcsPool<_base.Ammo>  _ammoPool;
     private EcsFilter            _filter;

@@ -1,5 +1,6 @@
 using Engine.Ecs;
 using Leopotam.EcsLite;
+using Physics;
 using UnityEngine;
 using UnityRef;
 
@@ -27,7 +28,7 @@ namespace Movement {
 
         Vector2 curVel    = rb.velocity;
         Vector2 targetVel = input * speed;
-        
+
 
         float velDot   = Vector2.Dot(input, curVel.normalized);
         float accel    = parameters.Accel    * parameters.AccelDotFactor.Evaluate(velDot);

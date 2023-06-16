@@ -1,15 +1,13 @@
 using System.Collections.Generic;
-using System.Linq;
-using Battle.Weapon.Attack;
+using Extentions;
 using Leopotam.EcsLite;
 using Mitfart.LeoECSLite.UniLeo;
 using UnityEngine;
-using UnityRef;
-using UnityRef.Extentions;
 using VContainer;
 using VContainer.Unity;
+using Weapon.Attack;
 
-namespace Battle.Weapon.Projectiles {
+namespace Weapon.Projectiles {
   public class ShootSys : IEcsRunSystem, IEcsInitSystem {
     private readonly IObjectResolver _di; // *****************
 
@@ -26,38 +24,6 @@ namespace Battle.Weapon.Projectiles {
     public ShootSys(IObjectResolver di) {
       _di = di;
     } // *****************
-
-
-
-    public void Run(IEcsSystems systems) {
-      foreach (int e in _filter) {
-        ref List<ConvertToEntity> projectiles  = ref _projectilesPool.Get(e).value;
-        ref List<EcsTransform>    shootOrigins = ref _shootOriginsPool.Get(e).value;
-
-        ConvertToEntity projectile   = projectiles[Random.Range(0, projectiles.Count - 1)];
-        EcsTransform    displacement = _displacementPool.Has(e) ? _displacementPool.Get(e) : default;
-
-        foreach (EcsTransform shootOrigin in shootOrigins.Select(origin => origin.WithParent(displacement))) {
-          EcsTransform insDisp = shootOrigin;
-
-          if (_spreadAnglePool.Has(e)) {
-            Vector3 angles = insDisp.EulerAngles;
-            angles.z            += _spreadAnglePool.Get(e).angle.GetRandom();
-            insDisp.EulerAngles =  angles;
-          }
-
-          ConvertToEntity projectileInstance =
-            _di.Instantiate(projectile, _insContainer)
-               .GetComponent<ConvertToEntity>();
-
-          Transform insT = projectileInstance.transform;
-          insT.position = insDisp.position;
-          insT.rotation = insDisp.rotation;
-        }
-
-        _isShootingPool.Add(e);
-      }
-    }
 
     public void Init(IEcsSystems systems) {
       _world = systems.GetWorld();
@@ -77,6 +43,38 @@ namespace Battle.Weapon.Projectiles {
       _spreadAnglePool  = _world.GetPool<SpreadAngle>();
 
       _insContainer = new GameObject("Projectiles Container").transform;
+    }
+
+
+
+    public void Run(IEcsSystems systems) {
+      foreach (int weaponE in _filter) {
+        ref List<ConvertToEntity> projectiles  = ref _projectilesPool.Get(weaponE).value;
+        ref List<EcsTransform>    shootOrigins = ref _shootOriginsPool.Get(weaponE).value;
+
+        ConvertToEntity projectile = projectiles[Random.Range(0, projectiles.Count - 1)];
+
+        foreach (EcsTransform shootOrigin in shootOrigins) {
+          EcsTransform insTransform = shootOrigin;
+          insTransform.ParentE = _world.PackEntityWithWorld(weaponE);
+
+          if (_spreadAnglePool.Has(weaponE)) {
+            Vector3 angles = insTransform.EulerAngles();
+            angles.z += _spreadAnglePool.Get(weaponE).angle.GetRandom();
+            insTransform.EulerAngles(angles);
+          }
+
+          ConvertToEntity projectileInstance =
+            _di.Instantiate(projectile, _insContainer)
+               .GetComponent<ConvertToEntity>();
+
+          Transform insT = projectileInstance.transform;
+          insT.position = insTransform.Position;
+          insT.rotation = insTransform.Rotation;
+        }
+
+        _isShootingPool.Add(weaponE);
+      }
     }
   }
 }

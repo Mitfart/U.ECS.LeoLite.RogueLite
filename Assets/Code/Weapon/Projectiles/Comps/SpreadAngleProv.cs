@@ -3,7 +3,7 @@ using Mitfart.LeoECSLite.UniLeo.Providers;
 using Structs.Ranged;
 using UnityEngine;
 
-namespace Battle.Weapon.Projectiles {
+namespace Weapon.Projectiles {
   [DisallowMultipleComponent] public class SpreadAngleProv : EcsProvider<SpreadAngle> { }
 
   [Serializable]

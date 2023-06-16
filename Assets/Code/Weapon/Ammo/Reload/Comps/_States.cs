@@ -1,5 +1,7 @@
-namespace Battle.Weapon.Ammo.Reload {
+namespace Weapon.Ammo.Reload {
   public struct WantReload { }
+
   public struct BlockReload { }
+
   public struct IsReloading { }
 }

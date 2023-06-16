@@ -2,7 +2,7 @@ using System;
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace Battle.Weapon.Ammo._base {
+namespace Weapon.Ammo._base {
   [DisallowMultipleComponent]
   public class MagazineProv : EcsProvider<Magazine> {
     private void OnValidate() {

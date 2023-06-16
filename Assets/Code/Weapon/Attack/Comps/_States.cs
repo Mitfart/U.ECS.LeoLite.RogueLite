@@ -1,4 +1,4 @@
-namespace Battle.Weapon.Attack {
+namespace Weapon.Attack {
   public struct WantAttack { }
 
   public struct BlockAttack { }

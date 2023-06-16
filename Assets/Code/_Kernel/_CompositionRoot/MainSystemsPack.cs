@@ -1,13 +1,13 @@
+using Battle;
+using Engine.Ecs;
+using Events;
 using Mitfart.LeoECSLite.UniLeo;
 using Mitfart.LeoECSLite.UnityIntegration;
 using Mitfart.LeoECSLite.UnityIntegration.Name;
-using Engine.Ecs;
-using UnityRef;
-using Events;
-using Player;
-using Battle;
-using Battle.Weapon;
 using Movement;
+using Player;
+using UnityRef;
+using Weapon;
 
 public class MainSystemsPack : EcsSystemsPack {
   protected override void RegisterSystems() {
@@ -27,7 +27,7 @@ public class MainSystemsPack : EcsSystemsPack {
 
   private void AddWorldsDebug() {
 #if UNITY_EDITOR
-    var nameSettings = new NameSettings(bakeComponents: true);
+    var nameSettings = new NameSettings(true);
     AddByInstance(new EcsWorldDebugSystem(nameSettings: nameSettings));
 #endif
   }

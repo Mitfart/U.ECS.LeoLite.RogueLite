@@ -18,13 +18,6 @@ namespace Infrastructure.StateMachine {
 
 
 
-    private void RegisterStates(IEnumerable<IGameState> gameStates) {
-      foreach (IGameState gameState in gameStates)
-        RegisterState(gameState);
-    }
-
-
-
     public void Tick() {
       if (_currentState is ITickable state)
         state.Tick();
@@ -50,6 +43,13 @@ namespace Infrastructure.StateMachine {
 
 
 
+    private void RegisterStates(IEnumerable<IGameState> gameStates) {
+      foreach (IGameState gameState in gameStates)
+        RegisterState(gameState);
+    }
+
+
+
     private void RegisterState<TState>(TState state) where TState : IGameState {
       state.Init(this);
       _states.Add(state.GetType(), state);
@@ -64,8 +64,6 @@ namespace Infrastructure.StateMachine {
       return state;
     }
 
-    private TState GetState<TState>() where TState : class, IGameState {
-      return (TState) _states[typeof(TState)];
-    }
+    private TState GetState<TState>() where TState : class, IGameState => (TState) _states[typeof(TState)];
   }
 }

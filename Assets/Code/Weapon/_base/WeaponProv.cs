@@ -3,7 +3,7 @@ using Leopotam.EcsLite;
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace Battle.Weapon {
+namespace Weapon {
   [DisallowMultipleComponent] public class WeaponProv : EcsProvider<Weapon> { }
 
   [Serializable]
