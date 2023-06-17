@@ -1,4 +1,5 @@
-﻿using Mitfart.LeoECSLite.UniLeo;
+﻿using Leopotam.EcsLite;
+using Mitfart.LeoECSLite.UniLeo;
 using UnityEngine;
 
 namespace Extensions.Unileo {
@@ -6,7 +7,7 @@ namespace Extensions.Unileo {
     public static bool TryGetEntity(this GameObject gameObject, out int entity) {
       entity = -1; // default
       return gameObject.IsEntity(out ConvertToEntity convert)
-          && convert.TryGetEntity(out entity);
+          && convert.Convert().PackedEntityWithWorld.Unpack(out EcsWorld _, out entity);
     }
 
     public static bool TryGetEntity(this Component component, out int entity) => component.gameObject.TryGetEntity(out entity);

@@ -4,14 +4,17 @@ using UnityEngine;
 
 namespace Extensions.Unileo {
   public static class PackedEntityOrDefaultExt {
-    public static EcsPackedEntity PackedEntityOrDefault(this Component component)
+    public static EcsPackedEntity? AsPackedEntity(this Component component)
       => component != null && component.OnEntity(out ConvertToEntity entity)
         ? entity
-        : default;
+        : null;
 
-    public static EcsPackedEntityWithWorld PackedEntityWWOrDefault(this Component component)
+    public static EcsPackedEntityWithWorld? AsPackedEntityWithWorld(this Component component)
       => component != null && component.OnEntity(out ConvertToEntity entity)
         ? entity
-        : default;
+        : null;
+    
+    public static EcsPackedEntity?          AsPackedEntity(this          ConvertToEntity entity) => entity;
+    public static EcsPackedEntityWithWorld? AsPackedEntityWithWorld(this ConvertToEntity entity) => entity;
   }
 }
