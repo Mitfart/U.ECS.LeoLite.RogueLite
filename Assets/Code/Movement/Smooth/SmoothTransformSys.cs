@@ -1,6 +1,5 @@
 ﻿using Leopotam.EcsLite;
 using UnityEngine;
-using UnityRef;
 
 namespace Movement.Smooth {
   public class SmoothTransformSys : IEcsRunSystem, IEcsInitSystem {

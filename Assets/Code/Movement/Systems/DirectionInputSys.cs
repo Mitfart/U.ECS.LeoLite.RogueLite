@@ -1,6 +1,5 @@
 using Direction.Extensions;
 using Leopotam.EcsLite;
-using UnityRef;
 
 namespace Movement {
   public class DirectionInputSys : IEcsRunSystem, IEcsInitSystem {
