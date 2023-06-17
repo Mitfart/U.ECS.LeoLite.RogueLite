@@ -1,5 +1,3 @@
-using Leopotam.EcsLite;
-using Mitfart.LeoECSLite.UniLeo;
 using UnityEngine;
 
 namespace Extentions {
@@ -12,7 +10,6 @@ namespace Extentions {
     }
 
     public static ref EcsTransform Sync(ref this EcsTransform cur, Transform transform) {
-      cur.ParentE    = transform.GetComponentInParent<ConvertToEntity>() ?? default(EcsPackedEntityWithWorld);
       cur.Position   = transform.position;
       cur.Rotation   = transform.rotation;
       cur.LocalScale = transform.localScale.x;

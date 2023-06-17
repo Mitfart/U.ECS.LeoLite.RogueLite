@@ -1,5 +1,4 @@
 using System;
-using Extensions;
 using Extensions.Ecs;
 using Extensions.Unileo;
 using Extentions;
@@ -16,13 +15,11 @@ public struct EcsTransform {
   [SerializeField] private Quaternion rotation;
   [SerializeField] private float      scale;
 
-  private EcsPackedEntityWithWorld _parentE;
+  private EcsPackedEntityWithWorld? _parentE;
 
+  public EcsTransform? Parent => ParentE?.GetOrNull<EcsTransform>();
 
-
-  public EcsTransform Parent => ParentE.GetOrDefault<EcsTransform>();
-
-  public EcsPackedEntityWithWorld ParentE {
+  public EcsPackedEntityWithWorld? ParentE {
     get => _parentE;
     set {
       _parentE = value;
@@ -41,34 +38,30 @@ public struct EcsTransform {
   public float      LocalScale    { get => localScale;    set => ReCalcScale(localScale = value); }
 
 
-  public Matrix4x4 Matrix => Matrix4x4.TRS(Position, Rotation, Vector3.one * Scale);
-
-
 
   public EcsTransform(
-    Vector3?                  position = null,
-    Quaternion?               rotation = null,
+    Vector3                   localPos = default,
+    Quaternion?               localRot = null,
     float                     scale    = 1f,
     EcsPackedEntityWithWorld? parentE  = null
   ) {
-    localPosition = position ?? Vector3.zero;
-    localRotation = rotation ?? Quaternion.identity;
+    localPosition = localPos;
+    localRotation = localRot ?? Quaternion.identity;
     localScale    = scale;
+    _parentE      = parentE;
 
-    this.position = localPosition;
-    this.rotation = localRotation;
-    this.scale    = localScale;
-
-    _parentE = parentE ?? default;
+    position   = default;
+    rotation   = default;
+    this.scale = default;
 
     ReCalcGlobal();
   }
 
   public EcsTransform(Transform transform) : this(
-    transform.position,
-    transform.rotation,
-    transform.lossyScale.x,
-    transform.EntityParent().PackedEntityWWOrDefault()
+    transform.localPosition,
+    transform.localRotation,
+    transform.localScale.x,
+    transform.ParentEntity()
   ) { }
 
 
@@ -79,11 +72,15 @@ public struct EcsTransform {
     ReCalcScale();
   }
 
-  private Vector3    ReCalcPosition(Vector3?    newLocalPos   = null) => position = Parent.Rotation * (newLocalPos ?? localPosition) + Parent.Position;
-  private Quaternion ReCalcRotation(Quaternion? newLocalRot   = null) => rotation = Parent.Rotation * (newLocalRot   ?? localRotation);
-  private float      ReCalcScale(float?         newLocalScale = null) => scale = Parent.Scale       * (newLocalScale ?? localScale);
+  private Vector3    ReCalcPosition(Vector3?    newLocalPos   = null) => position = ParentRot() * (newLocalPos ?? localPosition) + ParentPos();
+  private Quaternion ReCalcRotation(Quaternion? newLocalRot   = null) => rotation = ParentRot() * (newLocalRot   ?? localRotation);
+  private float      ReCalcScale(float?         newLocalScale = null) => scale = ParentScale()  * (newLocalScale ?? localScale);
 
-  private Vector3    ReCalcLocalPosition(Vector3?    newPos   = null) => localPosition = Quaternion.Inverse(Parent.Rotation) * (newPos ?? Position) - Parent.Position;
-  private Quaternion ReCalcLocalRotation(Quaternion? newRot   = null) => localRotation = Quaternion.Inverse(Parent.Rotation) * (newRot ?? Rotation);
-  private float      ReCalcLocalScale(float?         newScale = null) => localScale = (newScale                                        ?? Scale) / Parent.Scale;
+  private Vector3    ReCalcLocalPosition(Vector3?    newPos   = null) => localPosition = Quaternion.Inverse(ParentRot()) * (newPos ?? position) - ParentPos();
+  private Quaternion ReCalcLocalRotation(Quaternion? newRot   = null) => localRotation = Quaternion.Inverse(ParentRot()) * (newRot ?? rotation);
+  private float      ReCalcLocalScale(float?         newScale = null) => localScale = (newScale                                    ?? scale) / ParentScale();
+
+  private Vector3    ParentPos()   => Parent?.Position ?? Vector3.zero;
+  private Quaternion ParentRot()   => Parent?.Rotation ?? Quaternion.identity;
+  private float      ParentScale() => Parent?.Scale    ?? 1f;
 }
