@@ -48,7 +48,7 @@ namespace Movement.Smooth {
 
     // Explaination: https://www.youtube.com/watch?v=KPoeNZZ6H4s&t=105s
     public Vector3 Update(float delta, Vector3 input, Vector3? deltaInput = null) {
-      Calc(input, CalcDeltaInput(input, delta), delta);
+      Calc(input, deltaInput ?? CalcDeltaInput(input, delta), delta);
       return State;
     }
 
