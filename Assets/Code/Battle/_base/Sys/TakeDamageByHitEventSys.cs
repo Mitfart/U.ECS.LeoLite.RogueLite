@@ -1,6 +1,7 @@
 ﻿using Battle.HitBoxes;
 using Battle.HitBoxes.Extensins;
 using Events;
+using Extensions.Ecs;
 using Leopotam.EcsLite;
 
 namespace Battle {
@@ -34,9 +35,9 @@ namespace Battle {
           return;
 
         ref Health health = ref _healthPool.Get(takerE);
-        ref Damage damage = ref _damagePool.Get(dealerE);
+        float      damage = _damagePool.TryGet(dealerE, out Damage dam) ? dam.value : 0f;
 
-        health.cur -= damage.value;
+        health.cur -= damage;
       }
     }
   }

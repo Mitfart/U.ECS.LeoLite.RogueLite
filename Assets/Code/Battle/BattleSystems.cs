@@ -1,6 +1,5 @@
 using Battle.HitBoxes.Debug;
 using Battle.HitBoxes.Sys;
-using Battle.UI;
 using Engine.Ecs;
 
 namespace Battle {
@@ -13,7 +12,6 @@ namespace Battle {
 #endif
       Add<InvincibilityAfterHitEventSys>();
       Add<TakeDamageByHitEventSys>();
-      Add<SetHealthUISys>();
     }
   }
 }
