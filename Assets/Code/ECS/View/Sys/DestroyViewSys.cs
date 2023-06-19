@@ -20,7 +20,7 @@ namespace Features.View {
 
     public void Run(IEcsSystems systems) {
       foreach (int e in _filter)
-        _viewPool.Get(e).value.Destroy();
+        _viewPool.Get(e).value.OnDestroy();
     }
   }
 }
