@@ -1,21 +1,21 @@
 using Extensions.Ecs;
+using Features.Player;
+using Features.Weapon;
+using Features.Weapon.Aim;
+using Features.Weapon.Ammo;
+using Features.Weapon.Ammo._base;
+using Features.Weapon.Ammo.Reload;
+using Features.Weapon.Attack;
 using Leopotam.EcsLite;
-using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Weapon;
-using Weapon.Aim;
-using Weapon.Ammo;
-using Weapon.Ammo._base;
-using Weapon.Ammo.Reload;
-using Weapon.Attack;
 
 namespace _Lab {
   public class TestPlayerInputSys : IEcsRunSystem, IEcsInitSystem {
     private EcsWorld  _world;
     private EcsFilter _filter;
 
-    private EcsPool<ActiveWeapons> _activeWeaponPool;
+    private EcsPool<ActiveWeapon> _activeWeaponPool;
     private EcsPool<AimPosition>   _aimPositionPool;
     private EcsPool<WantAttack>    _wantShootPool;
     private EcsPool<WantReload>    _wantReloadPool;
@@ -31,24 +31,22 @@ namespace _Lab {
       bool    reloadKey    = Keyboard.current.rKey.wasPressedThisFrame;
 
       foreach (int playerE in _filter) {
-        foreach (EcsPackedEntity activeWeapon in _activeWeaponPool.Get(playerE).weapons) {
-          if (!activeWeapon.Unpack(_world, out int weaponE))
-            continue;
+        if (!_activeWeaponPool.Get(playerE).weapon.Unpack(_world, out int weaponE))
+          continue;
 
-          ShootOrStop(weaponE, shootBtnDown, shootBtnUp);
-          ReloadIfEmpty(weaponE, shootBtnDown, reloadKey);
-          AimAtMouse(playerE, mousePos);
-        }
+        ShootOrStop(weaponE, shootBtnDown, shootBtnUp);
+        ReloadIfEmpty(weaponE, shootBtnDown, reloadKey);
+        AimAtMouse(playerE, mousePos);
       }
     }
 
     public void Init(IEcsSystems systems) {
       _world = systems.GetWorld();
       _filter = _world.Filter<PlayerTag>()
-                      .Inc<ActiveWeapons>()
+                      .Inc<ActiveWeapon>()
                       .End();
 
-      _activeWeaponPool = _world.GetPool<ActiveWeapons>();
+      _activeWeaponPool = _world.GetPool<ActiveWeapon>();
       _wantShootPool    = _world.GetPool<WantAttack>();
       _aimPositionPool  = _world.GetPool<AimPosition>();
       _wantReloadPool   = _world.GetPool<WantReload>();

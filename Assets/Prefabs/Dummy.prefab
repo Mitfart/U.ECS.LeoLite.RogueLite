@@ -402,6 +402,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6365561691581707092}
   - component: {fileID: 395913747520864155}
+  - component: {fileID: 13452857154861493}
   - component: {fileID: 6365561691581707083}
   m_Layer: 0
   m_Name: View
@@ -439,6 +440,22 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!70 &13452857154861493
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6365561691581707091}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 2}
+  m_Direction: 0
 --- !u!114 &6365561691581707083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,7 +482,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6365561691766978328}
-  - component: {fileID: 6365561691766978318}
   - component: {fileID: 6365561691766978325}
   - component: {fileID: 6365561691766978326}
   - component: {fileID: 6365561691766978314}
@@ -498,22 +514,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &6365561691766978318
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6365561691766978327}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
-  m_Direction: 0
 --- !u!114 &6365561691766978325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,7 +592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   component:
-    <Collider>k__BackingField: {fileID: 0}
+    <Collider>k__BackingField: {fileID: 13452857154861493}
 --- !u!114 &6365561691766978319
 MonoBehaviour:
   m_ObjectHideFlags: 0

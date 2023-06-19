@@ -13,7 +13,7 @@ namespace Extensions.Unileo {
       => component != null && component.OnEntity(out ConvertToEntity entity)
         ? entity
         : null;
-    
+
     public static EcsPackedEntity?          AsPackedEntity(this          ConvertToEntity entity) => entity;
     public static EcsPackedEntityWithWorld? AsPackedEntityWithWorld(this ConvertToEntity entity) => entity;
   }

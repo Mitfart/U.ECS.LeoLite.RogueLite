@@ -190,9 +190,9 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!19719996 &416487818 stripped
-TilemapCollider2D:
-  m_CorrespondingSourceObject: {fileID: 6425607166514332764, guid: d1f35faad2ce3424baf75071aecf7448, type: 3}
+--- !u!66 &416487819 stripped
+CompositeCollider2D:
+  m_CorrespondingSourceObject: {fileID: 6425607166514332738, guid: d1f35faad2ce3424baf75071aecf7448, type: 3}
   m_PrefabInstance: {fileID: 6425607166341808333}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
@@ -551,6 +551,17 @@ Transform:
   m_Father: {fileID: 101097605}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &716465390 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1605790971289143240, guid: 47b9cf6f5a31c904cb73ae5015026516, type: 3}
+  m_PrefabInstance: {fileID: 1666357650777562836}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ff1b198c99245939942f6785e159e90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &830398191
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,7 +624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   component:
-    <Collider>k__BackingField: {fileID: 416487818}
+    <Collider>k__BackingField: {fileID: 416487819}
 --- !u!114 &876291201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -696,18 +707,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6365561691581707083, guid: 800a553deaa78cc46b0fd990b5688d15, type: 3}
-      propertyPath: value.damping
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6365561691581707083, guid: 800a553deaa78cc46b0fd990b5688d15, type: 3}
-      propertyPath: value.frequency
-      value: 4.31
-      objectReference: {fileID: 0}
-    - target: {fileID: 6365561691581707083, guid: 800a553deaa78cc46b0fd990b5688d15, type: 3}
-      propertyPath: value.responsiveness
-      value: 0.88
-      objectReference: {fileID: 0}
     - target: {fileID: 6365561691766978327, guid: 800a553deaa78cc46b0fd990b5688d15, type: 3}
       propertyPath: m_Name
       value: Dummy
@@ -793,6 +792,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1605790971289143243, guid: 47b9cf6f5a31c904cb73ae5015026516, type: 3}
+      propertyPath: component.duration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605790971289143287, guid: 47b9cf6f5a31c904cb73ae5015026516, type: 3}
+      propertyPath: component.duration
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740628974633051873, guid: 47b9cf6f5a31c904cb73ae5015026516, type: 3}
+      propertyPath: component.angle.max
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740628974633051873, guid: 47b9cf6f5a31c904cb73ae5015026516, type: 3}
+      propertyPath: component.angle.min
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130787703150408604, guid: 47b9cf6f5a31c904cb73ae5015026516, type: 3}
+      propertyPath: <Weapon>k__BackingField
+      value: 
+      objectReference: {fileID: 716465390}
     - target: {fileID: 2130787703150408676, guid: 47b9cf6f5a31c904cb73ae5015026516, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -842,7 +861,7 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 1605790971289143287, guid: 47b9cf6f5a31c904cb73ae5015026516, type: 3}
+    - {fileID: 2130787703150408605, guid: 47b9cf6f5a31c904cb73ae5015026516, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 47b9cf6f5a31c904cb73ae5015026516, type: 3}
 --- !u!1001 &6425607166341808333
 PrefabInstance:
