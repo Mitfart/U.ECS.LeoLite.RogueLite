@@ -8,8 +8,7 @@ namespace Features.Battle {
     protected override void RegisterSystems() {
       Add<CreateHitEventSys>();
       Add<InvincibilityAfterHitEventSys>();
-      Add<TakeDamageByHitEventSys>();
-      Add<DestroyAfterHitsSys>();
+      Add<PenetrationSys>();
 
 #if UNITY_EDITOR
       Add<HitBoxDebugSys>();

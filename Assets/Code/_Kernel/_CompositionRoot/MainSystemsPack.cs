@@ -4,6 +4,7 @@ using Features.Battle;
 using Features.Destroy;
 using Features.Movement;
 using Features.Player;
+using Features.Unit;
 using Features.View;
 using Features.Weapon;
 using Mitfart.LeoECSLite.UniLeo;
@@ -20,8 +21,9 @@ public class MainSystemsPack : EcsSystemsPack {
     AddPack<MovementSystems>();
     AddPack<WeaponSystems>();
     AddPack<BattleSystems>();
+    AddPack<UnitSystems>();
 
-    AddPack<ViewPack>();
+    AddPack<ViewSystems>();
     AddPack<SetUnityDataSystems>();
     Add<DestroySys>();
 
