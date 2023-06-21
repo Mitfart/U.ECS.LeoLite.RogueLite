@@ -1,6 +1,5 @@
 using System;
 using Events;
-using Leopotam.EcsLite;
 using UnityEngine;
 
 namespace Features.Battle {

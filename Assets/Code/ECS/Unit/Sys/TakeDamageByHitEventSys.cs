@@ -1,5 +1,4 @@
 ﻿using Events;
-using Features.Battle.Extensions;
 using Leopotam.EcsLite;
 
 namespace Features.Battle {

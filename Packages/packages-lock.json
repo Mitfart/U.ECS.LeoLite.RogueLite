@@ -265,6 +265,13 @@
       },
       "hash": "99c6e8c703b2a14caca566f950aafd0ba3a35f85"
     },
+    "net.tnrd.iconmanager": {
+      "version": "https://github.com/Thundernerd/Unity3D-IconManager.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "0278b275ba53a54811750004d95a53159d1a66bb"
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,

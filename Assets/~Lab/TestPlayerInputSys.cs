@@ -2,8 +2,8 @@ using Extensions.Ecs;
 using Features.Player;
 using Features.Weapon;
 using Features.Weapon.Aim;
-using Features.Weapon.Ammo;
 using Features.Weapon.Ammo._base;
+using Features.Weapon.Ammo.Extensions;
 using Features.Weapon.Ammo.Reload;
 using Features.Weapon.Attack;
 using Leopotam.EcsLite;
@@ -15,7 +15,7 @@ namespace _Lab {
     private EcsWorld  _world;
     private EcsFilter _filter;
 
-    private EcsPool<ActiveWeapon> _activeWeaponPool;
+    private EcsPool<WeaponOwner> _activeWeaponPool;
     private EcsPool<AimPosition>   _aimPositionPool;
     private EcsPool<WantAttack>    _wantShootPool;
     private EcsPool<WantReload>    _wantReloadPool;
@@ -31,7 +31,7 @@ namespace _Lab {
       bool    reloadKey    = Keyboard.current.rKey.wasPressedThisFrame;
 
       foreach (int playerE in _filter) {
-        if (!_activeWeaponPool.Get(playerE).weapon.Unpack(_world, out int weaponE))
+        if (!_activeWeaponPool.Get(playerE).Weapon.Unpack(_world, out int weaponE))
           continue;
 
         ShootOrStop(weaponE, shootBtnDown, shootBtnUp);
@@ -43,10 +43,10 @@ namespace _Lab {
     public void Init(IEcsSystems systems) {
       _world = systems.GetWorld();
       _filter = _world.Filter<PlayerTag>()
-                      .Inc<ActiveWeapon>()
+                      .Inc<WeaponOwner>()
                       .End();
 
-      _activeWeaponPool = _world.GetPool<ActiveWeapon>();
+      _activeWeaponPool = _world.GetPool<WeaponOwner>();
       _wantShootPool    = _world.GetPool<WantAttack>();
       _aimPositionPool  = _world.GetPool<AimPosition>();
       _wantReloadPool   = _world.GetPool<WantReload>();

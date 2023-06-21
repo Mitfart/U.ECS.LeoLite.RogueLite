@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 
 namespace Features.View {
-  public abstract class EcsView : MonoBehaviour, IEvsView {
-    public abstract void Refresh();
+  public class EcsView : MonoBehaviour, IEvsView {
+    public virtual void Refresh() { }
 
-    public abstract void OnDestroy();
+    public virtual void OnDestroyEntity() { }
   }
 }

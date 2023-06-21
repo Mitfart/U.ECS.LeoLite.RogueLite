@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94c73331f5054058a18a98f28e76e817, type: 3}
+  m_Name: _Location_Dev
+  m_EditorClassIdentifier: 
+  Title: Green
+  Color: {r: 0.29617742, g: 1, b: 0.2783019, a: 1}
+  defaultRoomsNames:
+  - Sc_Room_Dev_0
+  secretRoomsNames: []
+  shopRoomsNames: []
+  defaultRooms:
+  - {fileID: 102900000, guid: 09081b7dcaf9fb74f9a64fcd5a863dac, type: 3}
+  secretRooms: []
+  shopRooms: []

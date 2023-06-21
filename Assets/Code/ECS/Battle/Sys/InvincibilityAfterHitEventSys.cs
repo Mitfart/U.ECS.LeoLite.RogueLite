@@ -1,6 +1,5 @@
 ﻿using Events;
 using Extensions.Ecs;
-using Features.Battle.Extensions;
 using Features.Unit.Comps;
 using Leopotam.EcsLite;
 using UnityEngine;

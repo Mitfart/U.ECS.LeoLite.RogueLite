@@ -1,6 +1,5 @@
 ﻿using Events;
 using Features.Battle;
-using Features.Battle.Extensions;
 using Features.Battle.HitBoxes;
 using Leopotam.EcsLite;
 
