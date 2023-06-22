@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Level {
   [CreateAssetMenu]
@@ -10,9 +11,9 @@ namespace Level {
     [SerializeField, HideInInspector] private string[] secretRoomsNames;
     [SerializeField, HideInInspector] private string[] shopRoomsNames;
 
-    public string[] DefaultRooms => defaultRoomsNames;
-    public string[] SecretRooms  => secretRoomsNames;
-    public string[] ShopRooms    => shopRoomsNames;
+    public IReadOnlyList<string> DefaultRooms => defaultRoomsNames;
+    public IReadOnlyList<string> SecretRooms  => secretRoomsNames;
+    public IReadOnlyList<string> ShopRooms    => shopRoomsNames;
 
     // public Items[] Items;
   }

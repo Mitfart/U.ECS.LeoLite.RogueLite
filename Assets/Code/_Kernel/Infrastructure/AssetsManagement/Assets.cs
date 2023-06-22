@@ -1,27 +1,12 @@
-﻿using Debug;
-using Infrastructure.Loading;
-using Level;
-using UnityEngine;
+﻿using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Infrastructure.AssetsManagement {
   public sealed class Assets {
-    public GizmosService  GizmosService  { get; }
-    public LoadingCurtain LoadingCurtain { get; }
-    public LocationsDB    Locations      { get; }
-    public Object         Render         { get; }
+    public T Ins<T>(string  path) where T : Object => Object.Instantiate(Load<T>(path));
+    public T Load<T>(string path) where T : Object => Resources.Load<T>(path);
 
-    public Assets() {
-      GizmosService  = Resources.Load<GizmosService>(ResourcesPath.GIZMOS_SERVICE);
-      LoadingCurtain = Resources.Load<LoadingCurtain>(ResourcesPath.LOADING_CURTAIN);
-      Locations      = Resources.Load<LocationsDB>(ResourcesPath.LOCATIONS);
-      Render         = Resources.Load(ResourcesPath.RENDER);
-    }
-
-
-    public GizmosService  InsGizmosService()  => Instantiate(GizmosService);
-    public LoadingCurtain InsLoadingCurtain() => Instantiate(LoadingCurtain);
-    public Object         InsRender()         => Instantiate(Render);
-
-    private static T Instantiate<T>(T asset) where T : Object => Object.Instantiate(asset);
+    public Object Ins(string  path) => Object.Instantiate(Load(path));
+    public Object Load(string path) => Resources.Load(path);
   }
 }

@@ -1,32 +1,28 @@
-using Infrastructure.AssetsManagement;
 using Infrastructure.Loading;
 using UnityEngine.SceneManagement;
 
 namespace Infrastructure.StateMachine.States {
-  public class LoadLevelState : GameState, IDataRequireState<string> {
+  public class LoadRoomState : GameState, IDataRequireState<string> {
     private readonly ISceneLoader    _sceneLoader;
     private readonly ILoadingCurtain _loadingCurtain;
     private readonly Controls        _controls;
-    private readonly Assets          _assets;
 
-    private string _levelSceneName;
-
+    private string _roomSceneName;
 
 
-    public LoadLevelState(
+
+    public LoadRoomState(
       ISceneLoader    sceneLoader,
       ILoadingCurtain loadingCurtain,
-      Controls        controls,
-      Assets          assets
+      Controls        controls
     ) {
       _sceneLoader    = sceneLoader;
       _loadingCurtain = loadingCurtain;
       _controls       = controls;
-      _assets         = assets;
     }
 
-    public IDataRequireState<string> SetData(string data) {
-      _levelSceneName = data;
+    public IDataRequireState<string> SetData(string roomSceneName) {
+      _roomSceneName = roomSceneName;
       return this;
     }
 
@@ -35,10 +31,9 @@ namespace Infrastructure.StateMachine.States {
     public override void Enter() {
       _controls.Disable();
 
-      _assets.InsRender();
       _loadingCurtain.Show();
 
-      StartLoadScene();
+      LoadRoom();
     }
 
     public override void Exit() {
@@ -47,14 +42,14 @@ namespace Infrastructure.StateMachine.States {
 
 
 
-    private void StartLoadScene() {
+    private void LoadRoom() {
 #if UNITY_EDITOR
-      if (SceneManager.GetActiveScene().name == _levelSceneName) {
+      if (SceneManager.GetActiveScene().name == _roomSceneName) {
         OnLoaded();
         return;
       }
 #endif
-      _sceneLoader.Load(_levelSceneName, OnLoaded);
+      _sceneLoader.Load(_roomSceneName, OnLoaded);
     }
 
     private void OnLoaded() => StateMachine.Enter<GameLoopState>();

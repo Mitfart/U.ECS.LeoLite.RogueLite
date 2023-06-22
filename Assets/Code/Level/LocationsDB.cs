@@ -4,8 +4,8 @@ using UnityEngine;
 namespace Level {
   [CreateAssetMenu]
   public class LocationsDB : ScriptableObject {
-    [SerializeField] private List<Location> locations;
+    [SerializeField] private Location[] locations;
 
-    public IReadOnlyCollection<Location> Locations => locations;
+    public IReadOnlyList<Location> Read() => locations;
   }
 }

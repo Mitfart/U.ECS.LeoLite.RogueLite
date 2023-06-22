@@ -25,6 +25,9 @@ namespace _Lab {
 
 
     public void Run(IEcsSystems systems) {
+      if (_filter.GetEntitiesCount() <= 0)
+        return;
+      
       Vector2 mousePos     = MouseUtils.WorldPos2D();
       bool    shootBtnDown = MouseUtils.RightBtnDown();
       bool    shootBtnUp   = MouseUtils.RightBtnUp();

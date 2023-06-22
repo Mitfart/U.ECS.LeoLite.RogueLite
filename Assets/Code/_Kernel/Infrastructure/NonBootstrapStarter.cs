@@ -6,7 +6,7 @@ namespace Infrastructure {
 #if UNITY_EDITOR
     private void Awake() {
       if (FindObjectOfType<Bootstrap>() == null)
-        Instantiate(Resources.Load<Bootstrap>(ResourcesPath.BOOTSTRAP));
+        Instantiate(Resources.Load<Bootstrap>(AssetPath.BOOTSTRAP));
     }
 #endif
   }
