@@ -1,5 +1,6 @@
-using Features.Weapon.Attack;
+using ECS.Unit.Behavior.Nodes.Structural;
+using ECS.Weapon.Attack;
 
-namespace Behavior.Nodes.Special.Weapon {
-  public class BeginAttackNode : AddCompNode<WantAttack> { }
+namespace ECS.Unit.Behavior.Nodes.Special.Attack {
+   public class BeginAttackNode : AddCompNode<WantAttack> { }
 }

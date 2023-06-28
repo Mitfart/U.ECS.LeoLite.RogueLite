@@ -2,12 +2,11 @@
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace Features.View {
-  [DisallowMultipleComponent]
-  public class ViewProv : EcsProvider<View> { }
+namespace ECS.View {
+   [DisallowMultipleComponent] public class ViewProv : EcsProvider<View> { }
 
-  [Serializable]
-  public struct View {
-    public EcsView value;
-  }
+   [Serializable]
+   public struct View {
+      public EcsView value;
+   }
 }

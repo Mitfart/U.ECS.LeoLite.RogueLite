@@ -2,11 +2,11 @@
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace Features.Weapon.Aim {
-  [DisallowMultipleComponent] public class AimPositionProv : EcsProvider<AimPosition> { }
+namespace ECS.Weapon.Aim {
+   [DisallowMultipleComponent] public class AimPositionProv : EcsProvider<AimPosition> { }
 
-  [Serializable]
-  public struct AimPosition {
-    public Vector3 value;
-  }
+   [Serializable]
+   public struct AimPosition {
+      public Vector3 value;
+   }
 }

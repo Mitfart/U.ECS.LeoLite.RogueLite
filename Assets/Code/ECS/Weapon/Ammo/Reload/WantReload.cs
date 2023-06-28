@@ -1,3 +1,3 @@
-﻿namespace Features.Weapon.Ammo.Reload {
-  public struct WantReload { }
+﻿namespace ECS.Weapon.Ammo.Reload {
+   public struct WantReload { }
 }

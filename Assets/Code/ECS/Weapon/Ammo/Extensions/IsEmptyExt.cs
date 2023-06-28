@@ -1,9 +1,11 @@
-﻿using Features.Weapon.Ammo._base;
+﻿namespace ECS.Weapon.Ammo.Extensions {
+   public static class IsEmptyExt {
+      public static bool IsEmpty(this Magazine magazine) {
+         return magazine.amount <= 0;
+      }
 
-namespace Features.Weapon.Ammo.Extensions {
-  public static class IsEmptyExt {
-    public static bool IsEmpty(this Magazine magazine) => magazine.amount <= 0;
-
-    public static bool IsEmpty(this _base.Ammo ammo) => ammo.amount <= 0;
-  }
+      public static bool IsEmpty(this Ammo ammo) {
+         return ammo.amount <= 0;
+      }
+   }
 }

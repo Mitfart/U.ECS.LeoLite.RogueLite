@@ -2,18 +2,18 @@
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace Features.Battle.HitBoxes {
-  [DisallowMultipleComponent] public class InvincibleProv : EcsProvider<Invincible> { }
+namespace ECS.Battle {
+   [DisallowMultipleComponent] public class InvincibleProv : EcsProvider<Invincible> { }
 
-  [Serializable]
-  public struct Invincible {
-    public float duration;
+   [Serializable]
+   public struct Invincible {
+      public float duration;
 
-    [HideInInspector] public float startTime;
+      [HideInInspector] public float startTime;
 
-    public Invincible(float duration) {
-      this.duration = duration;
-      startTime     = Time.time;
-    }
-  }
+      public Invincible(float duration) {
+         this.duration = duration;
+         startTime     = Time.time;
+      }
+   }
 }

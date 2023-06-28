@@ -1,28 +1,28 @@
 using System;
 using System.Collections.Generic;
+using ECS.UnityRef;
 using Extensions.Ecs;
 using Leopotam.EcsLite;
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
-using UnityRef;
 
-namespace Features.Weapon.Projectiles {
-  [DisallowMultipleComponent]
-  public class ProjectilesSpawnOriginsProv : BaseEcsProvider {
-    public List<Transform> origins;
+namespace ECS.Weapon.Shooting {
+   [DisallowMultipleComponent]
+   public class ProjectilesSpawnOriginsProv : BaseEcsProvider {
+      public List<Transform> origins;
 
-    public override void Convert(int e, EcsWorld world) {
-      world.GetPool<ProjectilesSpawnOrigins>()
-           .Set(e)
-           .value = origins.ConvertAll(ToEcs);
-      Destroy(this);
-    }
+      public override void Convert(int e, EcsWorld world) {
+         world.GetPool<ProjectilesSpawnOrigins>().Set(e).value = origins.ConvertAll(ToEcs);
+         Destroy(this);
+      }
 
-    private static EcsTransform ToEcs(Transform origin) => new(origin);
-  }
+      private static EcsTransform ToEcs(Transform origin) {
+         return new(origin);
+      }
+   }
 
-  [Serializable]
-  public struct ProjectilesSpawnOrigins {
-    public List<EcsTransform> value;
-  }
+   [Serializable]
+   public struct ProjectilesSpawnOrigins {
+      public List<EcsTransform> value;
+   }
 }

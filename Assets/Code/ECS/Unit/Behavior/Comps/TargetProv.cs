@@ -1,13 +1,13 @@
 ﻿using System;
 using Leopotam.EcsLite;
-using UnityEngine;
 using Mitfart.LeoECSLite.UniLeo.Providers;
+using UnityEngine;
 
-namespace ECS.Unit.Comps {
-  [DisallowMultipleComponent] public class TargetProv : EcsProvider<Target> { }
+namespace ECS.Unit.Behavior.Comps {
+   [DisallowMultipleComponent] public class TargetProv : EcsProvider<Target> { }
 
-  [Serializable]
-  public struct Target {
-    public EcsPackedEntityWithWorld target;
-  }
+   [Serializable]
+   public struct Target {
+      public EcsPackedEntityWithWorld Value;
+   }
 }

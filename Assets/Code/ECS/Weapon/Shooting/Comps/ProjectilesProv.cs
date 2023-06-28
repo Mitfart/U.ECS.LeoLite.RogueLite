@@ -6,19 +6,19 @@ using Mitfart.LeoECSLite.UniLeo;
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace Features.Weapon.Projectiles {
-  [DisallowMultipleComponent]
-  public class ProjectilesProv : BaseEcsProvider {
-    public List<ConvertToEntity> projectiles;
+namespace ECS.Weapon.Shooting {
+   [DisallowMultipleComponent]
+   public class ProjectilesProv : BaseEcsProvider {
+      public List<ConvertToEntity> projectiles;
 
-    public override void Convert(int e, EcsWorld world) {
-      world.GetPool<Projectiles>().Set(e).value = projectiles;
-      Destroy(this);
-    }
-  }
+      public override void Convert(int e, EcsWorld world) {
+         world.GetPool<Projectiles>().Set(e).value = projectiles;
+         Destroy(this);
+      }
+   }
 
-  [Serializable]
-  public struct Projectiles {
-    public List<ConvertToEntity> value;
-  }
+   [Serializable]
+   public struct Projectiles {
+      public List<ConvertToEntity> value;
+   }
 }

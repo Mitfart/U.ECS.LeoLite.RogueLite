@@ -2,8 +2,8 @@
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace Features.Player {
-  [DisallowMultipleComponent] public class PlayerTagProv : EcsProvider<PlayerTag> { }
+namespace ECS.Player {
+   [DisallowMultipleComponent] public class PlayerTagProv : EcsProvider<PlayerTag> { }
 
-  [Serializable] public struct PlayerTag { }
+   [Serializable] public struct PlayerTag { }
 }

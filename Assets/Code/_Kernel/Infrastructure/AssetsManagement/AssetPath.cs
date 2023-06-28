@@ -1,10 +1,14 @@
-namespace Infrastructure {
-  public static class AssetPath {
-    public const string BOOTSTRAP       = "Infrastructure/Bootstrap";
-    public const string LOADING_CURTAIN = "Infrastructure/LoadingCurtain";
-    public const string GIZMOS_SERVICE  = "Infrastructure/GizmosService";
+namespace Infrastructure.AssetsManagement {
+   public static class AssetPath {
+      public const string BOOTSTRAP       = "Infrastructure/Bootstrap";
+      public const string LOADING_CURTAIN = "Infrastructure/LoadingCurtain";
 
-    public const string RENDER    = "Render";
-    public const string LOCATIONS = "Locations";
-  }
+      public const string GIZMOS_SERVICE = "Services/GizmosService";
+
+      public const string RENDER = "Render";
+
+      public const string LOCATIONS = "Locations";
+      public const string DOOR      = "Door";
+      public const string PLAYER    = "Player";
+   }
 }

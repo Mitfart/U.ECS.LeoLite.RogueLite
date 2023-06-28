@@ -1,9 +1,11 @@
-﻿using Features.Weapon.Ammo._base;
+﻿namespace ECS.Weapon.Ammo.Extensions {
+   public static class IsFullExt {
+      public static bool IsFull(this Magazine magazine) {
+         return magazine.amount == magazine.size;
+      }
 
-namespace Features.Weapon.Ammo.Extensions {
-  public static class IsFullExt {
-    public static bool IsFull(this Magazine magazine) => magazine.amount == magazine.size;
-
-    public static bool IsFull(this _base.Ammo ammo) => ammo.amount == ammo.size;
-  }
+      public static bool IsFull(this Ammo ammo) {
+         return ammo.amount == ammo.size;
+      }
+   }
 }

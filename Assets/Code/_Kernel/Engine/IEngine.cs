@@ -1,8 +1,8 @@
-using VContainer.Unity;
-
 namespace Engine {
-  public interface IEngine : ITickable, IFixedTickable {
-    void Start();
-    void Stop();
-  }
+   public interface IEngine {
+      public void Init();
+      public void Run();
+      public void FixedRun();
+      public void Dispose();
+   }
 }

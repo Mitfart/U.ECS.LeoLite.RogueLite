@@ -1,9 +1,11 @@
 using Mitfart.LeoECSLite.UniLeo.Providers;
 
-namespace Behavior.ECS {
-  public abstract class ScrBehavior : ScrComponent<Behavior> {
-    public override Behavior GetComponent() => new(GetBehaviorTree());
+namespace ECS.Unit.Behavior.Comps {
+   public abstract class ScrBehavior : ScrComponent<Behavior> {
+      public override Behavior GetComponent() {
+         return new(GetBehaviorTree());
+      }
 
-    protected abstract BehaviorTree GetBehaviorTree();
-  }
+      protected abstract BehaviorTree GetBehaviorTree();
+   }
 }

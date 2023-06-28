@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/BOOT.unity
     guid: c681804822b712b4499425c02ccd67db
   - enabled: 1
-    path: Assets/Scenes/Main.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
-    path: Assets/Locations/_Location_Dev/Sc_Room_Dev_0.unity
+    path: Assets/~Lab/_Location_Dev/Sc_Room_Dev_0.unity
     guid: 09081b7dcaf9fb74f9a64fcd5a863dac
   m_configObjects: {}

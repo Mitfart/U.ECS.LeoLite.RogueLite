@@ -1,3 +1,3 @@
-﻿namespace Features.Weapon.Attack {
-  public struct IsAttacking { }
+﻿namespace ECS.Weapon.Attack {
+   public struct IsAttacking { }
 }

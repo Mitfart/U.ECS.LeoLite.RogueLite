@@ -1,32 +1,32 @@
+using ECS.Weapon.Aim;
+using ECS.Weapon.Aim.Debug;
+using ECS.Weapon.Ammo;
+using ECS.Weapon.Ammo.Reload;
+using ECS.Weapon.Attack;
+using ECS.Weapon.Shooting;
 using Engine.Ecs;
 using Extensions.Ecs;
-using Features.Weapon.Aim;
-using Features.Weapon.Aim.Debug;
-using Features.Weapon.Ammo._base;
-using Features.Weapon.Ammo.Reload;
-using Features.Weapon.Attack;
-using Features.Weapon.Projectiles;
 
-namespace Features.Weapon {
-  public class WeaponSystems : EcsSystemsPack {
-    protected override void RegisterSystems() {
-      Add<AimSys>();
-      Add<ShootSys>();
-      Add<DelHereSys<BlockAttack>>();
+namespace ECS.Weapon {
+   public class WeaponSystems : EcsSystemsPack {
+      protected override void RegisterSystems() {
+         Add<AimSys>();
+         Add<ShootSys>();
+         Add<DelHereSys<BlockAttack>>();
 
-      Add<ReduceAmmoSys>();
+         Add<ReduceAmmoSys>();
 
-      Add<StartReloadingSys>();
-      Add<ReloadingSys>();
-      Add<DelHereSys<WantReload>>();
-      Add<DelHereSys<BlockReload>>();
+         Add<StartReloadingSys>();
+         Add<ReloadingSys>();
+         Add<DelHereSys<WantReload>>();
+         Add<DelHereSys<BlockReload>>();
 
-      Add<RestoreAttackSys>();
-      Add<DelHereSys<IsAttacking>>();
-      
+         Add<RestoreAttackSys>();
+         Add<DelHereSys<IsAttacking>>();
+
 #if UNITY_EDITOR
-      Add<DrawAimSys>();
+         Add<DrawAimSys>();
 #endif
-    }
-  }
+      }
+   }
 }

@@ -2,8 +2,8 @@
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace Features.Destroy {
-  [DisallowMultipleComponent] public class DestroyProv : EcsProvider<Destroy> { }
+namespace ECS.Destroy {
+   [DisallowMultipleComponent] public class DestroyProv : EcsProvider<Destroy> { }
 
-  [Serializable] public struct Destroy { }
+   [Serializable] public struct Destroy { }
 }

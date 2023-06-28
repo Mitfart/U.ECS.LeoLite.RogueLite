@@ -1,9 +1,9 @@
-﻿using Features.View;
+﻿using ECS.View;
 
-namespace Views {
-  public class BulletView : EcsView {
-    public override void OnDestroyEntity() {
-      Destroy(gameObject);
-    }
-  }
+namespace View {
+   public class BulletView : EcsView {
+      public override void OnDestroyEntity() {
+         Destroy(gameObject);
+      }
+   }
 }

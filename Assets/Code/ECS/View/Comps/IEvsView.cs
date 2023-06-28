@@ -1,6 +1,6 @@
-﻿namespace Features.View {
-  public interface IEvsView {
-    void Refresh();
-    void OnDestroyEntity();
-  }
+﻿namespace ECS.View {
+   public interface IEvsView {
+      void Refresh();
+      void OnDestroyEntity();
+   }
 }

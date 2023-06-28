@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-namespace Views {
-  public interface IRender {
-    Camera Camera { get; }
-  }
+namespace View {
+   public interface IRender {
+      Camera Camera { get; }
+   }
 }

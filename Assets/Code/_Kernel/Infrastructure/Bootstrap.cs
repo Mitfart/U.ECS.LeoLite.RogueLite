@@ -2,21 +2,22 @@ using Infrastructure.StateMachine;
 using Infrastructure.StateMachine.States;
 using UnityEngine;
 using VContainer;
+using VContainer.Unity;
 
 namespace Infrastructure {
-  [DefaultExecutionOrder(-1)]
-  [RequireComponent(typeof(GameScope))]
-  public class Bootstrap : MonoBehaviour {
-    private IGameStateMachine _gameStateMachine;
+   [RequireComponent(typeof(LifetimeScope))]
+   public class Bootstrap : MonoBehaviour {
+      public LifetimeScope scope;
 
+      public void Awake() {
+         scope.Build();
 
+         scope
+           .Container
+           .Resolve<IGameStateMachine>()
+           .Enter<BootstrapState>();
 
-    [Inject]
-    private void Construct(IGameStateMachine gameStateMachine) {
-      _gameStateMachine = gameStateMachine;
-    }
-
-    private void Awake() => DontDestroyOnLoad(this);
-    private void Start() => _gameStateMachine.Enter<BootstrapState>();
-  }
+         DontDestroyOnLoad(gameObject);
+      }
+   }
 }

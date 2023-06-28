@@ -2,8 +2,8 @@ using System;
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace Features.Weapon {
-  [DisallowMultipleComponent] public class WeaponTagProv : EcsProvider<WeaponTag> { }
+namespace ECS.Weapon {
+   [DisallowMultipleComponent] public class WeaponTagProv : EcsProvider<WeaponTag> { }
 
-  [Serializable] public struct WeaponTag { }
+   [Serializable] public struct WeaponTag { }
 }

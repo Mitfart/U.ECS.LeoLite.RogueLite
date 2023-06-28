@@ -1,15 +1,15 @@
+using ECS.Movement.Smooth;
 using Engine.Ecs;
-using Features.Movement.Smooth;
 
-namespace Features.Movement {
-  public class MovementSystems : EcsSystemsPack {
-    protected override void RegisterSystems() {
-      Add<DirectionInputSys>();
+namespace ECS.Movement {
+   public class MovementSystems : EcsSystemsPack {
+      protected override void RegisterSystems() {
+         Add<DirectionInputSys>();
 
-      Add<TransformMovementSys>();
-      Add<PhysicsMovementSys>();
+         Add<TransformMovementSys>();
+         Add<PhysicsMovementSys>();
 
-      Add<SmoothTransformSys>();
-    }
-  }
+         Add<SmoothTransformSys>();
+      }
+   }
 }

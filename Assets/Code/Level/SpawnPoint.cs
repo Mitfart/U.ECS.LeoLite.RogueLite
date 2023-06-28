@@ -1,11 +1,10 @@
-﻿using UnityEngine;
+﻿using Mitfart.LeoECSLite.UniLeo;
+using UnityEngine;
 
 namespace Level {
-  public class SpawnPoint : MonoBehaviour {
-    public Vector3 Position { get; private set; }
+   public class SpawnPoint : MonoBehaviour {
+      [field: SerializeField] public ConvertToEntity Enemy { get; private set; }
 
-    private void Awake() {
-      Position = transform.position;
-    }
-  }
+      public Vector3 Position => transform.position;
+   }
 }

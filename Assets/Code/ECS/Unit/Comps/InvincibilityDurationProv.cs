@@ -1,12 +1,12 @@
 ﻿using System;
-using UnityEngine;
 using Mitfart.LeoECSLite.UniLeo.Providers;
+using UnityEngine;
 
-namespace Features.Unit.Comps {
-  [DisallowMultipleComponent] public class InvincibilityDurationProv : EcsProvider<InvincibilityDuration> { }
+namespace ECS.Unit.Comps {
+   [DisallowMultipleComponent] public class InvincibilityDurationProv : EcsProvider<InvincibilityDuration> { }
 
-  [Serializable]
-  public struct InvincibilityDuration {
-    public float duration;
-  }
+   [Serializable]
+   public struct InvincibilityDuration {
+      public float duration;
+   }
 }

@@ -1,18 +1,13 @@
+using ECS.Battle;
 using Engine.Ecs;
-using Features.Battle;
 using VContainer;
 
 namespace Events {
-  public class ClearEventsPack : EcsSystemsPack {
-    private const int EVENTS_CAPACITY = 128;
+   public class ClearEventsPack : EcsSystemsPack {
+      private const int _EVENTS_CAPACITY = 128;
 
-    protected override void RegisterSystems() {
-      AddByConfiguration(
-        res =>
-          res.Resolve<EventsBus>()
-             .GetDestroyEventsSystem(EVENTS_CAPACITY)
-             .IncReplicant<HitEvent>()
-      );
-    }
-  }
+      protected override void RegisterSystems() {
+         AddByConfiguration(res => res.Resolve<EventsBus>().GetDestroyEventsSystem(_EVENTS_CAPACITY).IncReplicant<HitEvent>());
+      }
+   }
 }

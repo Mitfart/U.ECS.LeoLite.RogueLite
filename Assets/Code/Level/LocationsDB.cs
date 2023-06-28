@@ -1,11 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Level {
-  [CreateAssetMenu]
-  public class LocationsDB : ScriptableObject {
-    [SerializeField] private Location[] locations;
+   [CreateAssetMenu]
+   public class LocationsDB : ScriptableObject, IReadOnlyList<Location> {
+      [SerializeField] private List<Location> locations;
+      
+      public int Count => locations.Count;
 
-    public IReadOnlyList<Location> Read() => locations;
-  }
+      public Location this[int index] => locations[index];
+      
+      public IReadOnlyList<Location> Read()          => locations;
+      public IEnumerator<Location>   GetEnumerator() => locations.GetEnumerator();
+      IEnumerator IEnumerable.       GetEnumerator() => GetEnumerator();
+   }
 }

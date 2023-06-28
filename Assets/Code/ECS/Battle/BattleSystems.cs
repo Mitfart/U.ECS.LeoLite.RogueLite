@@ -1,19 +1,17 @@
+using ECS.Battle.Debug;
 using Engine.Ecs;
-using Features.Battle.Debug;
-using Features.Battle.HitBoxes.Sys;
-using Features.Weapon.Projectiles;
 
-namespace Features.Battle {
-  public class BattleSystems : EcsSystemsPack {
-    protected override void RegisterSystems() {
-      Add<CreateHitEventSys>();
-      Add<InvincibilityAfterHitEventSys>();
-      Add<PenetrationSys>();
+namespace ECS.Battle {
+   public class BattleSystems : EcsSystemsPack {
+      protected override void RegisterSystems() {
+         Add<CreateHitEventSys>();
+         Add<InvincibilityAfterHitEventSys>();
+         Add<PenetrationSys>();
 
 #if UNITY_EDITOR
-      Add<HitBoxDebugSys>();
-      Add<HitEventDebugSys>();
+         Add<HitBoxDebugSys>();
+         Add<HitEventDebugSys>();
 #endif
-    }
-  }
+      }
+   }
 }

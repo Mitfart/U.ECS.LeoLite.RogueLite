@@ -1,3 +1,3 @@
 namespace Events {
-  public interface ISingletonEvent { }
+   public interface ISingletonEvent { }
 }

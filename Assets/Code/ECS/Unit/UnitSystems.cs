@@ -1,12 +1,12 @@
-﻿using Behavior.ECS;
+﻿using ECS.Unit.Behavior.Comps;
+using ECS.Unit.Sys;
 using Engine.Ecs;
-using Features.Battle;
 
-namespace Features.Unit {
-  public class UnitSystems : EcsSystemsPack {
-    protected override void RegisterSystems() {
-      Add<TakeDamageByHitEventSys>();
-      Add<ProcessBehaviorSys>();
-    }
-  }
+namespace ECS.Unit {
+   public class UnitSystems : EcsSystemsPack {
+      protected override void RegisterSystems() {
+         Add<TakeDamageByHitEventSys>();
+         Add<ProcessBehaviorSys>();
+      }
+   }
 }

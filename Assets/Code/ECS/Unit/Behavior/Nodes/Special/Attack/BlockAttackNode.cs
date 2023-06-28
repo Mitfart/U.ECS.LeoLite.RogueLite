@@ -1,5 +1,6 @@
-using Features.Weapon.Attack;
+using ECS.Unit.Behavior.Nodes.Structural;
+using ECS.Weapon.Attack;
 
-namespace Behavior.Nodes.Special.Weapon {
-  public class BlockAttackNode : AddCompNode<BlockAttack> { }
+namespace ECS.Unit.Behavior.Nodes.Special.Attack {
+   public class BlockAttackNode : AddCompNode<BlockAttack> { }
 }

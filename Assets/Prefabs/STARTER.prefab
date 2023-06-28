@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3326426707163322558}
   - component: {fileID: 3326426707163322559}
   m_Layer: 0
-  m_Name: AUTO_STARTER
+  m_Name: STARTER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
