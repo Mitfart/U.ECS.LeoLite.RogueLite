@@ -11,13 +11,11 @@ namespace Infrastructure {
 
       public void Awake() {
          scope.Build();
-
-         scope
-           .Container
-           .Resolve<IGameStateMachine>()
-           .Enter<BootstrapState>();
-
+         EnterBootState();
          DontDestroyOnLoad(gameObject);
       }
+
+      private void              EnterBootState()   => GameStateMachine().Enter<BootstrapState>();
+      private IGameStateMachine GameStateMachine() => scope.Container.Resolve<IGameStateMachine>();
    }
 }

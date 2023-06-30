@@ -4,16 +4,18 @@ using UnityEngine;
 namespace Level {
    [CreateAssetMenu]
    public partial class Location : ScriptableObject {
-      public string title;
-      public Color  color;
+      [field: SerializeField] public string Title { get; private set; }
+      [field: SerializeField] public Color  Color { get; private set; }
 
-      [SerializeField, HideInInspector] private string[] defaultRoomsNames;
-      [SerializeField, HideInInspector] private string[] secretRoomsNames;
-      [SerializeField, HideInInspector] private string[] shopRoomsNames;
+      public List<MonoRoom> MonoRooms;
 
-      public IReadOnlyList<string> DefaultRooms => defaultRoomsNames;
-      public IReadOnlyList<string> SecretRooms  => secretRoomsNames;
-      public IReadOnlyList<string> ShopRooms    => shopRoomsNames;
+      [SerializeField, HideInInspector] private Room[] defaultRooms;
+      [SerializeField, HideInInspector] private Room[] secretRooms;
+      [SerializeField, HideInInspector] private Room[] shopRooms;
+
+      public IReadOnlyList<Room> DefaultRooms => defaultRooms;
+      public IReadOnlyList<Room> SecretRooms  => secretRooms;
+      public IReadOnlyList<Room> ShopRooms    => shopRooms;
 
       // public Items[] Items;
    }

@@ -2,12 +2,12 @@
 
 namespace Infrastructure.AssetsManagement {
    public interface IAssets {
-      T Ins<T>(T       obj) where T : Object;
-      T Ins<T>(string  path) where T : Object;
+      T Ins<T>(T       obj,  Vector3 at = default, Quaternion? rot = null) where T : Object;
+      T Ins<T>(string  path, Vector3 at = default, Quaternion? rot = null) where T : Object;
       T Load<T>(string path) where T : Object;
 
-      Object Ins(Object  obj);
-      Object Ins(string  path);
+      Object Ins(Object  obj,  Vector3 at = default, Quaternion? rot = null);
+      Object Ins(string  path, Vector3 at = default, Quaternion? rot = null);
       Object Load(string path);
    }
 }

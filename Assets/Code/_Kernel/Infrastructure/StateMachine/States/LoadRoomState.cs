@@ -1,19 +1,25 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using Extensions.Collections;
 using Infrastructure.AssetsManagement;
 using Infrastructure.Loading;
 using Level;
 using Mitfart.LeoECSLite.UniLeo;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 namespace Infrastructure.StateMachine.States {
-   public class LoadRoomState : GameState, IDataRequireState<string> {
-      private readonly ISceneLoader    _sceneLoader;
-      private readonly ILoadingCurtain _loadingCurtain;
-      private readonly IAssets         _assets;
-      private readonly Controls        _controls;
+   public class LoadRoomState : GameState, IDataRequireState<Room> {
+      private readonly ISceneLoader            _sceneLoader;
+      private readonly ILoadingCurtain         _loadingCurtain;
+      private readonly IAssets                 _assets;
+      private readonly Stage                   _stage;
+      private readonly IReadOnlyList<Location> _locations;
+      private readonly Controls                _controls;
 
-      private string _roomSceneName;
+      private Room _room;
 
 
 
@@ -21,20 +27,22 @@ namespace Infrastructure.StateMachine.States {
          ISceneLoader    sceneLoader,
          ILoadingCurtain loadingCurtain,
          IAssets         assets,
+         Stage           stage,
          Controls        controls
       ) {
          _sceneLoader    = sceneLoader;
          _loadingCurtain = loadingCurtain;
          _controls       = controls;
          _assets         = assets;
+         _stage          = stage;
       }
 
-      public IDataRequireState<string> SetData(string roomSceneName) {
-         _roomSceneName = roomSceneName;
+
+
+      public IDataRequireState<Room> SetData(Room data) {
+         _room = data;
          return this;
       }
-
-
 
       public override void Enter() {
          _controls.Disable();
@@ -51,32 +59,21 @@ namespace Infrastructure.StateMachine.States {
 
 
       private void LoadRoom() {
-         _sceneLoader.Load(_roomSceneName, OnLoaded);
+         _sceneLoader.Load(_room.SceneName, OnLoaded);
       }
 
       private void OnLoaded(Scene scene) {
-         Room room = GetRoom(scene);
+         SpawnEnemies(_room);
+         SpawnPlayer(_room);
+         CreateDoors(_room);
 
-         SpawnEnemies(room);
-         SpawnPlayer(room);
-         CreateDoors(room);
-         
          StateMachine.Enter<GameLoopState>();
       }
 
 
 
-      private Room GetRoom(Scene scene) {
-         foreach (GameObject go in scene.GetRootGameObjects())
-            if (go.TryGetComponent(out Room room))
-               return room;
-
-         throw new Exception($"Can't find <{nameof(Room)}> component at the room of {_roomSceneName}");
-      }
-
       private void SpawnEnemies(Room room) {
-         foreach (SpawnPoint spawnPoint in room.SpawnPoints) 
-            SpawnEnemy(spawnPoint);
+         foreach (SpawnPoint spawnPoint in room.SpawnPoints) SpawnEnemy(spawnPoint);
       }
 
       private void SpawnPlayer(Room room) {
@@ -86,13 +83,20 @@ namespace Infrastructure.StateMachine.States {
 
       private void CreateDoors(Room room) {
          foreach (Vector3 exitPoint in room.ExitPoints) {
-            GameObject door = _assets.Ins<GameObject>(AssetPath.DOOR);
-            door.transform.position = exitPoint;
+            Door door = _assets.Ins<Door>(AssetPath.DOOR, at: exitPoint);
+
+            Location nextLocation = _stage.Location;
+            Room     nextRoom     = nextLocation.DefaultRooms.Random(_stage.PassedRooms.ToArray());
+
+            door.Construct(
+               nextLocation,
+               nextRoom
+            );
          }
       }
 
-      
-      
+
+
       private void SpawnEnemy(SpawnPoint spawnPoint) {
          ConvertToEntity enemy = _assets.Ins(spawnPoint.Enemy);
          enemy.transform.position = spawnPoint.Position;

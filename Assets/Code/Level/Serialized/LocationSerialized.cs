@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Level {
    public partial class Location : ISerializationCallbackReceiver {
-      [SerializeField] private List<SceneAsset> defaultRooms = new();
-      [SerializeField] private List<SceneAsset> secretRooms  = new();
-      [SerializeField] private List<SceneAsset> shopRooms    = new();
+      [SerializeField] private List<SceneAsset> defaultRoomsScenes = new();
+      [SerializeField] private List<SceneAsset> secretRoomsScenes  = new();
+      [SerializeField] private List<SceneAsset> shopRoomsScenes    = new();
 
 
 
       public void OnBeforeSerialize() {
-         Convert(defaultRooms, out defaultRoomsNames);
-         Convert(secretRooms,  out secretRoomsNames);
-         Convert(shopRooms,    out shopRoomsNames);
+         Convert(defaultRoomsScenes, out defaultRooms);
+         Convert(secretRoomsScenes,  out secretRooms);
+         Convert(shopRoomsScenes,    out shopRooms);
 
          EditorUtility.SetDirty(this);
       }
@@ -24,15 +25,20 @@ namespace Level {
 
 
 
-      private static void Convert(IReadOnlyList<SceneAsset> sceneAssets, out string[] rooms) {
+      private static void Convert(IReadOnlyList<SceneAsset> scenes, out Room[] rooms) {
          rooms = default;
-         if (sceneAssets == null) return;
-
-         int count = sceneAssets.Count;
-
-         rooms = new string[count];
-
-         for (var i = 0; i < count; i++) rooms[i] = !sceneAssets[i].IsUnityNull() ? sceneAssets[i].name : string.Empty;
+         /*
+            
+            if (scenes == null) return;
+   
+            int count = scenes.Count;
+            rooms = new Room[count];
+   
+            for (var i = 0; i < count; i++)
+               rooms[i] = !scenes[i].IsUnityNull()
+                  ? SceneManager.
+                  : null;
+         */
       }
    }
 }

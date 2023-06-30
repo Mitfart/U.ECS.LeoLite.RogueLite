@@ -5,9 +5,15 @@ namespace Level {
       public Location NextLocation { get; private set; }
       public Room     NextRoom     { get; private set; }
 
-      public void Construct(Location location, Room room) {
-         NextLocation = location;
-         NextRoom     = room;
+
+
+      public Door Construct(
+         Location nextLocation,
+         Room     nextRoom
+      ) {
+         NextLocation = nextLocation;
+         NextRoom     = nextRoom;
+         return this;
       }
    }
 }

@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c73331f5054058a18a98f28e76e817, type: 3}
   m_Name: _Location_Dev
   m_EditorClassIdentifier: 
-  title: 
-  color: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
-  defaultRoomsNames:
-  - Sc_Room_Dev_0
-  secretRoomsNames: []
-  shopRoomsNames: []
-  defaultRooms:
-  - {fileID: 102900000, guid: 09081b7dcaf9fb74f9a64fcd5a863dac, type: 3}
+  <Title>k__BackingField: 
+  <Color>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  MonoRooms: []
+  defaultRooms: []
   secretRooms: []
   shopRooms: []
+  defaultRoomsScenes: []
+  secretRoomsScenes: []
+  shopRoomsScenes: []

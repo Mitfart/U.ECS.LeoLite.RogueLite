@@ -22329,19 +22329,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 745211850321977451}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b383e9a39a674c038b5452f397e9211b, type: 3}
+  m_Script: {fileID: 11500000, guid: 462bd2283dd641009c9e45fc93fcbad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enterPoint: {x: 0.5, y: -10, z: 0}
-  exitPoints:
-  - {x: 0.5, y: 12.5, z: 0}
-  spawnPoints:
-  - {fileID: 4547965705657815425}
-  - {fileID: 1604182625}
-  - {fileID: 7958263}
-  enter: {fileID: 448490962}
-  exitsContainer: {fileID: 1004012801}
-  spawnPointsContainer: {fileID: 297930363}
+  enter: {fileID: 448490963}
+  exitsContainer: {fileID: 1004012802}
+  spawnPointsContainer: {fileID: 297930364}
+  room:
+    sceneName: Sc_Room_Dev_0
+    enterPoint: {x: 0.5, y: -10, z: 0}
+    exitPoints:
+    - {x: 0.5, y: 12.5, z: 0}
+    spawnPoints:
+    - {fileID: 4547965705657815425}
+    - {fileID: 1604182625}
+    - {fileID: 7958263}
 --- !u!1 &6220473150637964890
 GameObject:
   m_ObjectHideFlags: 0
