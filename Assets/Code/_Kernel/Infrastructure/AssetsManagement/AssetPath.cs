@@ -7,8 +7,8 @@ namespace Infrastructure.AssetsManagement {
 
       public const string RENDER = "Render";
 
-      public const string LOCATIONS = "Locations";
-      public const string DOOR      = "Door";
-      public const string PLAYER    = "Player";
+      public const string START_LOCATION = "Location_Start";
+      public const string DOOR           = "Door";
+      public const string PLAYER         = "Player";
    }
 }

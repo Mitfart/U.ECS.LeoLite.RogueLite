@@ -34,7 +34,9 @@ namespace ECS.Movement.Smooth {
       }
 
       private void InitEntities() {
-         foreach (int e in _filter) _smoothPool.Get(e).value.Init(_transformPool.Get(e).Position);
+         foreach (int e in _filter) {
+            _smoothPool.Get(e).value.Init(_transformPool.Get(e).Position);
+         }
       }
    }
 }

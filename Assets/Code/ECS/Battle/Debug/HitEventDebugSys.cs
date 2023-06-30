@@ -17,13 +17,12 @@ namespace ECS.Battle.Debug {
          _eventsBus     = eventsBus;
       }
 
-      public void Init(IEcsSystems systems) {
-         _world = systems.GetWorld();
-      }
+      public void Init(IEcsSystems systems) => _world = systems.GetWorld();
 
       public void Run(IEcsSystems systems) {
          foreach (int ev in _eventsBus.GetEventBodies(out EcsPool<HitEvent> hitEventPoll)) {
             HitEvent hitEvent = hitEventPoll.Get(ev);
+
             _gizmosService.Draw(() => hitEvent.DrawGizmos());
          }
       }

@@ -35,28 +35,16 @@ namespace ECS.Unit.Behavior.Nodes.Special.Movement {
 
 
 
-      private static bool AtDestination(Vector3 deltaPos) {
-         return deltaPos.magnitude <= _EPSILON;
-      }
+      private static bool AtDestination(Vector3 deltaPos) => deltaPos.magnitude <= _EPSILON;
 
-      private void SetMoveDir(int e, Vector3 dir) {
-         _moveDirectionPool.Get(e).value = dir.normalized;
-      }
+      private void SetMoveDir(int e, Vector3 dir) => _moveDirectionPool.Get(e).value = dir.normalized;
 
-      private Vector3 DeltaPos(int e) {
-         return _destination - Position(e);
-      }
+      private Vector3 DeltaPos(int e) => _destination - Position(e);
 
-      private Vector3 RelativeRandomPosition(int e) {
-         return RandomPosition(e) + Position(e);
-      }
+      private Vector3 RelativeRandomPosition(int e) => RandomPosition(e) + Position(e);
 
-      private Vector3 Position(int e) {
-         return _ecsTransformPool.Get(e).Position;
-      }
+      private Vector3 Position(int e) => _ecsTransformPool.Get(e).Position;
 
-      private Vector3 RandomPosition(int e) {
-         return (Vector3)Random.insideUnitCircle * _viewRadiusPool.Get(e).value;
-      }
+      private Vector3 RandomPosition(int e) => (Vector3)Random.insideUnitCircle * _viewRadiusPool.Get(e).value;
    }
 }

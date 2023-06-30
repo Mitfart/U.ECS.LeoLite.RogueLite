@@ -34,7 +34,7 @@ namespace ECS.Weapon.Aim.Debug {
             _gizmos.Draw(
                () => {
                   Gizmos.color = Color.cyan;
-                  Gizmos.DrawSphere(aimPos, .1f);
+                  Gizmos.DrawSphere(aimPos, radius: .1f);
 
                   if (_ecsTransformPool.TryGet(e, out EcsTransform t)) Gizmos.DrawLine(t.Position, aimPos);
                }

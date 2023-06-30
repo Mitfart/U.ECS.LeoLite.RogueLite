@@ -12,8 +12,6 @@ namespace ECS.Unit.Behavior {
          Entry = entry;
       }
 
-      public BehaviorState Run(int e, EcsWorld world) {
-         return State == BehaviorState.Run ? State = Entry.Run(e, world) : State;
-      }
+      public BehaviorState Run(int e, EcsWorld world) => State == BehaviorState.Run ? State = Entry.Run(e, world) : State;
    }
 }

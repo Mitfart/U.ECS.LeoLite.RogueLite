@@ -37,14 +37,21 @@ namespace ECS.Battle {
          foreach (int dealerE in _filter) {
             ref HitBox hitBox = ref _hitBoxPool.Get(dealerE);
 
-            Area      area      = ToWorldArea(dealerE, hitBox.Area, out float angle);
-            LayerMask layer     = hitBox.LayerMask;
-            int       hitsCount = CastHit(area, angle, layer);
+            Area area      = ToWorldArea(dealerE, hitBox.Area, out float angle);
+            int  hitsCount = CastHit(area, angle);
 
             for (var i = 0; i < hitsCount; i++) {
                RaycastHit2D hit = _hits[i];
 
-               if (hit.collider.ParentEntity(out int takerE)) _eventsBus.NewEvent<HitEvent>() = new HitEvent { dealer = dealerE, taker = takerE, point = hit.point, normal = hit.normal };
+               if (hit.collider.ParentEntity(out int takerE))
+                  _eventsBus.NewEvent<HitEvent>() = new HitEvent {
+                     dealer = dealerE, //
+                     taker  = takerE,
+                     point  = hit.point,
+                     normal = hit.normal
+                  };
+               else
+                  UnityEngine.Debug.Log($"Hit non Entity: {hit.collider.name}");
             }
          }
       }
@@ -63,16 +70,14 @@ namespace ECS.Battle {
          return area;
       }
 
-      private int CastHit(Area area, float angle, LayerMask layer) {
-         return Physics2D.BoxCastNonAlloc(
+      private int CastHit(Area area, float angle)
+         => Physics2D.BoxCastNonAlloc(
             area.origin,
             area.size,
             angle,
-            default,
+            direction: default,
             _hits,
-            default,
-            layer
+            distance: default
          );
-      }
    }
 }

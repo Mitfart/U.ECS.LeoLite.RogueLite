@@ -1,21 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using Extensions.Collections;
 using Level;
 
 namespace Infrastructure.StateMachine.States {
    public class SetupGameState : GameState {
-      private readonly IReadOnlyList<Location> _locations;
-      private readonly Stage                   _stage;
+      private readonly Location _location;
+      private readonly Stage    _stage;
 
-      public SetupGameState(IReadOnlyList<Location> locations, Stage stage) {
-         _locations = locations;
-         _stage     = stage;
+      public SetupGameState(Location location, Stage stage) {
+         _location = location;
+         _stage    = stage;
       }
 
       public override void Enter() {
-         Location location = _locations[0];
-         Room     room     = location.DefaultRooms[0];
+         Room room = _location.DefaultRooms.Random();
 
-         _stage.SetLocation(location);
+         _stage.SetLocation(_location);
 
          StateMachine.Enter<LoadRoomState, Room>(room);
       }

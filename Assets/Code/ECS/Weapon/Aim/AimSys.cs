@@ -35,13 +35,11 @@ namespace ECS.Weapon.Aim {
 
 
       private ref EcsTransform GetTransform(EcsPackedEntity weapon) {
-         if (!GetEntity(weapon, out int weaponE)) throw new Exception("Weapon is not set!");
+         if (!GetEntity(weapon, out int weaponE)) throw new Exception(message: "Weapon is not set!");
 
          return ref _ecsTransformPool.Get(weaponE);
       }
 
-      private bool GetEntity(EcsPackedEntity activeWeapon, out int weaponE) {
-         return activeWeapon.Unpack(_world, out weaponE);
-      }
+      private bool GetEntity(EcsPackedEntity activeWeapon, out int weaponE) => activeWeapon.Unpack(_world, out weaponE);
    }
 }

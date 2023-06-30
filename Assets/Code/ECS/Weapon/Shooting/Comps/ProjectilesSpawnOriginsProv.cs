@@ -16,9 +16,7 @@ namespace ECS.Weapon.Shooting {
          Destroy(this);
       }
 
-      private static EcsTransform ToEcs(Transform origin) {
-         return new(origin);
-      }
+      private static EcsTransform ToEcs(Transform origin) => new EcsTransform(origin);
    }
 
    [Serializable]

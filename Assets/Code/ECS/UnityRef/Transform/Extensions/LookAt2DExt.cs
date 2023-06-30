@@ -13,14 +13,10 @@ namespace ECS.UnityRef.Extensions {
          return ref cur;
       }
 
-      public static ref EcsTransform LookAt2D(ref this EcsTransform cur, EcsTransform target, Vector3? viewDir = null) {
-         return ref cur.LookAt2D(target.Position, viewDir);
-      }
+      public static ref EcsTransform LookAt2D(ref this EcsTransform cur, EcsTransform target, Vector3? viewDir = null) => ref cur.LookAt2D(target.Position, viewDir);
 
 
 
-      private static bool TooSmall(float deltaAngle) {
-         return Mathf.Abs(deltaAngle) < 1e-3f;
-      }
+      private static bool TooSmall(float deltaAngle) => Mathf.Abs(deltaAngle) < 1e-3f;
    }
 }

@@ -54,12 +54,8 @@ namespace ECS.Unit.Behavior.Nodes.Special {
          return closestPlayerE >= 0;
       }
 
-      private float ViewRadius(int e) {
-         return _viewRadiusPool.TryGet(e, out ViewRadius viewRadius) ? viewRadius.value : float.MaxValue;
-      }
+      private float ViewRadius(int e) => _viewRadiusPool.TryGet(e, out ViewRadius viewRadius) ? viewRadius.value : float.MaxValue;
 
-      private Vector3 Position(int e) {
-         return _ecsTransformPool.Get(e).Position;
-      }
+      private Vector3 Position(int e) => _ecsTransformPool.Get(e).Position;
    }
 }

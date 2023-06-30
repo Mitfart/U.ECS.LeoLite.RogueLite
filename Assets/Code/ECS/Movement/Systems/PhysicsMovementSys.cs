@@ -14,6 +14,7 @@ namespace ECS.Movement {
       private EcsPool<PhysicsMovement> _movementPool;
 
 
+      
       public void FixedRun(IEcsSystems systems) {
          float delta        = Time.fixedDeltaTime;
          float dividedDelta = 1f / delta;
@@ -33,7 +34,7 @@ namespace ECS.Movement {
             float accel    = parameters.Accel    * parameters.AccelDotFactor.Evaluate(velDot);
             float maxAccel = parameters.MaxAccel * parameters.MaxAccelDotFactor.Evaluate(velDot);
 
-            Vector2 nextVel = Vector2.MoveTowards(curVel, targetVel, accel * delta);
+            var nextVel = Vector2.MoveTowards(curVel, targetVel, accel * delta);
 
 
             Vector2 requiredAccel = (nextVel - curVel) * dividedDelta;
@@ -45,8 +46,11 @@ namespace ECS.Movement {
       }
 
       public void Init(IEcsSystems systems) {
-         _world  = systems.GetWorld();
-         _filter = _world.Filter<MoveDirection>().Inc<Rigidbody2DRef>().Inc<PhysicsMovement>().End();
+         _world = systems.GetWorld();
+         _filter = _world.Filter<MoveDirection>()
+                         .Inc<Rigidbody2DRef>()
+                         .Inc<PhysicsMovement>()
+                         .End();
 
          _rigidbodyLinkPool = _world.GetPool<Rigidbody2DRef>();
          _moveDirectionPool = _world.GetPool<MoveDirection>();

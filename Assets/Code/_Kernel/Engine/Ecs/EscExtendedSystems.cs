@@ -13,7 +13,9 @@ namespace Engine.Ecs {
 
 
       public void FixedRun() {
-         foreach (IEcsFixedRunSystem system in _fixedRunSystems) system.FixedRun(this);
+         foreach (IEcsFixedRunSystem system in _fixedRunSystems) {
+            system.FixedRun(this);
+         }
       }
 
 

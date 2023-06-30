@@ -15,13 +15,13 @@ namespace _Kernel.Debug.Editor {
          GUI.enabled = enabled;
          GUILayout.BeginHorizontal();
          GUI.enabled = enabled && !script.IsActive;
-         if (GUILayout.Button("On")) script.On();
+         if (GUILayout.Button(text: "On")) script.On();
          GUI.enabled = enabled && script.IsActive;
-         if (GUILayout.Button("Off")) script.Off();
+         if (GUILayout.Button(text: "Off")) script.Off();
          GUILayout.EndHorizontal();
          GUI.enabled = enabled;
 
-         if (GUILayout.Button("Toggle")) script.Toggle();
+         if (GUILayout.Button(text: "Toggle")) script.Toggle();
       }
    }
 }

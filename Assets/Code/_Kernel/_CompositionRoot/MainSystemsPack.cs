@@ -34,7 +34,7 @@ public class MainSystemsPack : EcsSystemsPack {
 
    private void AddWorldsDebug() {
 #if UNITY_EDITOR
-      var nameSettings = new NameSettings(true);
+      var nameSettings = new NameSettings(bakeComponents: true);
       AddByInstance(new EcsWorldDebugSystem(nameSettings: nameSettings));
 #endif
    }

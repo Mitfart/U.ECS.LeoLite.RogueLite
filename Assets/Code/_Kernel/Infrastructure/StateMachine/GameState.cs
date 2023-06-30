@@ -3,9 +3,7 @@
       public IGameStateMachine StateMachine { get; private set; }
 
 
-      public void Init(IGameStateMachine stateMachine) {
-         StateMachine = stateMachine;
-      }
+      public void Init(IGameStateMachine stateMachine) => StateMachine = stateMachine;
 
       public abstract void Enter();
       public virtual  void Exit() { }

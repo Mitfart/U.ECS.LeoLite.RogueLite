@@ -26,16 +26,10 @@ namespace ECS.Unit.Behavior.Nodes.Special.Movement {
 
 
 
-      private void SetMoveDir(int e, Vector3 dir) {
-         _moveDirectionPool.Get(e).value = dir.normalized;
-      }
+      private void SetMoveDir(int e, Vector3 dir) => _moveDirectionPool.Get(e).value = dir.normalized;
 
-      private Vector3 Position(int e) {
-         return _ecsTransformPool.Get(e).Position;
-      }
+      private Vector3 Position(int e) => _ecsTransformPool.Get(e).Position;
 
-      private bool HasTarget(int e, out int targetE) {
-         return _targetPool.Get(e).Value.Unpack(out EcsWorld _, out targetE);
-      }
+      private bool HasTarget(int e, out int targetE) => _targetPool.Get(e).Value.Unpack(out EcsWorld _, out targetE);
    }
 }

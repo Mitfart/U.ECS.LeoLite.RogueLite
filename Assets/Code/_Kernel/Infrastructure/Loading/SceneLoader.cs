@@ -9,10 +9,11 @@ namespace Infrastructure.Loading {
          string        name,
          Action<Scene> onLoaded  = null,
          Action<float> onLoading = null
-      ) => await LoadScene(name, onLoaded, onLoading);
+      )
+         => await LoadScene(name, onLoaded, onLoading);
 
 
-      
+
       private static async Task LoadScene(
          string        name,
          Action<Scene> onLoaded,
@@ -28,7 +29,7 @@ namespace Infrastructure.Loading {
 
          while (!loadOperation.isDone) {
             onLoading?.Invoke(loadOperation.progress);
-            await Task.Delay(100);
+            await Task.Delay(millisecondsDelay: 100);
          }
 
 #if UNITY_EDITOR
@@ -44,8 +45,6 @@ namespace Infrastructure.Loading {
 
 
 
-      private static bool AlreadyLoaded(string sceneName, out Scene scene) {
-         return (scene = SceneManager.GetActiveScene()).name.Equals(sceneName);
-      }
+      private static bool AlreadyLoaded(string sceneName, out Scene scene) => (scene = SceneManager.GetActiveScene()).name.Equals(sceneName);
    }
 }

@@ -13,7 +13,9 @@ namespace Extensions.Ecs {
       }
 
       public void Run(IEcsSystems systems) {
-         foreach (int e in _filter) _tPool.Del(e);
+         foreach (int e in _filter) {
+            _tPool.Del(e);
+         }
       }
    }
 }

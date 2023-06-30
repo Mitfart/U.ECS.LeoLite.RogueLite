@@ -24,9 +24,11 @@ namespace ECS.Player.Sys {
       }
 
       public void Run(IEcsSystems systems) {
-         var input = _controls.Game.Move.ReadValue<Vector2>();
+         Vector2 input = _controls.Game.Move.ReadValue<Vector2>();
 
-         foreach (int e in _filter) _moveDirectionPool.Get(e).value = input;
+         foreach (int e in _filter) {
+            _moveDirectionPool.Get(e).value = input;
+         }
       }
    }
 }

@@ -19,7 +19,9 @@ namespace ECS.UnityRef {
       }
 
       public void Run(IEcsSystems systems) {
-         foreach (int e in _filter) _uRef.Get(e).Component.Sync(_ecs.Get(e));
+         foreach (int e in _filter) {
+            _uRef.Get(e).Component.Sync(_ecs.Get(e));
+         }
       }
    }
 }

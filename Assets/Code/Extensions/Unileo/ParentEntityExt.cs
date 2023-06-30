@@ -15,9 +15,7 @@ namespace Extensions.Unileo {
          return component.ParentEntity()?.Unpack(out world, out entity) == true;
       }
 
-      public static EcsPackedEntityWithWorld? ParentEntity(this Component component) {
-         return component.transform.ParentEntity();
-      }
+      public static EcsPackedEntityWithWorld? ParentEntity(this Component component) => component.transform.ParentEntity();
 
       public static EcsPackedEntityWithWorld? ParentEntity(this Transform transform) {
          if (transform == null) return null;

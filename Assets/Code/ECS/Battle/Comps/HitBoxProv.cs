@@ -7,9 +7,7 @@ using UnityEngine;
 namespace ECS.Battle {
    [DisallowMultipleComponent]
    public class HitBoxProv : EcsProvider<HitBox> {
-      private void OnDrawGizmosSelected() {
-         component.Area.DrawGizmos(transform.localToWorldMatrix, Color.red);
-      }
+      private void OnDrawGizmosSelected() => component.Area.DrawGizmos(transform.localToWorldMatrix, Color.red);
    }
 
    [Serializable]

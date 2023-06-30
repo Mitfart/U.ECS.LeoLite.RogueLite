@@ -28,7 +28,8 @@ public class GameScope : LifetimeScope {
       RegRender();
       RegLoadingCurtain();
 
-      RegLocations();
+      RegStage();
+      RegLocation();
 
       RegEngine();
 
@@ -45,7 +46,8 @@ public class GameScope : LifetimeScope {
    private void RegRender()         => _di.RegPrefabInstance<Render>(AssetPath.RENDER);
    private void RegLoadingCurtain() => _di.RegPrefabInstance<LoadingCurtain>(AssetPath.LOADING_CURTAIN);
 
-   private void RegLocations() => _di.RegScriptable<LocationsDB>(AssetPath.LOCATIONS);
+   private void RegStage()    => _di.Register<Stage>(Lifetime.Singleton);
+   private void RegLocation() => _di.RegScriptable<Location>(AssetPath.START_LOCATION);
 
    private void RegEngine() {
       new MainSystemsPack().Install(_di);
@@ -63,6 +65,8 @@ public class GameScope : LifetimeScope {
       _di.RegisterEntryPoint<GameStateMachine>();
 
 
-      void Reg<TState>() where TState : IGameState => _di.Register<IGameState, TState>(Lifetime.Singleton);
+      void Reg<TState>() where TState : IGameState {
+         _di.Register<IGameState, TState>(Lifetime.Singleton);
+      }
    }
 }

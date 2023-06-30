@@ -14,7 +14,7 @@ namespace ECS.Movement.Smooth.Editor {
 
 
       public override void OnGUI(Rect origin, SerializedProperty property, GUIContent label) {
-         EditorGUI.PropertyField(origin, property, label, true);
+         EditorGUI.PropertyField(origin, property, label, includeChildren: true);
 
          if (!property.isExpanded) return;
 
@@ -26,9 +26,9 @@ namespace ECS.Movement.Smooth.Editor {
          Vector3 moveFinish = Vector3.up * 1.5f;
 
          GUI.BeginClip(rect);
-         Handles.color = Color.white.WithAlpha(.25f);
+         Handles.color = Color.white.WithAlpha(alpha: .25f);
          Handles.DrawAAPolyLine(Texture2D.whiteTexture, THICKNESS, moveStart * SCALE, moveStart * SCALE + Vector3.right * rect.width);
-         Handles.color = Color.yellow.WithAlpha(.25f);
+         Handles.color = Color.yellow.WithAlpha(alpha: .25f);
          Handles.DrawAAPolyLine(Texture2D.whiteTexture, THICKNESS, moveFinish * SCALE, moveFinish * SCALE + Vector3.right * rect.width);
          Handles.color = Color.green;
          Handles.DrawAAPolyLine(Texture2D.whiteTexture, THICKNESS, GetPoints(value, moveStart, moveFinish, rect));
@@ -36,9 +36,7 @@ namespace ECS.Movement.Smooth.Editor {
       }
 
 
-      public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {
-         return property.isExpanded ? EditorGUI.GetPropertyHeight(property) + HEIGHT : EditorGUI.GetPropertyHeight(property);
-      }
+      public override float GetPropertyHeight(SerializedProperty property, GUIContent label) => property.isExpanded ? EditorGUI.GetPropertyHeight(property) + HEIGHT : EditorGUI.GetPropertyHeight(property);
 
 
       private static Vector3[] GetPoints(SmoothVector3 value, Vector3 moveStart, Vector3 moveFinish, Rect rect) {
@@ -54,7 +52,9 @@ namespace ECS.Movement.Smooth.Editor {
 
          smoothClone.Init(moveStart);
 
-         for (var i = 0; i < count; i++) result[i] = (smoothClone.Update(DELTA, moveFinish) + Vector3.right * (DELTA * i)) * SCALE;
+         for (var i = 0; i < count; i++) {
+            result[i] = (smoothClone.Update(DELTA, moveFinish) + Vector3.right * (DELTA * i)) * SCALE;
+         }
 
          return result;
       }

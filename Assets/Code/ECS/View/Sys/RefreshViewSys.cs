@@ -17,7 +17,9 @@ namespace ECS.View {
 
 
       public void Run(IEcsSystems systems) {
-         foreach (int e in _filter) _viewPool.Get(e).value.Refresh();
+         foreach (int e in _filter) {
+            _viewPool.Get(e).value.Refresh();
+         }
       }
    }
 }

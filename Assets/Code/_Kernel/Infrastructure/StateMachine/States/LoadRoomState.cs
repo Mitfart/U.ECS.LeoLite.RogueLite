@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using Extensions.Collections;
 using Infrastructure.AssetsManagement;
@@ -8,16 +6,14 @@ using Level;
 using Mitfart.LeoECSLite.UniLeo;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Random = UnityEngine.Random;
 
 namespace Infrastructure.StateMachine.States {
    public class LoadRoomState : GameState, IDataRequireState<Room> {
-      private readonly ISceneLoader            _sceneLoader;
-      private readonly ILoadingCurtain         _loadingCurtain;
-      private readonly IAssets                 _assets;
-      private readonly Stage                   _stage;
-      private readonly IReadOnlyList<Location> _locations;
-      private readonly Controls                _controls;
+      private readonly ISceneLoader    _sceneLoader;
+      private readonly ILoadingCurtain _loadingCurtain;
+      private readonly IAssets         _assets;
+      private readonly Stage           _stage;
+      private readonly Controls        _controls;
 
       private Room _room;
 
@@ -52,15 +48,11 @@ namespace Infrastructure.StateMachine.States {
          LoadRoom();
       }
 
-      public override void Exit() {
-         _loadingCurtain.Hide();
-      }
+      public override void Exit() => _loadingCurtain.Hide();
 
 
 
-      private void LoadRoom() {
-         _sceneLoader.Load(_room.SceneName, OnLoaded);
-      }
+      private void LoadRoom() => _sceneLoader.Load(_room.SceneName, OnLoaded);
 
       private void OnLoaded(Scene scene) {
          SpawnEnemies(_room);
@@ -73,7 +65,9 @@ namespace Infrastructure.StateMachine.States {
 
 
       private void SpawnEnemies(Room room) {
-         foreach (SpawnPoint spawnPoint in room.SpawnPoints) SpawnEnemy(spawnPoint);
+         foreach (SpawnPoint spawnPoint in room.SpawnPoints) {
+            SpawnEnemy(spawnPoint);
+         }
       }
 
       private void SpawnPlayer(Room room) {
@@ -83,7 +77,7 @@ namespace Infrastructure.StateMachine.States {
 
       private void CreateDoors(Room room) {
          foreach (Vector3 exitPoint in room.ExitPoints) {
-            Door door = _assets.Ins<Door>(AssetPath.DOOR, at: exitPoint);
+            Door door = _assets.Ins<Door>(AssetPath.DOOR, exitPoint);
 
             Location nextLocation = _stage.Location;
             Room     nextRoom     = nextLocation.DefaultRooms.Random(_stage.PassedRooms.ToArray());

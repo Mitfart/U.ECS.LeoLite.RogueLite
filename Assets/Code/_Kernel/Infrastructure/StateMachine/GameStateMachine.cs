@@ -18,9 +18,6 @@ namespace Infrastructure.StateMachine {
          RegisterStates(gameStates);
       }
 
-
-
-      public void Tick()      => _tickableState?.Tick();
       public void FixedTick() => _fixedTickableState?.FixedTick();
 
 
@@ -33,8 +30,14 @@ namespace Infrastructure.StateMachine {
 
 
 
+      public void Tick() => _tickableState?.Tick();
+
+
+
       private void RegisterStates(IEnumerable<IGameState> gameStates) {
-         foreach (IGameState gameState in gameStates) RegisterState(gameState);
+         foreach (IGameState gameState in gameStates) {
+            RegisterState(gameState);
+         }
       }
 
 
@@ -56,8 +59,6 @@ namespace Infrastructure.StateMachine {
          return state;
       }
 
-      private TState GetState<TState>() where TState : class, IGameState {
-         return (TState)_states[typeof(TState)];
-      }
+      private TState GetState<TState>() where TState : class, IGameState => (TState)_states[typeof(TState)];
    }
 }

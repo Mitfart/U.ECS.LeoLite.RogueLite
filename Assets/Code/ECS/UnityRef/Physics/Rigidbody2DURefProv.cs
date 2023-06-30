@@ -2,8 +2,7 @@ using System;
 using UnityEngine;
 
 namespace ECS.UnityRef.Physics {
-   [DisallowMultipleComponent]
-   [RequireComponent(typeof(Rigidbody2D))]
+   [DisallowMultipleComponent, RequireComponent(typeof(Rigidbody2D))]
    public class Rigidbody2DuRefProv : EcsUnityURefProv<Rigidbody2D, Rigidbody2DRef> { }
 
    [Serializable]

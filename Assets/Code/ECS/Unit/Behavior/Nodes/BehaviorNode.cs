@@ -39,7 +39,7 @@ namespace ECS.Unit.Behavior.Nodes {
 
 
       protected virtual BehaviorState OnRun(int e, EcsWorld world) {
-         var finalState = BehaviorState.Success;
+         BehaviorState finalState = BehaviorState.Success;
 
          foreach (BehaviorNode node in ChildNodes) {
             BehaviorState childState = node.Run(e, world);

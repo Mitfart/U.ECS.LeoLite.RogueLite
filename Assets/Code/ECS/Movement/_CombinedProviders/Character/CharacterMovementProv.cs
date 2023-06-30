@@ -18,12 +18,8 @@ namespace ECS.Movement.Character {
 
 
 
-      private static Speed Speed(CharacterMovement v) {
-         return new() { value = v.Speed * v.Scale };
-      }
+      private static Speed Speed(CharacterMovement v) => new Speed { value = v.Speed * v.Scale };
 
-      private static PhysicsMovement PhysicsMovement(CharacterMovement v) {
-         return new() { Accel = v.Accel * v.Scale, MaxAccel = v.MaxAccel * v.Scale, AccelDotFactor = v.AccelDotFactor, MaxAccelDotFactor = v.MaxAccelDotFactor };
-      }
+      private static PhysicsMovement PhysicsMovement(CharacterMovement v) => new PhysicsMovement { Accel = v.Accel * v.Scale, MaxAccel = v.MaxAccel * v.Scale, AccelDotFactor = v.AccelDotFactor, MaxAccelDotFactor = v.MaxAccelDotFactor };
    }
 }

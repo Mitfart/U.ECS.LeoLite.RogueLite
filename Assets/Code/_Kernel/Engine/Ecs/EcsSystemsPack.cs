@@ -18,8 +18,7 @@ namespace Engine.Ecs {
 
 
 
-      protected void AddPack<TPack>() where TPack : EcsSystemsPack, new()
-         => new TPack().Install(_di);
+      protected void AddPack<TPack>() where TPack : EcsSystemsPack, new() => new TPack().Install(_di);
 
       protected void Add<TSystem>() where TSystem : class, IEcsSystem
          => _di.Register<TSystem>(Lifetime.Transient)

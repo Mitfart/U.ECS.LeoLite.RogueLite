@@ -12,19 +12,13 @@ namespace Debug {
       public bool IsPaused { get; private set; }
 
       // hack: only knowing way to check for pause in the same frame
-      private void LateUpdate() {
-         IsPaused = false;
-      }
+      private void LateUpdate() => IsPaused = false;
 
 
 
-      private void OnEnable() {
-         On();
-      }
+      private void OnEnable() => On();
 
-      private void OnDisable() {
-         Off();
-      }
+      private void OnDisable() => Off();
 
 
 
@@ -78,9 +72,7 @@ namespace Debug {
 
 
 
-      private void DrawPrev() {
-         (_prevToDraw, _toDraw) = (_toDraw, _prevToDraw);
-      }
+      private void DrawPrev() => (_prevToDraw, _toDraw) = (_toDraw, _prevToDraw);
 
       private static void ResetGizmos() {
          Gizmos.color  = Color.white;

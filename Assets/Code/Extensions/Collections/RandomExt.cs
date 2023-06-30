@@ -18,7 +18,7 @@ namespace Extensions.Collections {
          int randomI;
 
          do {
-            randomI = Mathf.RoundToInt(UnityEngine.Random.Range(0, collection.Count - 1));
+            randomI = Mathf.RoundToInt(UnityEngine.Random.Range(minInclusive: 0, collection.Count - 1));
          } while (exclude.Contains(randomI));
 
          return randomI;

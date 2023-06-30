@@ -9,13 +9,9 @@ namespace ECS.UnityRef {
       public TMono component;
 
 
-      public virtual void OnBeforeSerialize() {
-         GetComponentRef();
-      }
+      public virtual void OnBeforeSerialize() => GetComponentRef();
 
-      public virtual void OnAfterDeserialize() {
-         GetComponentRef();
-      }
+      public virtual void OnAfterDeserialize() => GetComponentRef();
 
 
       public override void Convert(int e, EcsWorld world) {

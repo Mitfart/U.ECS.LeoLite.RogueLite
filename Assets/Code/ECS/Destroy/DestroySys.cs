@@ -12,7 +12,9 @@ namespace ECS.Destroy {
 
 
       public void Run(IEcsSystems systems) {
-         foreach (int e in _filter) _world.DelEntity(e);
+         foreach (int e in _filter) {
+            _world.DelEntity(e);
+         }
       }
    }
 }

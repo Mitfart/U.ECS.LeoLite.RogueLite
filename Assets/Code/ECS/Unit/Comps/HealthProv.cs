@@ -12,7 +12,7 @@ namespace ECS.Unit.Comps {
 
    [Serializable]
    public struct Health {
-      [Min(0)] public float cur;
-      [Min(0)] public float max;
+      [Min(min: 0)] public float cur;
+      [Min(min: 0)] public float max;
    }
 }

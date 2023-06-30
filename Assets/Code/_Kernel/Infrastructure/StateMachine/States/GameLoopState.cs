@@ -13,15 +13,16 @@ namespace Infrastructure.StateMachine.States {
          _controls = controls;
       }
 
+      public void FixedTick() => _engine.FixedRun();
+
+      public void Tick() => _engine.Run();
+
 
 
       public override void Enter() {
          _controls.Game.Enable();
          _engine.Init();
       }
-
-      public void Tick()      => _engine.Run();
-      public void FixedTick() => _engine.FixedRun();
 
       public override void Exit() {
          _engine.Dispose();

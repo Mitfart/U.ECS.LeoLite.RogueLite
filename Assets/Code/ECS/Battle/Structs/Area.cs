@@ -7,8 +7,6 @@ namespace ECS.Battle.Structs {
       public Vector3 size;
       public Vector3 origin;
 
-      public override string ToString() {
-         return $"[size: {size}, origin: {origin}]";
-      }
+      public override string ToString() => $"[size: {size}, origin: {origin}]";
    }
 }

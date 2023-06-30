@@ -1,21 +1,22 @@
 ﻿#if UNITY_EDITOR
 using TNRD.Utilities;
 using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Level {
+   [RequireComponent(typeof(UniqueID))]
    public class MonoRoom : MonoBehaviour, ISerializationCallbackReceiver {
       private const string _ENTER_POINT_NAME            = "Enter Point";
       private const string _EXITS_CONTAINER_NAME        = "Exits";
       private const string _SPAWN_POINTS_CONTAINER_NAME = "Enemies";
 
+      [SerializeField] private Location  location;
+      [SerializeField] private RoomType  type;
       [SerializeField] private Transform enter;
       [SerializeField] private Transform exitsContainer;
       [SerializeField] private Transform spawnPointsContainer;
 
-      [SerializeField, HideInInspector] private Room room;
+      [SerializeField, HideInInspector] private UniqueID uniqueID;
 
       private Vector3      _enterPoint;
       private Vector3[]    _exitPoints;
@@ -24,34 +25,25 @@ namespace Level {
 
 
       public void OnBeforeSerialize() {
-         enter                = FindOrCreate(_ENTER_POINT_NAME);
-         exitsContainer       = FindOrCreate(_EXITS_CONTAINER_NAME);
-         spawnPointsContainer = FindOrCreate(_SPAWN_POINTS_CONTAINER_NAME);
+         uniqueID ??= GetComponent<UniqueID>();
+
+         enter                = FindOrCreate(_ENTER_POINT_NAME,            LabelIcon.Green);
+         exitsContainer       = FindOrCreate(_EXITS_CONTAINER_NAME,        LabelIcon.Blue);
+         spawnPointsContainer = FindOrCreate(_SPAWN_POINTS_CONTAINER_NAME, LabelIcon.Red);
 
          InitEnterPoint();
          InitExitPoints();
          InitSpawnPoints();
 
-         room = new Room(
-            gameObject.scene.name,
-            _enterPoint,
-            _exitPoints,
-            _spawnPoints
-         );
-
-         EditorUtility.SetDirty(this);
+         Store();
       }
 
       public void OnAfterDeserialize() { }
 
 
 
-      private void InitEnterPoint() {
-         _enterPoint = enter.position;
+      private void InitEnterPoint() => _enterPoint = enter.position;
 
-         enter.gameObject.SetIcon(ShapeIcon.CircleGreen);
-      }
-      
       private void InitExitPoints() {
          Transform[] transformPoints = exitsContainer.GetComponentsInChildren<Transform>();
          int         count           = transformPoints.Length - 1; // first is parent
@@ -64,8 +56,6 @@ namespace Level {
 
             transformPoint.gameObject.SetIcon(ShapeIcon.CircleBlue);
          }
-
-         exitsContainer.gameObject.SetIcon(LabelIcon.Blue);
       }
 
       private void InitSpawnPoints() {
@@ -74,20 +64,34 @@ namespace Level {
          foreach (SpawnPoint spawnPoint in _spawnPoints) {
             spawnPoint.gameObject.SetIcon(ShapeIcon.DiamondRed);
          }
-
-         spawnPointsContainer.gameObject.SetIcon(LabelIcon.Red);
       }
 
 
 
-      private Transform FindOrCreate(string n) {
+      private void Store() {
+         if (!location.IsUnityNull())
+            location.StoreRoom(
+               new Room(
+                  uniqueID.ID,
+                  type,
+                  gameObject.scene.name,
+                  _enterPoint,
+                  _exitPoints,
+                  _spawnPoints
+               )
+            );
+      }
+
+
+      private Transform FindOrCreate(string n, LabelIcon icon) {
          Transform container = transform.Find(n);
 
          if (container.IsUnityNull()) {
             container = new GameObject(n).transform;
             container.SetParent(transform);
          }
-         
+
+         container.gameObject.SetIcon(icon);
          return container;
       }
    }

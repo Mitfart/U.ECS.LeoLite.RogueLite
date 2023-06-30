@@ -9,8 +9,6 @@ namespace Extensions.Unileo {
          return gameObject.IsEntity(out ConvertToEntity convert) && convert.Convert().PackedEntityWithWorld.Unpack(out EcsWorld _, out entity);
       }
 
-      public static bool TryGetEntity(this Component component, out int entity) {
-         return component.gameObject.TryGetEntity(out entity);
-      }
+      public static bool TryGetEntity(this Component component, out int entity) => component.gameObject.TryGetEntity(out entity);
    }
 }

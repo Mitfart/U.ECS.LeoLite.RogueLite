@@ -51,16 +51,10 @@ namespace ECS.Weapon.Ammo {
          magazine.amount--;
       }
 
-      private void BlockAttack(int e) {
-         _blockAttackPool.TryAdd(e);
-      }
+      private void BlockAttack(int e) => _blockAttackPool.TryAdd(e);
 
-      private void UnblockAttack(int e) {
-         _blockAttackPool.TryDel(e);
-      }
+      private void UnblockAttack(int e) => _blockAttackPool.TryDel(e);
 
-      private bool Attacking(int e) {
-         return _isAttackingPool.Has(e);
-      }
+      private bool Attacking(int e) => _isAttackingPool.Has(e);
    }
 }

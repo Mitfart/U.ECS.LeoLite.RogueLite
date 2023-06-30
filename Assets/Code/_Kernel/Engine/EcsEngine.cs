@@ -23,7 +23,9 @@ namespace Engine {
 
 
       private void AddSystems(IEnumerable<IEcsSystem> systems) {
-         foreach (IEcsSystem system in systems) _systems.Add(system);
+         foreach (IEcsSystem system in systems) {
+            _systems.Add(system);
+         }
       }
    }
 }

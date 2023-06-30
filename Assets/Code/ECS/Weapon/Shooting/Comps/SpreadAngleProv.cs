@@ -8,6 +8,6 @@ namespace ECS.Weapon.Shooting {
 
    [Serializable]
    public struct SpreadAngle {
-      [RangeEdges(-180f, 180f)] public Ranged angle;
+      [RangeEdges(min: -180f, max: 180f)] public Ranged angle;
    }
 }

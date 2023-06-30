@@ -14,9 +14,7 @@ namespace ECS.Unit.Behavior.Nodes.Structural {
 
 
 
-      protected override BehaviorState OnRun(int e, EcsWorld world) {
-         return Condition(e, world) ? True.Run(e, world) : False.Run(e, world);
-      }
+      protected override BehaviorState OnRun(int e, EcsWorld world) => Condition(e, world) ? True.Run(e, world) : False.Run(e, world);
 
 
       protected abstract bool Condition(int e, EcsWorld world);

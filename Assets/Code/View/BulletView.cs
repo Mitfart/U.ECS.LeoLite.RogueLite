@@ -2,8 +2,6 @@
 
 namespace View {
    public class BulletView : EcsView {
-      public override void OnDestroyEntity() {
-         Destroy(gameObject);
-      }
+      public override void OnDestroyEntity() => Destroy(gameObject);
    }
 }

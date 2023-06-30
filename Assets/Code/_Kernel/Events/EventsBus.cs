@@ -41,9 +41,7 @@ namespace Events {
          return ref eventsPool.Add(eventEntity);
       }
 
-      public bool HasEventSingleton<T>() where T : struct, ISingletonEvent {
-         return _singletons.ContainsKey(typeof(T));
-      }
+      public bool HasEventSingleton<T>() where T : struct, ISingletonEvent => _singletons.ContainsKey(typeof(T));
 
 
       public bool HasEventSingleton<T>(out T eventBody) where T : struct, ISingletonEvent {
@@ -100,7 +98,9 @@ namespace Events {
       }
 
       public void DestroyEvents<T>() where T : struct, IEvent {
-         foreach (int eventEntity in GetFilter<T>()) World.DelEntity(eventEntity);
+         foreach (int eventEntity in GetFilter<T>()) {
+            World.DelEntity(eventEntity);
+         }
       }
 
       #endregion
@@ -108,9 +108,7 @@ namespace Events {
 
       #region DestroyEventsSystem
 
-      public DestroyEventsSystem GetDestroyEventsSystem(int capacity = 16) {
-         return new(this, capacity);
-      }
+      public DestroyEventsSystem GetDestroyEventsSystem(int capacity = 16) => new DestroyEventsSystem(this, capacity);
 
       public class DestroyEventsSystem : IEcsRunSystem {
          private readonly List<Action> _destructionActions;
@@ -122,7 +120,9 @@ namespace Events {
          }
 
          public void Run(IEcsSystems systems) {
-            foreach (Action action in _destructionActions) action();
+            foreach (Action action in _destructionActions) {
+               action();
+            }
          }
 
          public DestroyEventsSystem IncReplicant<TR>() where TR : struct, IEvent {

@@ -65,21 +65,13 @@ namespace ECS.Movement.Smooth {
          _deltaState += delta * KDeltaState(input, deltaInput, delta);
       }
 
-      private Vector3 KDeltaState(Vector3 input, Vector3 deltaInput, float delta) {
-         return (KInput(input, deltaInput) - KState()) / K2Stable(delta);
-      }
+      private Vector3 KDeltaState(Vector3 input, Vector3 deltaInput, float delta) => (KInput(input, deltaInput) - KState()) / K2Stable(delta);
 
-      private Vector3 KInput(Vector3 input, Vector3 deltaInput) {
-         return input + _k3 * deltaInput;
-      }
+      private Vector3 KInput(Vector3 input, Vector3 deltaInput) => input + _k3 * deltaInput;
 
-      private Vector3 KState() {
-         return State + _k1 * _deltaState;
-      }
+      private Vector3 KState() => State + _k1 * _deltaState;
 
-      private float K2Stable(float delta) {
-         return Mathf.Max(_k2, delta * ((delta + _k1) * .5f), delta * _k1);
-      }
+      private float K2Stable(float delta) => Mathf.Max(_k2, delta * ((delta + _k1) * .5f), delta * _k1);
 
       private void ReCalcK() {
          float piF  = Mathf.PI * frequency;
@@ -91,9 +83,9 @@ namespace ECS.Movement.Smooth {
       }
 
 // @formatter:off
-    [SerializeField][Range(.01f, 15f)] private float frequency = 5f;
-    [SerializeField][Range(.01f,  1f)] private float damping   = .5f;
-    [SerializeField][Range( -5f,  5f)] private float responsiveness;
+    [SerializeField,Range(min:.01f, max:15f)] private float frequency = 5f;
+    [SerializeField,Range(min:.01f,  max:1f)] private float damping   = .5f;
+    [SerializeField,Range( min:-5f,  max:5f)] private float responsiveness;
 // @formatter:on
    }
 }

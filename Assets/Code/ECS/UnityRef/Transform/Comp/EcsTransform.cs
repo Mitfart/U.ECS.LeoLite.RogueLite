@@ -87,40 +87,22 @@ namespace ECS.UnityRef {
          return this;
       }
 
-      private Vector3 ReCalcPosition(Vector3? newLocalPos = null) {
-         return position = ParentRot() * (newLocalPos ?? localPosition) + ParentPos();
-      }
+      private Vector3 ReCalcPosition(Vector3? newLocalPos = null) => position = ParentRot() * (newLocalPos ?? localPosition) + ParentPos();
 
-      private Quaternion ReCalcRotation(Quaternion? newLocalRot = null) {
-         return rotation = ParentRot() * (newLocalRot ?? localRotation);
-      }
+      private Quaternion ReCalcRotation(Quaternion? newLocalRot = null) => rotation = ParentRot() * (newLocalRot ?? localRotation);
 
-      private float ReCalcScale(float? newLocalScale = null) {
-         return scale = ParentScale() * (newLocalScale ?? localScale);
-      }
+      private float ReCalcScale(float? newLocalScale = null) => scale = ParentScale() * (newLocalScale ?? localScale);
 
-      private Vector3 ReCalcLocalPosition(Vector3? newPos = null) {
-         return localPosition = Quaternion.Inverse(ParentRot()) * (newPos ?? position) - ParentPos();
-      }
+      private Vector3 ReCalcLocalPosition(Vector3? newPos = null) => localPosition = Quaternion.Inverse(ParentRot()) * (newPos ?? position) - ParentPos();
 
-      private Quaternion ReCalcLocalRotation(Quaternion? newRot = null) {
-         return localRotation = Quaternion.Inverse(ParentRot()) * (newRot ?? rotation);
-      }
+      private Quaternion ReCalcLocalRotation(Quaternion? newRot = null) => localRotation = Quaternion.Inverse(ParentRot()) * (newRot ?? rotation);
 
-      private float ReCalcLocalScale(float? newScale = null) {
-         return localScale = (newScale ?? scale) / ParentScale();
-      }
+      private float ReCalcLocalScale(float? newScale = null) => localScale = (newScale ?? scale) / ParentScale();
 
-      private Vector3 ParentPos() {
-         return Parent?.Position ?? Vector3.zero;
-      }
+      private Vector3 ParentPos() => Parent?.Position ?? Vector3.zero;
 
-      private Quaternion ParentRot() {
-         return Parent?.Rotation ?? Quaternion.identity;
-      }
+      private Quaternion ParentRot() => Parent?.Rotation ?? Quaternion.identity;
 
-      private float ParentScale() {
-         return Parent?.Scale ?? 1f;
-      }
+      private float ParentScale() => Parent?.Scale ?? 1f;
    }
 }

@@ -56,13 +56,9 @@ namespace ECS.Weapon.Shooting {
 
 
 
-      private List<EcsTransform> ShootOrigins(int weaponE) {
-         return _shootOriginsPool.Get(weaponE).value;
-      }
+      private List<EcsTransform> ShootOrigins(int weaponE) => _shootOriginsPool.Get(weaponE).value;
 
-      private void MarkAttacking(int weaponE) {
-         _isAttackingPool.Add(weaponE);
-      }
+      private void MarkAttacking(int weaponE) => _isAttackingPool.Add(weaponE);
 
       private ref EcsTransform WithSpread(int weaponE, ref EcsTransform insTransform) {
          if (!_spreadAnglePool.Has(weaponE)) return ref insTransform;
@@ -74,17 +70,13 @@ namespace ECS.Weapon.Shooting {
          return ref insTransform;
       }
 
-      private void SpawnRandomProjectile(EcsTransform insTransform, int weaponE) {
-         _di.Instantiate(GetRandomProjectile(weaponE), _insContainer).transform.Sync(insTransform);
-      }
+      private void SpawnRandomProjectile(EcsTransform insTransform, int weaponE) => _di.Instantiate(GetRandomProjectile(weaponE), _insContainer).transform.Sync(insTransform);
 
       private ConvertToEntity GetRandomProjectile(int weaponE) {
          ref List<ConvertToEntity> projectiles = ref _projectilesPool.Get(weaponE).value;
-         return projectiles[Random.Range(0, projectiles.Count - 1)];
+         return projectiles[Random.Range(minInclusive: 0, projectiles.Count - 1)];
       }
 
-      private static Transform InsContainer() {
-         return new GameObject(_PROJECTILES_CONTAINER_NAME).transform;
-      }
+      private static Transform InsContainer() => new GameObject(_PROJECTILES_CONTAINER_NAME).transform;
    }
 }

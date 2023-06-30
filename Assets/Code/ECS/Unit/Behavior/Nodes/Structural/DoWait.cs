@@ -14,18 +14,12 @@ namespace ECS.Unit.Behavior.Nodes.Structural {
 
 
 
-      protected override void OnBegin(int e, EcsWorld world) {
-         _startTime = Time.time;
-      }
+      protected override void OnBegin(int e, EcsWorld world) => _startTime = Time.time;
 
-      protected override BehaviorState OnRun(int e, EcsWorld world) {
-         return !IsTimerEnd() ? BehaviorState.Run : base.OnRun(e, world);
-      }
+      protected override BehaviorState OnRun(int e, EcsWorld world) => !IsTimerEnd() ? BehaviorState.Run : base.OnRun(e, world);
 
 
 
-      private bool IsTimerEnd() {
-         return Time.time - _startTime >= _duration;
-      }
+      private bool IsTimerEnd() => Time.time - _startTime >= _duration;
    }
 }

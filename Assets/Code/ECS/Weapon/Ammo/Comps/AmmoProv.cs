@@ -12,7 +12,7 @@ namespace ECS.Weapon.Ammo {
 
    [Serializable]
    public struct Ammo {
-      [Min(0)] public int amount;
-      [Min(0)] public int size;
+      [Min(min: 0)] public int amount;
+      [Min(min: 0)] public int size;
    }
 }

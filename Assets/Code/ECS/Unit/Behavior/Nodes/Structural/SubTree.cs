@@ -12,8 +12,6 @@ namespace ECS.Unit.Behavior.Nodes.Structural {
 
 
 
-      protected override BehaviorState OnRun(int e, EcsWorld world) {
-         return _behaviorTree.Run(e, world);
-      }
+      protected override BehaviorState OnRun(int e, EcsWorld world) => _behaviorTree.Run(e, world);
    }
 }

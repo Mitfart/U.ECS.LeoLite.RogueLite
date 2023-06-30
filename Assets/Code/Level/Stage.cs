@@ -2,8 +2,6 @@
 
 namespace Level {
    public class Stage {
-      private readonly IReadOnlyList<Location> _locations;
-
       private readonly List<Location> _passedLocations;
       private readonly List<Room>     _passedRooms;
 
@@ -15,13 +13,12 @@ namespace Level {
 
 
 
-      public Stage(IReadOnlyList<Location> locations) {
-         _locations       = locations;
-         _passedLocations = new List<Location>(4);
-         _passedRooms     = new List<Room>(4);
+      public Stage() {
+         _passedLocations = new List<Location>(capacity: 4);
+         _passedRooms     = new List<Room>(capacity: 4);
       }
 
-      
+
 
       public void SetLocation(Location location) {
          Location = location;
