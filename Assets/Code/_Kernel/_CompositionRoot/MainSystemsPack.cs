@@ -1,16 +1,17 @@
-using ECS.Battle;
-using ECS.Destroy;
-using ECS.Movement;
-using ECS.Player.Comps;
-using ECS.Unit;
-using ECS.UnityRef;
-using ECS.View;
-using ECS.Weapon;
+using Destroy;
 using Engine.Ecs;
 using Events;
+using Gameplay.Interactable;
+using HitBoxes;
 using Mitfart.LeoECSLite.UniLeo;
 using Mitfart.LeoECSLite.UnityIntegration;
 using Mitfart.LeoECSLite.UnityIntegration.Name;
+using Movement;
+using Player;
+using Unit;
+using UnityRef;
+using View;
+using Weapon;
 
 public class MainSystemsPack : EcsSystemsPack {
    protected override void RegisterSystems() {
@@ -19,13 +20,14 @@ public class MainSystemsPack : EcsSystemsPack {
 
       AddPack<PlayerSystems>();
       AddPack<MovementSystems>();
+      AddPack<InteractableSystems>();
       AddPack<WeaponSystems>();
       AddPack<BattleSystems>();
       AddPack<UnitSystems>();
 
       AddPack<ViewSystems>();
       AddPack<SetUnityDataSystems>();
-      Add<DestroySys>();
+      AddPack<DestroySystems>();
 
       AddPack<ClearEventsPack>();
 

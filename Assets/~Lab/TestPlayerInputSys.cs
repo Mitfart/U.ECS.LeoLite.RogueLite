@@ -1,14 +1,14 @@
-using ECS.Player;
-using ECS.Weapon;
-using ECS.Weapon.Aim;
-using ECS.Weapon.Ammo;
-using ECS.Weapon.Ammo.Extensions;
-using ECS.Weapon.Ammo.Reload;
-using ECS.Weapon.Attack;
 using Extensions.Ecs;
 using Leopotam.EcsLite;
+using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Weapon;
+using Weapon.Aim;
+using Weapon.Ammo;
+using Weapon.Ammo.Extensions;
+using Weapon.Ammo.Reload;
+using Weapon.Attack;
 
 namespace _Lab {
   public class TestPlayerInputSys : IEcsRunSystem, IEcsInitSystem {

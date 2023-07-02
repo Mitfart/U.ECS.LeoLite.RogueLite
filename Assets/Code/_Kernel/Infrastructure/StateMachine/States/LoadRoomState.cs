@@ -3,6 +3,7 @@ using Extensions.Collections;
 using Infrastructure.AssetsManagement;
 using Infrastructure.Loading;
 using Level;
+using Level.StaticData;
 using Mitfart.LeoECSLite.UniLeo;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -77,15 +78,10 @@ namespace Infrastructure.StateMachine.States {
 
       private void CreateDoors(Room room) {
          foreach (Vector3 exitPoint in room.ExitPoints) {
-            Door door = _assets.Ins<Door>(AssetPath.DOOR, exitPoint);
+            DoorProv door = _assets.Ins<DoorProv>(AssetPath.DOOR, exitPoint);
 
-            Location nextLocation = _stage.Location;
-            Room     nextRoom     = nextLocation.DefaultRooms.Random(_stage.PassedRooms.ToArray());
-
-            door.Construct(
-               nextLocation,
-               nextRoom
-            );
+            door.component.NextLocation = _stage.Location;
+            door.component.NextRoom     = _stage.Location.DefaultRooms.Random(_stage.PassedRooms.ToArray());
          }
       }
 

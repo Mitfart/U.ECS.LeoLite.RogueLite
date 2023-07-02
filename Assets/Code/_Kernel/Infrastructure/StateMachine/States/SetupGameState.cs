@@ -1,5 +1,6 @@
 ﻿using Extensions.Collections;
 using Level;
+using Level.StaticData;
 
 namespace Infrastructure.StateMachine.States {
    public class SetupGameState : GameState {

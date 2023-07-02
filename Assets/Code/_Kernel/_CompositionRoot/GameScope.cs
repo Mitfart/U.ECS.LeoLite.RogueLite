@@ -1,13 +1,14 @@
 ﻿using Debug;
 using Engine;
 using Events;
-using Extensions.VContainer;
 using Infrastructure.AssetsManagement;
+using Infrastructure.AssetsManagement.VContainerExtensions;
 using Infrastructure.Loading;
 using Infrastructure.StateMachine;
 using Infrastructure.StateMachine.States;
 using Leopotam.EcsLite;
 using Level;
+using Level.StaticData;
 using VContainer;
 using VContainer.Unity;
 using View;

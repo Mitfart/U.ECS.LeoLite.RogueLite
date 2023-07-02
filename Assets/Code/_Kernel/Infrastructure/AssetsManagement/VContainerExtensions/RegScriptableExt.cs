@@ -1,8 +1,7 @@
-﻿using Infrastructure.AssetsManagement;
-using UnityEngine;
+﻿using UnityEngine;
 using VContainer;
 
-namespace Extensions.VContainer {
+namespace Infrastructure.AssetsManagement.VContainerExtensions {
    public static class RegScriptableExt {
       public static void RegScriptable<TAsset>(this IContainerBuilder di, string path) where TAsset : ScriptableObject
          => di

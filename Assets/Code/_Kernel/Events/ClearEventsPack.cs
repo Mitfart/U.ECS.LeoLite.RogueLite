@@ -1,5 +1,5 @@
-using ECS.Battle;
 using Engine.Ecs;
+using HitBoxes;
 using VContainer;
 
 namespace Events {
