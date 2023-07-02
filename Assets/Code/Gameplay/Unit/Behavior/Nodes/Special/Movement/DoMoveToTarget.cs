@@ -1,10 +1,10 @@
+using Gameplay.Movement.Comps;
+using Gameplay.Unit.Behavior.Comps;
+using Gameplay.UnityRef.Transform.Comp;
 using Leopotam.EcsLite;
-using Movement;
-using Unit.Behavior.Comps;
 using UnityEngine;
-using UnityRef;
 
-namespace Unit.Behavior.Nodes.Special.Movement {
+namespace Gameplay.Unit.Behavior.Nodes.Special.Movement {
    public class DoMoveToTarget : BehaviorNode {
       private EcsPool<Target>        _targetPool;
       private EcsPool<EcsTransform>  _ecsTransformPool;
@@ -19,7 +19,8 @@ namespace Unit.Behavior.Nodes.Special.Movement {
       }
 
       protected override BehaviorState OnRun(int e, EcsWorld world) {
-         if (HasTarget(e, out int targetE)) SetMoveDir(e, Position(targetE) - Position(e));
+         if (HasTarget(e, out int targetE))
+            SetMoveDir(e, Position(targetE) - Position(e));
 
          return BehaviorState.Run;
       }

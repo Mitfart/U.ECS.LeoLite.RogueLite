@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace HitBoxes.Structs {
+namespace Gameplay.HitBoxes.Structs {
    [Serializable]
    public struct Area {
       public Vector3 size;

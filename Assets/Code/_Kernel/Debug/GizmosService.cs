@@ -23,9 +23,11 @@ namespace Debug {
 
 
       private void OnDrawGizmos() {
-         if (!IsActive) return;
+         if (!IsActive)
+            return;
 
-         if (IsPaused) DrawPrev();
+         if (IsPaused)
+            DrawPrev();
 
          foreach (Action drawAction in _toDraw) {
             drawAction.Invoke();
@@ -40,13 +42,15 @@ namespace Debug {
 
 
       public void Draw(Action draw) {
-         if (IsActive) _toDraw.Add(draw);
+         if (IsActive)
+            _toDraw.Add(draw);
       }
 
 
 
       public void On() {
-         if (IsActive) return;
+         if (IsActive)
+            return;
 
          IsActive    = true;
          _toDraw     = new HashSet<Action>();
@@ -54,7 +58,8 @@ namespace Debug {
       }
 
       public void Off() {
-         if (!IsActive) return;
+         if (!IsActive)
+            return;
 
          IsActive = false;
          _toDraw.Clear();

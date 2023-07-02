@@ -1,8 +1,10 @@
 using Extensions.Ecs;
+using Gameplay.Weapon._base;
+using Gameplay.Weapon.Attack.Comps;
 using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace Weapon.Attack {
+namespace Gameplay.Weapon.Attack.Systems {
    public class RestoreAttackSys : IEcsRunSystem, IEcsInitSystem {
       private EcsPool<BlockAttack> _cantAttackPool;
       private EcsFilter            _filter;
@@ -30,7 +32,8 @@ namespace Weapon.Attack {
                _cantAttackPool.TryAdd(e);
             } else if (_isAttackingPool.Has(e)) {
                restoreShot.startTime = time;
-               if (time < restoreShot.startTime + restoreShot.duration) _cantAttackPool.TryAdd(e);
+               if (time < restoreShot.startTime + restoreShot.duration)
+                  _cantAttackPool.TryAdd(e);
             } else {
                _cantAttackPool.TryDel(e);
             }

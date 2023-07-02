@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Gameplay.UnityRef.Transform.Comp;
+using UnityEngine;
 
-namespace UnityRef.Extensions {
+namespace Gameplay.UnityRef.Transform.Extensions {
    public static class EulearAnglesExt {
       public static Vector3 EulerAngles(ref this EcsTransform t) => t.Rotation.eulerAngles;
 

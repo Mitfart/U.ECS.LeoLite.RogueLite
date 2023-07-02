@@ -1,4 +1,4 @@
-﻿namespace Level.StaticData {
+﻿namespace Gameplay.Level.StaticData {
    public enum RoomType {
       Default = 0,
       Shop    = 1,

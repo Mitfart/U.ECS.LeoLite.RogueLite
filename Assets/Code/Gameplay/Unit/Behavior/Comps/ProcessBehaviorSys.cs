@@ -1,6 +1,6 @@
 using Leopotam.EcsLite;
 
-namespace Unit.Behavior.Comps {
+namespace Gameplay.Unit.Behavior.Comps {
    public class ProcessBehaviorSys : IEcsRunSystem, IEcsInitSystem {
       private EcsWorld  _world;
       private EcsFilter _filter;

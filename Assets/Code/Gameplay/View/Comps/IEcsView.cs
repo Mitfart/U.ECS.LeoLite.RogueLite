@@ -1,7 +1,7 @@
 ﻿using Leopotam.EcsLite;
 
-namespace View {
-   public interface IEvsView {
+namespace Gameplay.View.Comps {
+   public interface IEcsView {
       void Refresh(EcsWorld         world, int entity);
       void OnDestroyEntity(EcsWorld world, int entity);
    }

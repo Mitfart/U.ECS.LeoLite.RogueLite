@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Movement {
+namespace Gameplay.Movement.Comps {
    public struct PhysicsMovement {
       public float          Accel;
       public AnimationCurve AccelDotFactor;

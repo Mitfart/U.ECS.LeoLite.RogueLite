@@ -1,11 +1,13 @@
+using Gameplay.UnityRef.Transform.Comp;
 using UnityEngine;
 
-namespace UnityRef.Extensions {
+namespace Gameplay.UnityRef.Transform.Extensions {
    public static class LookAt2DExt {
       public static ref EcsTransform LookAt2D(ref this EcsTransform cur, Vector3 target, Vector3? viewDir = null) {
          float deltaAngle = Vector2.SignedAngle(viewDir ?? cur.Up(), target - cur.Position);
 
-         if (TooSmall(deltaAngle)) return ref cur;
+         if (TooSmall(deltaAngle))
+            return ref cur;
 
          Vector3 angles = cur.EulerAngles();
          angles.z += deltaAngle;

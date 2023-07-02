@@ -2,7 +2,7 @@ using System;
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace HitBoxes {
+namespace Gameplay.HitBoxes.Comps {
    [DisallowMultipleComponent] public class HurtBoxProv : EcsProvider<HurtBox> { }
 
    [Serializable]

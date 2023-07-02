@@ -1,13 +1,14 @@
 using Engine.Ecs;
 using Extensions.Ecs;
-using Weapon.Aim;
-using Weapon.Aim.Debug;
-using Weapon.Ammo;
-using Weapon.Ammo.Reload;
-using Weapon.Attack;
-using Weapon.Shooting;
+using Gameplay.Weapon.Aim;
+using Gameplay.Weapon.Aim.Debug;
+using Gameplay.Weapon.Ammo.Reload;
+using Gameplay.Weapon.Ammo.Systems;
+using Gameplay.Weapon.Attack.Comps;
+using Gameplay.Weapon.Attack.Systems;
+using Gameplay.Weapon.Shooting.Systems;
 
-namespace Weapon {
+namespace Gameplay.Weapon {
    public class WeaponSystems : EcsSystemsPack {
       protected override void RegisterSystems() {
          Add<AimSys>();

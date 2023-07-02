@@ -1,3 +1,3 @@
-﻿namespace Weapon.Attack {
+﻿namespace Gameplay.Weapon.Attack.Comps {
    public struct BlockAttack { }
 }

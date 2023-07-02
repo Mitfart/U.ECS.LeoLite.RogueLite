@@ -1,11 +1,17 @@
 ﻿using _Lab;
 using Engine.Ecs;
-using Player.Sys;
+using Extensions.Ecs;
+using Gameplay.Interactable;
+using Gameplay.Player.Sys;
 
-namespace Player {
+namespace Gameplay.Player {
    public class PlayerSystems : EcsSystemsPack {
       protected override void RegisterSystems() {
-         Add<PlayerInputSys>();
+         Add<DelHereSys<Hovered>>();
+         Add<HoverInteractableInRadius>();
+         Add<InteractSys>();
+
+         Add<MovementInputSys>();
          Add<TestPlayerInputSys>();
       }
    }

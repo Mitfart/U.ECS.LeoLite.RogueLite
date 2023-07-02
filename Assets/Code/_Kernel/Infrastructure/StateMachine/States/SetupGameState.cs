@@ -1,23 +1,22 @@
 ﻿using Extensions.Collections;
-using Level;
-using Level.StaticData;
+using Gameplay.Level;
+using Gameplay.Level.StaticData;
 
 namespace Infrastructure.StateMachine.States {
    public class SetupGameState : GameState {
       private readonly Location _location;
-      private readonly Stage    _stage;
 
-      public SetupGameState(Location location, Stage stage) {
+      public SetupGameState(Location location) {
          _location = location;
-         _stage    = stage;
       }
 
       public override void Enter() {
-         Room room = _location.DefaultRooms.Random();
-
-         _stage.SetLocation(_location);
-
-         StateMachine.Enter<LoadRoomState, Room>(room);
+         StateMachine.Enter<LoadLevelState, NextLevel>(
+            new NextLevel(
+               _location,
+               _location.DefaultRooms.Random()
+            )
+         );
       }
    }
 }

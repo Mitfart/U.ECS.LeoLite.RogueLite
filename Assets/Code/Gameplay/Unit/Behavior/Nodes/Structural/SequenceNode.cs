@@ -1,6 +1,6 @@
 using Leopotam.EcsLite;
 
-namespace Unit.Behavior.Nodes.Structural {
+namespace Gameplay.Unit.Behavior.Nodes.Structural {
    public class SequenceNode : BehaviorNode {
       public SequenceNode(params BehaviorNode[] childNodes) : base(childNodes) { }
 
@@ -8,7 +8,8 @@ namespace Unit.Behavior.Nodes.Structural {
          foreach (BehaviorNode node in ChildNodes) {
             BehaviorState childState = node.Run(e, world);
 
-            if (childState == BehaviorState.Success) continue;
+            if (childState == BehaviorState.Success)
+               continue;
 
             return childState;
          }

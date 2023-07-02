@@ -2,7 +2,7 @@
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace Unit.Behavior.Comps {
+namespace Gameplay.Unit.Behavior.Comps {
    [DisallowMultipleComponent]
    public class ViewRadiusProv : EcsProvider<ViewRadius> {
       private void OnDrawGizmos() {

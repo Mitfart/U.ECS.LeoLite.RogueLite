@@ -1,7 +1,7 @@
-﻿using Leopotam.EcsLite;
-using Unit.Behavior.Nodes;
+﻿using Gameplay.Unit.Behavior.Nodes;
+using Leopotam.EcsLite;
 
-namespace Unit.Behavior {
+namespace Gameplay.Unit.Behavior {
    public class BehaviorTree {
       public BehaviorState State { get; private set; } = BehaviorState.Run;
       public BehaviorNode  Entry { get; }

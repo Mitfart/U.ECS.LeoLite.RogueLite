@@ -1,9 +1,10 @@
 using System;
+using Gameplay.UnityRef.Transform.Comp;
+using Gameplay.UnityRef.Transform.Extensions;
+using Gameplay.Weapon._base;
 using Leopotam.EcsLite;
-using UnityRef;
-using UnityRef.Extensions;
 
-namespace Weapon.Aim {
+namespace Gameplay.Weapon.Aim {
    public class AimSys : IEcsRunSystem, IEcsInitSystem {
       private EcsWorld  _world;
       private EcsFilter _filter;
@@ -12,6 +13,8 @@ namespace Weapon.Aim {
       private EcsPool<AimPosition>  _aimPositionPool;
       private EcsPool<EcsTransform> _ecsTransformPool;
 
+      
+      
       public void Init(IEcsSystems systems) {
          _world  = systems.GetWorld();
          _filter = _world.Filter<WeaponOwner>().Inc<AimPosition>().End();
@@ -20,9 +23,7 @@ namespace Weapon.Aim {
          _aimPositionPool   = _world.GetPool<AimPosition>();
          _ecsTransformPool  = _world.GetPool<EcsTransform>();
       }
-
-
-
+      
       public void Run(IEcsSystems systems) {
          foreach (int e in _filter) {
             ref WeaponOwner weaponOwner = ref _activeWeaponsPool.Get(e);
@@ -35,7 +36,8 @@ namespace Weapon.Aim {
 
 
       private ref EcsTransform GetTransform(EcsPackedEntity weapon) {
-         if (!GetEntity(weapon, out int weaponE)) throw new Exception(message: "Weapon is not set!");
+         if (!GetEntity(weapon, out int weaponE))
+            throw new Exception(message: "Weapon is not set!");
 
          return ref _ecsTransformPool.Get(weaponE);
       }

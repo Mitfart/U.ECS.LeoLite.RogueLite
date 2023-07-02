@@ -1,14 +1,14 @@
 using Extensions.Ecs;
+using Gameplay.Player.Comps;
+using Gameplay.Weapon._base;
+using Gameplay.Weapon.Aim;
+using Gameplay.Weapon.Ammo.Comps;
+using Gameplay.Weapon.Ammo.Extensions;
+using Gameplay.Weapon.Ammo.Reload;
+using Gameplay.Weapon.Attack.Comps;
 using Leopotam.EcsLite;
-using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Weapon;
-using Weapon.Aim;
-using Weapon.Ammo;
-using Weapon.Ammo.Extensions;
-using Weapon.Ammo.Reload;
-using Weapon.Attack;
 
 namespace _Lab {
   public class TestPlayerInputSys : IEcsRunSystem, IEcsInitSystem {

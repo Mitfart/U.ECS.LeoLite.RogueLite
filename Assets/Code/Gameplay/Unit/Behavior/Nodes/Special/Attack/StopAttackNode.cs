@@ -1,6 +1,6 @@
-using Unit.Behavior.Nodes.Structural;
-using Weapon.Attack;
+using Gameplay.Unit.Behavior.Nodes.Structural;
+using Gameplay.Weapon.Attack.Comps;
 
-namespace Unit.Behavior.Nodes.Special.Attack {
+namespace Gameplay.Unit.Behavior.Nodes.Special.Attack {
    public class StopAttackNode : DelCompNode<WantAttack> { }
 }

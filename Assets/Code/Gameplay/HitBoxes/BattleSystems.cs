@@ -1,7 +1,8 @@
 using Engine.Ecs;
-using HitBoxes.Debug;
+using Gameplay.HitBoxes.Debug;
+using Gameplay.HitBoxes.Sys;
 
-namespace HitBoxes {
+namespace Gameplay.HitBoxes {
    public class BattleSystems : EcsSystemsPack {
       protected override void RegisterSystems() {
          Add<CreateHitEventSys>();

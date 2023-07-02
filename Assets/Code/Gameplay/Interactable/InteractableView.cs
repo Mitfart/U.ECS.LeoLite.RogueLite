@@ -1,6 +1,6 @@
-﻿using Leopotam.EcsLite;
+﻿using Gameplay.View.Comps;
+using Leopotam.EcsLite;
 using UnityEngine;
-using View;
 
 namespace Gameplay.Interactable {
    public class InteractableView : EcsView {

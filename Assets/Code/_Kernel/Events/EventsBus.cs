@@ -34,7 +34,8 @@ namespace Events {
          Type       type       = typeof(T);
          EcsPool<T> eventsPool = World.GetPool<T>();
 
-         if (_singletons.TryGetValue(type, out int eventEntity)) return ref eventsPool.Get(eventEntity);
+         if (_singletons.TryGetValue(type, out int eventEntity))
+            return ref eventsPool.Get(eventEntity);
 
          eventEntity = World.NewEntity();
          _singletons.Add(type, eventEntity);
@@ -60,7 +61,8 @@ namespace Events {
       public void DestroyEventSingleton<T>() where T : struct, ISingletonEvent {
          Type type = typeof(T);
 
-         if (!_singletons.TryGetValue(type, out int eventEntity)) return;
+         if (!_singletons.TryGetValue(type, out int eventEntity))
+            return;
 
          World.DelEntity(eventEntity);
          _singletons.Remove(type);
@@ -79,7 +81,8 @@ namespace Events {
       private EcsFilter GetFilter<T>() where T : struct, IEvent {
          Type type = typeof(T);
 
-         if (_cachedFilters.TryGetValue(type, out EcsFilter filter)) return filter;
+         if (_cachedFilters.TryGetValue(type, out EcsFilter filter))
+            return filter;
 
          filter = World.Filter<T>().End();
          _cachedFilters.Add(type, filter);
@@ -108,7 +111,7 @@ namespace Events {
 
       #region DestroyEventsSystem
 
-      public DestroyEventsSystem GetDestroyEventsSystem(int capacity = 16) => new DestroyEventsSystem(this, capacity);
+      public DestroyEventsSystem GetDestroyEventsSystem(int capacity = 16) => new(this, capacity);
 
       public class DestroyEventsSystem : IEcsRunSystem {
          private readonly List<Action> _destructionActions;

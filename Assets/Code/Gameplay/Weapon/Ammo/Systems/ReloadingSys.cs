@@ -1,12 +1,13 @@
 using Extensions.Ecs;
+using Gameplay.Weapon.Ammo.Comps;
+using Gameplay.Weapon.Ammo.Reload;
+using Gameplay.Weapon.Attack.Comps;
 using Leopotam.EcsLite;
 using UnityEngine;
-using Weapon.Ammo.Reload;
-using Weapon.Attack;
 
-namespace Weapon.Ammo {
+namespace Gameplay.Weapon.Ammo.Systems {
    public class ReloadingSys : IEcsRunSystem, IEcsInitSystem {
-      private EcsPool<Ammo>        _ammoPool;
+      private EcsPool<Comps.Ammo>  _ammoPool;
       private EcsPool<BlockAttack> _cantShootPool;
       private EcsFilter            _filter;
       private EcsPool<IsReloading> _isReloadingPool;
@@ -25,7 +26,7 @@ namespace Weapon.Ammo {
          _cantShootPool      = _world.GetPool<BlockAttack>();
 
          _magazinePool = _world.GetPool<Magazine>();
-         _ammoPool     = _world.GetPool<Ammo>();
+         _ammoPool     = _world.GetPool<Comps.Ammo>();
       }
 
       public void Run(IEcsSystems systems) {
@@ -40,7 +41,7 @@ namespace Weapon.Ammo {
                continue;
             }
 
-            magazine.amount = _ammoPool.TryGet(e, out Ammo ammo) ? Mathf.Min(ammo.amount, magazine.size) : magazine.size;
+            magazine.amount = _ammoPool.TryGet(e, out Comps.Ammo ammo) ? Mathf.Min(ammo.amount, magazine.size) : magazine.size;
             _isReloadingPool.Del(e);
             _cantShootPool.TryDel(e);
          }

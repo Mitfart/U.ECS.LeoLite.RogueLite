@@ -1,9 +1,7 @@
 ﻿using Engine.Ecs;
 
-namespace Destroy {
+namespace Gameplay.Destroy {
    public class DestroySystems : EcsSystemsPack {
-      protected override void RegisterSystems() {
-         Add<DestroySys>();
-      }
+      protected override void RegisterSystems() => Add<DestroySys>();
    }
 }

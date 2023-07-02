@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Movement.Smooth {
+namespace Gameplay.Movement.Smooth {
    public class SmoothView : MonoBehaviour {
       public Transform     target;
       public SmoothVector3 value;

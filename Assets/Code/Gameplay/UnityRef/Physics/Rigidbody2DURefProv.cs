@@ -1,7 +1,8 @@
 using System;
+using Gameplay.UnityRef.Abstract;
 using UnityEngine;
 
-namespace UnityRef.Physics {
+namespace Gameplay.UnityRef.Physics {
    [DisallowMultipleComponent, RequireComponent(typeof(Rigidbody2D))]
    public class Rigidbody2DuRefProv : EcsUnityURefProv<Rigidbody2D, Rigidbody2DRef> { }
 

@@ -1,19 +1,18 @@
 using Extensions.Ecs;
+using Gameplay.Movement.Comps;
 using Leopotam.EcsLite;
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace Movement.Character {
+namespace Gameplay.Movement._CombinedProviders.Character {
    [DisallowMultipleComponent]
    public class CharacterMovementProv : EcsScrProvider<CharacterMovement, ScrPhysicsMovement> {
-      public override void Convert(int e, EcsWorld world) {
-         CharacterMovement p = scrComponent.GetComponent();
+      protected override void Add(EcsPool<CharacterMovement> _, int e, EcsWorld world) {
+         CharacterMovement p = scrComponent.Get();
 
          world.GetPool<Speed>().Set(e, Speed(p));
          world.GetPool<PhysicsMovement>().Set(e, PhysicsMovement(p));
          world.GetPool<MoveDirection>().Set(e);
-
-         Destroy(this);
       }
 
 

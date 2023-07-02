@@ -2,24 +2,21 @@ using System;
 using System.Collections.Generic;
 using Extensions.Ecs;
 using Extensions.Unileo;
+using Gameplay.UnityRef.Transform.Comp;
+using Gameplay.UnityRef.Transform.Extensions;
 using Leopotam.EcsLite;
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
-using UnityRef;
-using UnityRef.Extensions;
 
-namespace Weapon.Shooting {
+namespace Gameplay.Weapon.Shooting.Comps {
    [DisallowMultipleComponent]
-   public class ProjectilesSpawnOriginsProv : BaseEcsProvider {
+   public class ProjectilesSpawnOriginsProv : BaseEcsProvider<ProjectilesSpawnOrigins> {
       public List<Transform> origins;
 
-      public override void Convert(int e, EcsWorld world) {
-         world.GetPool<ProjectilesSpawnOrigins>().Set(e).value = origins.ConvertAll(ToEcs);
-         Destroy(this);
-      }
+      protected override void Add(EcsPool<ProjectilesSpawnOrigins> pool, int e, EcsWorld world) => pool.Set(e).value = origins.ConvertAll(ToEcs);
 
       private static EcsTransform ToEcs(Transform origin) {
-         var ecsTransform = new EcsTransform { ParentE = origin.ParentEntity() };
+         var ecsTransform = new EcsTransform { ParentE = origin.ParentEntity()?.AsPackedEntityWithWorld() };
          return ecsTransform.Sync(origin);
       }
    }

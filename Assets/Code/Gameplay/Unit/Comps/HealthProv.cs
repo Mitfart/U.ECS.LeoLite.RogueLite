@@ -2,11 +2,12 @@ using System;
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace Unit.Comps {
+namespace Gameplay.Unit.Comps {
    [DisallowMultipleComponent]
    public class HealthProv : EcsProvider<Health> {
       private void OnValidate() {
-         if (component.cur > component.max) component.max = component.cur;
+         if (component.cur > component.max)
+            component.max = component.cur;
       }
    }
 

@@ -1,10 +1,10 @@
+using Gameplay.Movement.Comps;
+using Gameplay.Unit.Behavior.Comps;
+using Gameplay.UnityRef.Transform.Comp;
 using Leopotam.EcsLite;
-using Movement;
-using Unit.Behavior.Comps;
 using UnityEngine;
-using UnityRef;
 
-namespace Unit.Behavior.Nodes.Special.Movement {
+namespace Gameplay.Unit.Behavior.Nodes.Special.Movement {
    public class DoMoveToRandomPosition : BehaviorNode {
       private const float _EPSILON = .0001f;
 
@@ -27,7 +27,8 @@ namespace Unit.Behavior.Nodes.Special.Movement {
       protected override BehaviorState OnRun(int e, EcsWorld world) {
          Vector3 deltaPos = DeltaPos(e);
 
-         if (AtDestination(deltaPos)) return base.OnRun(e, world);
+         if (AtDestination(deltaPos))
+            return base.OnRun(e, world);
 
          SetMoveDir(e, deltaPos);
          return BehaviorState.Run;

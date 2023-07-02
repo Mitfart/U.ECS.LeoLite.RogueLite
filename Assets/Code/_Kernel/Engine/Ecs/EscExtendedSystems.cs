@@ -23,7 +23,8 @@ namespace Engine.Ecs {
       public override IEcsSystems Add(IEcsSystem system) {
          base.Add(system);
 
-         if (system is IEcsFixedRunSystem fixedRunSystem) _fixedRunSystems.Add(fixedRunSystem);
+         if (system is IEcsFixedRunSystem fixedRunSystem)
+            _fixedRunSystems.Add(fixedRunSystem);
 
          return this;
       }

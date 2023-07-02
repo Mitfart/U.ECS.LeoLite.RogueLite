@@ -2,17 +2,18 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Level.StaticData {
+namespace Gameplay.Level.StaticData {
    [CreateAssetMenu]
    public class Location : ScriptableObject {
-      [SerializeField]        private List<Location> nextLocations = new();
-      [SerializeField]        private List<Room>     rooms         = new();
-      [SerializeField]        private List<Room>     defaultRooms  = new();
-      [SerializeField]        private List<Room>     secretRooms   = new();
-      [SerializeField]        private List<Room>     shopRooms     = new();
-      [SerializeField]        private List<Room>     bossRooms     = new();
-      [field: SerializeField] public  string         Title { get; private set; }
-      [field: SerializeField] public  Color          Color { get; private set; }
+      [SerializeField] private List<Location> nextLocations = new();
+      [SerializeField] private List<Room>     rooms         = new();
+      [SerializeField] private List<Room>     defaultRooms  = new();
+      [SerializeField] private List<Room>     secretRooms   = new();
+      [SerializeField] private List<Room>     shopRooms     = new();
+      [SerializeField] private List<Room>     bossRooms     = new();
+
+      [field: SerializeField] public string Title { get; private set; }
+      [field: SerializeField] public Color  Color { get; private set; }
 
       public IReadOnlyList<Location> NextLocations => nextLocations;
       public IReadOnlyList<Room>     Rooms         => rooms;

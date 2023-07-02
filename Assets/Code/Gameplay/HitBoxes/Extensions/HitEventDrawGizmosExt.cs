@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Gameplay.HitBoxes.Comps;
+using UnityEngine;
 
-namespace HitBoxes.Extensions {
+namespace Gameplay.HitBoxes.Extensions {
    public static class HitEventDrawGizmosExt {
       public static void DrawGizmos(this HitEvent hit) {
          Gizmos.color = Color.yellow;

@@ -1,5 +1,5 @@
 using Engine.Ecs;
-using HitBoxes;
+using Gameplay.HitBoxes.Comps;
 using VContainer;
 
 namespace Events {

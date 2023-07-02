@@ -1,13 +1,14 @@
 using Debug;
 using Extensions.Ecs;
-using HitBoxes.Extensions;
-using HitBoxes.Structs;
+using Gameplay.HitBoxes.Comps;
+using Gameplay.HitBoxes.Extensions;
+using Gameplay.HitBoxes.Structs;
+using Gameplay.UnityRef.Transform.Comp;
+using Gameplay.UnityRef.Transform.Extensions;
 using Leopotam.EcsLite;
 using UnityEngine;
-using UnityRef;
-using UnityRef.Extensions;
 
-namespace HitBoxes.Debug {
+namespace Gameplay.HitBoxes.Debug {
    public class HitBoxDebugSys : IEcsRunSystem, IEcsInitSystem {
       private readonly GizmosService _gizmosService;
 

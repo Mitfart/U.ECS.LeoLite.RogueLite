@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Movement.Smooth {
+namespace Gameplay.Movement.Smooth {
    [Serializable]
    // Explaination: https://www.youtube.com/watch?v=KPoeNZZ6H4s&t=105s
    public class SmoothVector3 {

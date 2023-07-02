@@ -2,7 +2,7 @@ using System;
 using Events;
 using UnityEngine;
 
-namespace HitBoxes {
+namespace Gameplay.HitBoxes.Comps {
    [Serializable]
    public struct HitEvent : IEvent {
       public int     dealer;

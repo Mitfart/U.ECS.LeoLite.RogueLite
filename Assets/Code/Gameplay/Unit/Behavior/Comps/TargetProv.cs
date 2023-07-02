@@ -3,7 +3,7 @@ using Leopotam.EcsLite;
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace Unit.Behavior.Comps {
+namespace Gameplay.Unit.Behavior.Comps {
    [DisallowMultipleComponent] public class TargetProv : EcsProvider<Target> { }
 
    [Serializable]

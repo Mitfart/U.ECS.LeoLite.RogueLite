@@ -2,11 +2,12 @@ using System;
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace Weapon.Ammo {
+namespace Gameplay.Weapon.Ammo.Comps {
    [DisallowMultipleComponent]
    public class AmmoProv : EcsProvider<Ammo> {
       private void OnValidate() {
-         if (component.amount > component.size) component.size = component.amount;
+         if (component.amount > component.size)
+            component.size = component.amount;
       }
    }
 

@@ -10,9 +10,9 @@ namespace Infrastructure {
       public LifetimeScope scope;
 
       public void Awake() {
+         DontDestroyOnLoad(gameObject);
          scope.Build();
          EnterBootState();
-         DontDestroyOnLoad(gameObject);
       }
 
       private void              EnterBootState()   => GameStateMachine().Enter<BootstrapState>();

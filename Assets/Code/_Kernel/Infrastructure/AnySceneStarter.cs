@@ -6,7 +6,8 @@ namespace Infrastructure {
    public class AnySceneStarter : MonoBehaviour {
 #if UNITY_EDITOR
       private void Awake() {
-         if (FindObjectOfType<Bootstrap>() == null) Instantiate(Resources.Load<Bootstrap>(AssetPath.BOOTSTRAP));
+         if (FindObjectOfType<Bootstrap>() == null)
+            Instantiate(Resources.Load<Bootstrap>(AssetPath.BOOTSTRAP));
       }
 #endif
    }

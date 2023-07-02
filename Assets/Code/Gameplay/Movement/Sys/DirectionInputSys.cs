@@ -1,8 +1,9 @@
+using Gameplay.Movement.Comps;
+using Gameplay.Movement.Direction.Extensions;
+using Gameplay.UnityRef.Transform.Comp;
 using Leopotam.EcsLite;
-using Movement.Extensions;
-using UnityRef;
 
-namespace Movement {
+namespace Gameplay.Movement.Sys {
    public class DirectionInputSys : IEcsRunSystem, IEcsInitSystem {
       private EcsWorld  _world;
       private EcsFilter _filter;
@@ -11,6 +12,8 @@ namespace Movement {
       private EcsPool<EcsTransform>   _displacementPool;
       private EcsPool<MoveDirection>  _moveDirectionPool;
 
+      
+      
       public void Init(IEcsSystems systems) {
          _world  = systems.GetWorld();
          _filter = _world.Filter<DirectionInput>().Inc<MoveDirection>().Inc<EcsTransform>().End();
@@ -19,8 +22,7 @@ namespace Movement {
          _directionInputPool = _world.GetPool<DirectionInput>();
          _displacementPool   = _world.GetPool<EcsTransform>();
       }
-
-
+      
       public void Run(IEcsSystems systems) {
          foreach (int e in _filter) {
             ref MoveDirection  moveDirection  = ref _moveDirectionPool.Get(e);

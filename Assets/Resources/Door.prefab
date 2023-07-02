@@ -96,7 +96,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   component:
-    value: {fileID: 7707142594836776213}
+    value:
+    - {fileID: 7707142594836776213}
 --- !u!114 &6656091948118264815
 MonoBehaviour:
   m_ObjectHideFlags: 0

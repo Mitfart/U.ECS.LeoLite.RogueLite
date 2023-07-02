@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Movement.Smooth.Editor {
+namespace Gameplay.Movement.Smooth.Editor {
    [CustomPropertyDrawer(typeof(SmoothVector3))]
    public class SmoothVector3Drawer : PropertyDrawer {
       private const int   GAP       = 20;
@@ -16,7 +16,8 @@ namespace Movement.Smooth.Editor {
       public override void OnGUI(Rect origin, SerializedProperty property, GUIContent label) {
          EditorGUI.PropertyField(origin, property, label, includeChildren: true);
 
-         if (!property.isExpanded) return;
+         if (!property.isExpanded)
+            return;
 
          var     value = (SmoothVector3)property.GetUnderlyingValue();
          Vector2 pos   = origin.position + Vector2.up * (EditorGUI.GetPropertyHeight(property) + GAP);

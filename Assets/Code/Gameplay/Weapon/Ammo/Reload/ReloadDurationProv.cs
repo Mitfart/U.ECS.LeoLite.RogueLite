@@ -2,7 +2,7 @@ using System;
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace Weapon.Ammo.Reload {
+namespace Gameplay.Weapon.Ammo.Reload {
    [DisallowMultipleComponent] public class ReloadDurationProv : EcsProvider<ReloadDuration> { }
 
    [Serializable]

@@ -2,7 +2,7 @@
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace Unit.Comps {
+namespace Gameplay.Unit.Comps {
    [DisallowMultipleComponent] public class InvincibilityDurationProv : EcsProvider<InvincibilityDuration> { }
 
    [Serializable]

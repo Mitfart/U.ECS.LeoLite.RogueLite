@@ -4,26 +4,23 @@ using Mitfart.LeoECSLite.UniLeo.Providers;
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace UnityRef {
-   public abstract class EcsUnityURefProv<TMono, TComp> : BaseEcsProvider, ISerializationCallbackReceiver where TMono : Component where TComp : struct, IEcsURef<TMono> {
+namespace Gameplay.UnityRef.Abstract {
+   public class EcsUnityURefProv<TMono, TComp> : BaseEcsProvider<TComp>, ISerializationCallbackReceiver where TMono : Component where TComp : struct, IEcsURef<TMono> {
       public TMono component;
+
 
 
       public virtual void OnBeforeSerialize()  => GetComponentRef();
       public virtual void OnAfterDeserialize() { }
 
 
-      public override void Convert(int e, EcsWorld world) {
-         GetComponentRef();
+      protected override void Add(EcsPool<TComp> pool, int e, EcsWorld world) => pool.Set(e).Component = GetComponentRef();
 
-         world.GetPool<TComp>().Set(e).Component = component;
+      private TMono GetComponentRef() {
+         if (component.IsUnityNull() && TryGetComponent(out TMono comp))
+            component = comp;
 
-         Destroy(this);
-      }
-
-
-      private void GetComponentRef() {
-         if (component.IsUnityNull() && TryGetComponent(out TMono comp)) component = comp;
+         return component;
       }
    }
 }

@@ -1,7 +1,7 @@
 using System;
 using Mitfart.LeoECSLite.UniLeo.Providers;
 
-namespace Unit.Behavior.Comps {
+namespace Gameplay.Unit.Behavior.Comps {
    public class BehaviorProv : EcsScrProvider<Behavior, ScrBehavior> { }
 
    [Serializable]

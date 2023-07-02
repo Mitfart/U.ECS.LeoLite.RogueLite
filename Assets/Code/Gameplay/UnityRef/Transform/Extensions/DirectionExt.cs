@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Gameplay.UnityRef.Transform.Comp;
+using UnityEngine;
 
-namespace UnityRef.Extensions {
+namespace Gameplay.UnityRef.Transform.Extensions {
    public static class DirectionExt {
       public static Vector3 Right(ref this EcsTransform t) => t.Dir(Vector3.right);
 

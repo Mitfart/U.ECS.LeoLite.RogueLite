@@ -1,12 +1,12 @@
 using Extensions.Ecs;
+using Gameplay.Weapon.Ammo.Extensions;
+using Gameplay.Weapon.Ammo.Reload;
 using Leopotam.EcsLite;
 using UnityEngine;
-using Weapon.Ammo.Extensions;
-using Weapon.Ammo.Reload;
 
-namespace Weapon.Ammo {
+namespace Gameplay.Weapon.Ammo.Systems {
    public class StartReloadingSys : IEcsRunSystem, IEcsInitSystem {
-      private EcsPool<Ammo>        _ammoPool;
+      private EcsPool<Comps.Ammo>  _ammoPool;
       private EcsFilter            _filter;
       private EcsPool<IsReloading> _isReloadingPool;
 
@@ -19,7 +19,7 @@ namespace Weapon.Ammo {
 
          _reloadDurationPool = _world.GetPool<ReloadDuration>();
          _isReloadingPool    = _world.GetPool<IsReloading>();
-         _ammoPool           = _world.GetPool<Ammo>();
+         _ammoPool           = _world.GetPool<Comps.Ammo>();
       }
 
       public void Run(IEcsSystems systems) {
@@ -28,7 +28,8 @@ namespace Weapon.Ammo {
          foreach (int e in _filter) {
             ref ReloadDuration reloadDuration = ref _reloadDurationPool.Get(e);
 
-            if (_ammoPool.TryGet(e, out Ammo ammo) && ammo.IsEmpty()) return;
+            if (_ammoPool.TryGet(e, out Comps.Ammo ammo) && ammo.IsEmpty())
+               return;
 
             reloadDuration.startTime = time;
             _isReloadingPool.Add(e);

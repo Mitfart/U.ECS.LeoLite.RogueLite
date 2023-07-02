@@ -1,3 +1,3 @@
-﻿namespace Weapon.Ammo.Reload {
+﻿namespace Gameplay.Weapon.Ammo.Reload {
    public struct IsReloading { }
 }

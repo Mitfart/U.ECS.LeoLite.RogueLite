@@ -1,10 +1,11 @@
 ﻿using Events;
 using Extensions.Ecs;
+using Gameplay.HitBoxes.Comps;
+using Gameplay.Unit.Comps;
 using Leopotam.EcsLite;
-using Unit.Comps;
 using UnityEngine;
 
-namespace HitBoxes {
+namespace Gameplay.HitBoxes.Sys {
    public class InvincibilityAfterHitEventSys : IEcsRunSystem, IEcsInitSystem {
       private readonly EventsBus _eventsBus;
       private          EcsWorld  _world;
@@ -33,7 +34,8 @@ namespace HitBoxes {
             if (Invincible(takerE)) {
                hitEventPool.Del(ev);
 
-               if (PassInvincibilityTime(takerE)) MakeNotInvincible(takerE);
+               if (PassInvincibilityTime(takerE))
+                  MakeNotInvincible(takerE);
                continue;
             }
 

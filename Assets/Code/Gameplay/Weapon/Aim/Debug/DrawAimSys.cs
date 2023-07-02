@@ -1,10 +1,10 @@
 ﻿using Debug;
 using Extensions.Ecs;
+using Gameplay.UnityRef.Transform.Comp;
 using Leopotam.EcsLite;
 using UnityEngine;
-using UnityRef;
 
-namespace Weapon.Aim.Debug {
+namespace Gameplay.Weapon.Aim.Debug {
    public class DrawAimSys : IEcsRunSystem, IEcsInitSystem {
       private readonly GizmosService _gizmos;
       private          EcsWorld      _world;
@@ -19,6 +19,14 @@ namespace Weapon.Aim.Debug {
          _gizmos = gizmos;
       }
 
+      public void Init(IEcsSystems systems) {
+         _world  = systems.GetWorld();
+         _filter = _world.Filter<AimPosition>().End();
+
+         _aimPositionPool  = _world.GetPool<AimPosition>();
+         _ecsTransformPool = _world.GetPool<EcsTransform>();
+      }
+
       public void Run(IEcsSystems systems) {
          foreach (int e in _filter) {
             Vector3 aimPos = _aimPositionPool.Get(e).value;
@@ -28,19 +36,11 @@ namespace Weapon.Aim.Debug {
                   Gizmos.color = Color.cyan;
                   Gizmos.DrawSphere(aimPos, radius: .1f);
 
-                  if (_ecsTransformPool.TryGet(e, out EcsTransform t)) 
+                  if (_ecsTransformPool.TryGet(e, out EcsTransform t))
                      Gizmos.DrawLine(t.Position, aimPos);
                }
             );
          }
-      }
-
-      public void Init(IEcsSystems systems) {
-         _world  = systems.GetWorld();
-         _filter = _world.Filter<AimPosition>().End();
-
-         _aimPositionPool  = _world.GetPool<AimPosition>();
-         _ecsTransformPool = _world.GetPool<EcsTransform>();
       }
    }
 }

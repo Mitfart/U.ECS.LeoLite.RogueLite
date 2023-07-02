@@ -2,7 +2,7 @@
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace Weapon.Aim {
+namespace Gameplay.Weapon.Aim {
    [DisallowMultipleComponent] public class AimPositionProv : EcsProvider<AimPosition> { }
 
    [Serializable]

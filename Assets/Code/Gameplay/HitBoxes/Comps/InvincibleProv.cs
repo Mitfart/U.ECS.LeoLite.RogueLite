@@ -2,7 +2,7 @@
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace HitBoxes {
+namespace Gameplay.HitBoxes.Comps {
    [DisallowMultipleComponent] public class InvincibleProv : EcsProvider<Invincible> { }
 
    [Serializable]

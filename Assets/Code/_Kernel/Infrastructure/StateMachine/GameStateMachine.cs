@@ -1,14 +1,11 @@
 using System;
 using System.Collections.Generic;
-using VContainer.Unity;
 
 namespace Infrastructure.StateMachine {
-   public class GameStateMachine : IGameStateMachine, ITickable, IFixedTickable {
+   public class GameStateMachine : IGameStateMachine {
       private readonly Dictionary<Type, IGameState> _states;
 
-      private IGameState     _currentState;
-      private ITickable      _tickableState;
-      private IFixedTickable _fixedTickableState;
+      private IGameState _currentState;
 
 
 
@@ -17,8 +14,6 @@ namespace Infrastructure.StateMachine {
 
          RegisterStates(gameStates);
       }
-
-      public void FixedTick() => _fixedTickableState?.FixedTick();
 
 
 
@@ -30,14 +25,9 @@ namespace Infrastructure.StateMachine {
 
 
 
-      public void Tick() => _tickableState?.Tick();
-
-
-
       private void RegisterStates(IEnumerable<IGameState> gameStates) {
-         foreach (IGameState gameState in gameStates) {
+         foreach (IGameState gameState in gameStates)
             RegisterState(gameState);
-         }
       }
 
 
@@ -52,9 +42,6 @@ namespace Infrastructure.StateMachine {
 
          TState state = GetState<TState>();
          _currentState = state;
-
-         _tickableState      = state as ITickable;
-         _fixedTickableState = state as IFixedTickable;
 
          return state;
       }

@@ -10,8 +10,18 @@ namespace Extensions.Ecs {
 
 
 
-      public static TComp? GetOrNull<TComp>(this EcsPackedEntity packedEntity, EcsWorld world) where TComp : struct => packedEntity.Unpack(world, out int e) ? world.GetPool<TComp>().Get(e) : null;
+      public static TComp? GetOrNull<TComp>(this EcsPackedEntity packedEntity, EcsWorld world) where TComp : struct
+         => packedEntity.Unpack(world, out int e)
+            ? world.GetPool<TComp>().TryGet(e, out TComp comp)
+               ? comp
+               : null
+            : null;
 
-      public static TComp? GetOrNull<TComp>(this EcsPackedEntityWithWorld packedEntity) where TComp : struct => packedEntity.Unpack(out EcsWorld world, out int e) ? world.GetPool<TComp>().Get(e) : null;
+      public static TComp? GetOrNull<TComp>(this EcsPackedEntityWithWorld packedEntity) where TComp : struct
+         => packedEntity.Unpack(out EcsWorld world, out int e)
+            ? world.GetPool<TComp>().TryGet(e, out TComp comp)
+               ? comp
+               : null
+            : null;
    }
 }

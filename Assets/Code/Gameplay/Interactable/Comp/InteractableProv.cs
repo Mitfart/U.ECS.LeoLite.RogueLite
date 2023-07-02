@@ -1,18 +1,9 @@
 ﻿using System;
-using UnityEngine;
 using Mitfart.LeoECSLite.UniLeo.Providers;
+using UnityEngine;
 
 namespace Gameplay.Interactable {
-   [DisallowMultipleComponent]
-   public class InteractableProv : EcsProvider<Interactable> {
-      private void OnDrawGizmosSelected() {
-         Gizmos.color = Color.cyan;
-         Gizmos.DrawWireSphere(transform.position, component.radius);
-      }
-   }
+   [DisallowMultipleComponent] public class InteractableProv : EcsProvider<Interactable> { }
 
-   [Serializable]
-   public struct Interactable {
-      [Min(0f)] public float radius;
-   }
+   [Serializable] public struct Interactable { }
 }

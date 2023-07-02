@@ -1,9 +1,9 @@
 using System;
+using Gameplay.UnityRef.Transform.Comp;
+using Gameplay.UnityRef.Transform.Extensions;
 using UnityEngine;
-using UnityRef;
-using UnityRef.Extensions;
 
-namespace Movement.Extensions {
+namespace Gameplay.Movement.Direction.Extensions {
    public static class DirectionExt {
       public static Vector3 GetDirection(this EcsTransform ecsTransform, Direction direction)
          => direction switch {

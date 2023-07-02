@@ -1,6 +1,6 @@
 using Leopotam.EcsLite;
 
-namespace Unit.Behavior.Nodes.Structural {
+namespace Gameplay.Unit.Behavior.Nodes.Structural {
    public abstract class ConditionNode : BehaviorNode {
       private BehaviorNode True  { get; }
       private BehaviorNode False { get; }

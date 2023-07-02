@@ -1,21 +1,17 @@
 using System;
 using Extensions.Ecs;
+using Extensions.Unileo;
 using Leopotam.EcsLite;
-using Mitfart.LeoECSLite.UniLeo;
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using Mitfart.LeoECSLite.UnityIntegration.Attributes;
 using UnityEngine;
 
-namespace Weapon {
+namespace Gameplay.Weapon._base {
    [DisallowMultipleComponent]
-   public sealed class WeaponOwnerProv : BaseEcsProvider {
+   public sealed class WeaponOwnerProv : BaseEcsProvider<WeaponOwner> {
       [field: SerializeField] public WeaponTagProv Weapon { get; private set; }
 
-      public override void Convert(int e, EcsWorld world) {
-         world.GetPool<WeaponOwner>().Set(e).Weapon = Weapon.GetComponent<ConvertToEntity>();
-
-         Destroy(this);
-      }
+      protected override void Add(EcsPool<WeaponOwner> pool, int e, EcsWorld world) => pool.Set(e).Weapon = Weapon.AsPackedEntity();
    }
 
    [Serializable]

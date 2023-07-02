@@ -1,7 +1,7 @@
 ﻿using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace Unit.Behavior.Nodes.Structural {
+namespace Gameplay.Unit.Behavior.Nodes.Structural {
    public class DoWait : BehaviorNode {
       private readonly float _duration;
       private          float _startTime;

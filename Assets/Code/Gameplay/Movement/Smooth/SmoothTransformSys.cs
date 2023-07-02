@@ -1,8 +1,9 @@
-﻿using Leopotam.EcsLite;
+﻿using Gameplay.Movement.Comps;
+using Gameplay.UnityRef.Transform.Comp;
+using Leopotam.EcsLite;
 using UnityEngine;
-using UnityRef;
 
-namespace Movement.Smooth {
+namespace Gameplay.Movement.Smooth {
    public class SmoothTransformSys : IEcsRunSystem, IEcsInitSystem {
       private EcsWorld  _world;
       private EcsFilter _filter;

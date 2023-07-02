@@ -1,8 +1,8 @@
 ﻿using Events;
-using HitBoxes;
+using Gameplay.HitBoxes.Comps;
 using Leopotam.EcsLite;
 
-namespace Unit.Comps {
+namespace Gameplay.Unit.Comps {
    public class PenetrationSys : IEcsRunSystem, IEcsInitSystem {
       private readonly EventsBus _eventsBus;
       private          EcsWorld  _world;
@@ -29,7 +29,8 @@ namespace Unit.Comps {
             ref HitEvent hitEvent = ref hitEvents.Get(ev);
             int          dealerE  = hitEvent.dealer;
 
-            if (!_destroyAfterHitsPool.Has(dealerE) || _destroyPool.Has(dealerE)) continue;
+            if (!_destroyAfterHitsPool.Has(dealerE) || _destroyPool.Has(dealerE))
+               continue;
 
             ref Penetration hits = ref _destroyAfterHitsPool.Get(dealerE);
 

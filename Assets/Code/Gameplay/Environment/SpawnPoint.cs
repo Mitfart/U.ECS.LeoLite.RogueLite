@@ -1,7 +1,7 @@
 ﻿using Mitfart.LeoECSLite.UniLeo;
 using UnityEngine;
 
-namespace Level {
+namespace Gameplay.Level {
    public class SpawnPoint : MonoBehaviour {
       [field: SerializeField] public ConvertToEntity Enemy { get; private set; }
 

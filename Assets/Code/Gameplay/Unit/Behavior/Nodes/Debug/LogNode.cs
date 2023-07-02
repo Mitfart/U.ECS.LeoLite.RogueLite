@@ -1,6 +1,6 @@
 using Leopotam.EcsLite;
 
-namespace Unit.Behavior.Nodes.Debug {
+namespace Gameplay.Unit.Behavior.Nodes.Debug {
    public class LogNode : BehaviorNode {
       private readonly string _massage;
 

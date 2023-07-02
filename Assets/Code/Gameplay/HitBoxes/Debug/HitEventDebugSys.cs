@@ -1,9 +1,10 @@
 using Debug;
 using Events;
-using HitBoxes.Extensions;
+using Gameplay.HitBoxes.Comps;
+using Gameplay.HitBoxes.Extensions;
 using Leopotam.EcsLite;
 
-namespace HitBoxes.Debug {
+namespace Gameplay.HitBoxes.Debug {
    public class HitEventDebugSys : IEcsRunSystem, IEcsInitSystem {
       private readonly GizmosService _gizmosService;
       private readonly EventsBus     _eventsBus;

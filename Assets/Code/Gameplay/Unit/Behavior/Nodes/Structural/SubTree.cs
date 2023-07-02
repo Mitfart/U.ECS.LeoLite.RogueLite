@@ -1,6 +1,6 @@
 ﻿using Leopotam.EcsLite;
 
-namespace Unit.Behavior.Nodes.Structural {
+namespace Gameplay.Unit.Behavior.Nodes.Structural {
    public class SubTree : BehaviorNode {
       private readonly BehaviorTree _behaviorTree;
 

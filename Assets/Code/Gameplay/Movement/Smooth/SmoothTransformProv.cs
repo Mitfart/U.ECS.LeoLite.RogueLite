@@ -2,7 +2,7 @@
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace Movement.Smooth {
+namespace Gameplay.Movement.Smooth {
    [DisallowMultipleComponent] public class SmoothTransformProv : EcsProvider<SmoothTransform> { }
 
    [Serializable]

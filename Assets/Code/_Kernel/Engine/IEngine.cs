@@ -1,8 +1,11 @@
+using System;
+using VContainer.Unity;
+
 namespace Engine {
-   public interface IEngine {
-      public void Init();
-      public void Run();
-      public void FixedRun();
-      public void Dispose();
+   public interface IEngine : IInitializable, ITickable, IFixedTickable, IDisposable {
+      public bool Enabled { get; }
+
+      public void Enable();
+      public void Disable();
    }
 }

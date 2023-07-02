@@ -1,12 +1,12 @@
 using Extensions.Ecs;
+using Gameplay.Player.Comps;
+using Gameplay.Unit.Behavior.Comps;
+using Gameplay.Unit.Behavior.Nodes.Structural;
+using Gameplay.UnityRef.Transform.Comp;
 using Leopotam.EcsLite;
-using Player;
-using Unit.Behavior.Comps;
-using Unit.Behavior.Nodes.Structural;
 using UnityEngine;
-using UnityRef;
 
-namespace Unit.Behavior.Nodes.Special {
+namespace Gameplay.Unit.Behavior.Nodes.Special {
    public class IfTargetPlayer : ConditionNode {
       private EcsFilter _playerFilter;
 
@@ -26,7 +26,8 @@ namespace Unit.Behavior.Nodes.Special {
       }
 
       protected override bool Condition(int e, EcsWorld world) {
-         if (!FindClosestPlayer(e, out int closestPlayerE)) return false;
+         if (!FindClosestPlayer(e, out int closestPlayerE))
+            return false;
 
          ref Target target = ref _targetPool.Get(e);
          target.Value = world.PackEntityWithWorld(closestPlayerE);
@@ -45,7 +46,8 @@ namespace Unit.Behavior.Nodes.Special {
             Vector3 curPosition = Position(playerE);
             float   curDistance = Vector2.Distance(Position(e), curPosition);
 
-            if (curDistance >= minDistance) continue;
+            if (curDistance >= minDistance)
+               continue;
 
             closestPlayerE = playerE;
             minDistance    = curDistance;

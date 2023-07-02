@@ -1,7 +1,8 @@
+using Gameplay.UnityRef.Transform.Comp;
+using Gameplay.UnityRef.Transform.Extensions;
 using Leopotam.EcsLite;
-using UnityRef.Extensions;
 
-namespace UnityRef {
+namespace Gameplay.UnityRef.Transform.Sys {
    public class GetTransformSys : IEcsRunSystem, IEcsInitSystem {
       private EcsWorld  _world;
       private EcsFilter _filter;

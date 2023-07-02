@@ -1,7 +1,8 @@
 using Engine.Ecs;
-using Movement.Smooth;
+using Gameplay.Movement.Smooth;
+using Gameplay.Movement.Sys;
 
-namespace Movement {
+namespace Gameplay.Movement {
    public class MovementSystems : EcsSystemsPack {
       protected override void RegisterSystems() {
          Add<DirectionInputSys>();

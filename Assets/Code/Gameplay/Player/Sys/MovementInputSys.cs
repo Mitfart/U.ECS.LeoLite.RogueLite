@@ -1,9 +1,10 @@
-﻿using Leopotam.EcsLite;
-using Movement;
+﻿using Gameplay.Movement.Comps;
+using Gameplay.Player.Comps;
+using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace Player.Sys {
-   public class PlayerInputSys : IEcsRunSystem, IEcsInitSystem {
+namespace Gameplay.Player.Sys {
+   public class MovementInputSys : IEcsRunSystem, IEcsInitSystem {
       private readonly Controls _controls;
 
       private EcsWorld  _world;
@@ -13,16 +14,8 @@ namespace Player.Sys {
 
 
 
-      public PlayerInputSys(Controls controls) {
+      public MovementInputSys(Controls controls) {
          _controls = controls;
-      }
-
-      public void Run(IEcsSystems systems) {
-         Vector2 input = _controls.Game.Move.ReadValue<Vector2>();
-
-         foreach (int e in _filter) {
-            _moveDirectionPool.Get(e).value = input;
-         }
       }
 
       public void Init(IEcsSystems systems) {
@@ -32,6 +25,14 @@ namespace Player.Sys {
                          .End();
 
          _moveDirectionPool = _world.GetPool<MoveDirection>();
+      }
+
+      public void Run(IEcsSystems systems) {
+         Vector2 input = _controls.Game.Move.ReadValue<Vector2>();
+
+         foreach (int e in _filter) {
+            _moveDirectionPool.Get(e).value = input;
+         }
       }
    }
 }

@@ -2,7 +2,7 @@ using System;
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace Movement {
+namespace Gameplay.Movement.Comps {
    [DisallowMultipleComponent] public class MoveDirectionProv : EcsProvider<MoveDirection> { }
 
    [Serializable]

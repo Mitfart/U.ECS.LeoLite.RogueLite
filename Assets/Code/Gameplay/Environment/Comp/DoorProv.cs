@@ -1,14 +1,12 @@
 ﻿using System;
-using Level.StaticData;
-using UnityEngine;
 using Mitfart.LeoECSLite.UniLeo.Providers;
+using UnityEngine;
 
-namespace Level {
+namespace Gameplay.Level {
    [DisallowMultipleComponent] public class DoorProv : EcsProvider<Door> { }
 
    [Serializable]
    public struct Door {
-      public Location NextLocation;
-      public Room     NextRoom;
+      public NextLevel NextLevel;
    }
 }

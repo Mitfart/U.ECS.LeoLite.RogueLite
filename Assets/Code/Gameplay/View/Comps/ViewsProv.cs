@@ -4,7 +4,7 @@ using System.Linq;
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace View {
+namespace Gameplay.View.Comps {
    [DisallowMultipleComponent]
    public class ViewsProv : EcsProvider<Views> {
       private void OnValidate() {

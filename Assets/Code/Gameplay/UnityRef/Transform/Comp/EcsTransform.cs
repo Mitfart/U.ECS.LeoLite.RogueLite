@@ -1,10 +1,9 @@
 using System;
 using Extensions.Ecs;
-using Extensions.Unileo;
 using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace UnityRef {
+namespace Gameplay.UnityRef.Transform.Comp {
    [Serializable]
    public struct EcsTransform {
       [SerializeField] private Vector3    localPosition;
@@ -14,10 +13,10 @@ namespace UnityRef {
       [SerializeField] private Vector3    position;
       [SerializeField] private Quaternion rotation;
       [SerializeField] private float      scale;
-      
+
       private EcsPackedEntityWithWorld? _parentE;
 
-      
+
 
       public EcsTransform? Parent => ParentE?.GetOrNull<EcsTransform>();
 
@@ -35,17 +34,17 @@ namespace UnityRef {
          get => position;
          set => ReCalcLocalPosition(position = value);
       }
-      
+
       public Quaternion Rotation {
          get => rotation;
          set => ReCalcLocalRotation(rotation = value);
       }
-      
+
       public float Scale {
          get => scale;
          set => ReCalcLocalScale(scale = value);
       }
-      
+
 
       public Vector3 LocalPosition {
          get => localPosition;

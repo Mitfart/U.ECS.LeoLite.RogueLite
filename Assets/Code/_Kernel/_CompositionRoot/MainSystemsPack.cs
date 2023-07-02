@@ -1,26 +1,27 @@
-using Destroy;
 using Engine.Ecs;
 using Events;
-using Gameplay.Interactable;
-using HitBoxes;
+using Gameplay.Destroy;
+using Gameplay.HitBoxes;
+using Gameplay.Level;
+using Gameplay.Movement;
+using Gameplay.Player;
+using Gameplay.Unit;
+using Gameplay.UnityRef;
+using Gameplay.View;
+using Gameplay.Weapon;
 using Mitfart.LeoECSLite.UniLeo;
 using Mitfart.LeoECSLite.UnityIntegration;
 using Mitfart.LeoECSLite.UnityIntegration.Name;
-using Movement;
-using Player;
-using Unit;
-using UnityRef;
-using View;
-using Weapon;
 
 public class MainSystemsPack : EcsSystemsPack {
    protected override void RegisterSystems() {
       Add<ConvertSceneSys>();
+
+      AddPack<LevelSystems>();
       AddPack<GetUnityDataSystems>();
 
       AddPack<PlayerSystems>();
       AddPack<MovementSystems>();
-      AddPack<InteractableSystems>();
       AddPack<WeaponSystems>();
       AddPack<BattleSystems>();
       AddPack<UnitSystems>();

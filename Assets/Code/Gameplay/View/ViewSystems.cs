@@ -1,6 +1,7 @@
 ﻿using Engine.Ecs;
+using Gameplay.View.Sys;
 
-namespace View {
+namespace Gameplay.View {
    public class ViewSystems : EcsSystemsPack {
       protected override void RegisterSystems() {
          Add<DestroyViewSys>();

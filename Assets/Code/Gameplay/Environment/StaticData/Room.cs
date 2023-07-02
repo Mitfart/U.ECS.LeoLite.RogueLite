@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Level.StaticData {
+namespace Gameplay.Level.StaticData {
    [Serializable]
    public class Room {
       [SerializeField] private string       id;
@@ -12,6 +12,12 @@ namespace Level.StaticData {
       [SerializeField] private Vector3[]    exitPoints;
       [SerializeField] private SpawnPoint[] spawnPoints;
 
+      public string                    ID          => id;
+      public RoomType                  RoomType    => type;
+      public string                    SceneName   => sceneName;
+      public Vector3                   EnterPoint  => enterPoint;
+      public IReadOnlyList<Vector3>    ExitPoints  => exitPoints;
+      public IReadOnlyList<SpawnPoint> SpawnPoints => spawnPoints;
 
       public Room(
          string       id,
@@ -28,12 +34,5 @@ namespace Level.StaticData {
          this.exitPoints  = exitPoints;
          this.spawnPoints = spawnPoints;
       }
-
-      public string                    ID          => id;
-      public RoomType                  RoomType    => type;
-      public string                    SceneName   => sceneName;
-      public Vector3                   EnterPoint  => enterPoint;
-      public IReadOnlyList<Vector3>    ExitPoints  => exitPoints;
-      public IReadOnlyList<SpawnPoint> SpawnPoints => spawnPoints;
    }
 }

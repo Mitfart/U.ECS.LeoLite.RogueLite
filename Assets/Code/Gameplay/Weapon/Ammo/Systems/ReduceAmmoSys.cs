@@ -1,15 +1,17 @@
 using Extensions.Ecs;
+using Gameplay.Weapon._base;
+using Gameplay.Weapon.Ammo.Comps;
+using Gameplay.Weapon.Ammo.Extensions;
+using Gameplay.Weapon.Attack.Comps;
 using Leopotam.EcsLite;
-using Weapon.Ammo.Extensions;
-using Weapon.Attack;
 
-namespace Weapon.Ammo {
+namespace Gameplay.Weapon.Ammo.Systems {
    public class ReduceAmmoSys : IEcsRunSystem, IEcsInitSystem {
       private EcsWorld  _world;
       private EcsFilter _filter;
 
       private EcsPool<Magazine>    _magazinePool;
-      private EcsPool<Ammo>        _ammoPool;
+      private EcsPool<Comps.Ammo>  _ammoPool;
       private EcsPool<IsAttacking> _isAttackingPool;
       private EcsPool<BlockAttack> _blockAttackPool;
 
@@ -19,7 +21,7 @@ namespace Weapon.Ammo {
 
          _magazinePool    = _world.GetPool<Magazine>();
          _blockAttackPool = _world.GetPool<BlockAttack>();
-         _ammoPool        = _world.GetPool<Ammo>();
+         _ammoPool        = _world.GetPool<Comps.Ammo>();
          _isAttackingPool = _world.GetPool<IsAttacking>();
       }
 
@@ -46,7 +48,8 @@ namespace Weapon.Ammo {
 
 
       private void ReduceAmmo(int e, Magazine magazine) {
-         if (_ammoPool.Has(e)) _ammoPool.Get(e).amount--;
+         if (_ammoPool.Has(e))
+            _ammoPool.Get(e).amount--;
 
          magazine.amount--;
       }

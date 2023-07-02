@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Level.StaticData;
+using Gameplay.Level.StaticData;
 
-namespace Level {
-   public class Stage {
+namespace Gameplay.Level {
+   public class Level {
       private readonly List<Location> _passedLocations;
       private readonly List<Room>     _passedRooms;
 
@@ -14,7 +14,7 @@ namespace Level {
 
 
 
-      public Stage() {
+      public Level() {
          _passedLocations = new List<Location>(capacity: 4);
          _passedRooms     = new List<Room>(capacity: 4);
       }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace View {
+namespace Infrastructure.Render {
    public interface IRender {
       Camera Camera { get; }
    }

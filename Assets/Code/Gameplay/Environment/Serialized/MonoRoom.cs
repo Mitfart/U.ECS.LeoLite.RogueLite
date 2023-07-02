@@ -1,10 +1,10 @@
 ﻿#if UNITY_EDITOR
-using Level.StaticData;
+using Gameplay.Level.StaticData;
 using TNRD.Utilities;
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Level.Serialized {
+namespace Gameplay.Level.Serialized {
    [RequireComponent(typeof(UniqueID))]
    public class MonoRoom : MonoBehaviour, ISerializationCallbackReceiver {
       private const string _ENTER_POINT_NAME            = "Enter Point";

@@ -1,15 +1,15 @@
-using Unit.Behavior.Comps;
-using Unit.Behavior.Nodes.Special;
-using Unit.Behavior.Nodes.Special.Movement;
-using Unit.Behavior.Nodes.Structural;
+using Gameplay.Unit.Behavior.Comps;
+using Gameplay.Unit.Behavior.Nodes.Special;
+using Gameplay.Unit.Behavior.Nodes.Special.Movement;
+using Gameplay.Unit.Behavior.Nodes.Structural;
 using UnityEngine;
 
-namespace Unit.Behavior.Concrete {
+namespace Gameplay.Unit.Behavior.Concrete {
    [CreateAssetMenu]
    public class TestBehavior : ScrBehavior {
-      [SerializeField, Min(min: 0f)]  private float waitTime = .25f;
+      [SerializeField, Min(min: 0f)] private float waitTime = .25f;
 
 
-      protected override BehaviorTree GetBehaviorTree() => new BehaviorTree(new DoRepeat(new IfTargetPlayer(new DoMoveToTarget(), new DoWait(waitTime, new DoMoveToRandomPosition()))));
+      protected override BehaviorTree GetBehaviorTree() => new(new DoRepeat(new IfTargetPlayer(new DoMoveToTarget(), new DoWait(waitTime, new DoMoveToRandomPosition()))));
    }
 }

@@ -1,13 +1,14 @@
 using Events;
 using Extensions.Ecs;
 using Extensions.Unileo;
-using HitBoxes.Structs;
+using Gameplay.HitBoxes.Comps;
+using Gameplay.HitBoxes.Structs;
+using Gameplay.UnityRef.Transform.Comp;
+using Gameplay.UnityRef.Transform.Extensions;
 using Leopotam.EcsLite;
 using UnityEngine;
-using UnityRef;
-using UnityRef.Extensions;
 
-namespace HitBoxes {
+namespace Gameplay.HitBoxes.Sys {
    public class CreateHitEventSys : IEcsRunSystem, IEcsInitSystem {
       private readonly EventsBus      _eventsBus;
       private readonly RaycastHit2D[] _hits;
@@ -61,7 +62,8 @@ namespace HitBoxes {
       private Area ToWorldArea(int dealerE, Area area, out float angle) {
          angle = 0f;
 
-         if (!_ecsTransformPool.TryGet(dealerE, out EcsTransform dealerT)) return area;
+         if (!_ecsTransformPool.TryGet(dealerE, out EcsTransform dealerT))
+            return area;
 
          area.size   *= dealerT.Scale;
          area.origin *= dealerT.Scale;

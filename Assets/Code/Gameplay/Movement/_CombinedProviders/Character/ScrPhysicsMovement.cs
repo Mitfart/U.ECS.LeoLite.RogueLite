@@ -2,7 +2,7 @@ using System;
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace Movement.Character {
+namespace Gameplay.Movement._CombinedProviders.Character {
    [CreateAssetMenu(fileName = "new PhysicsMovement params", menuName = "SCR/Movement/new PhysicsMovement params")]
    public class ScrPhysicsMovement : ScrComponent<CharacterMovement> { }
 

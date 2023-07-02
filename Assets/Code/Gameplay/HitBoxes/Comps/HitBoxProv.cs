@@ -1,10 +1,10 @@
 using System;
-using HitBoxes.Extensions;
-using HitBoxes.Structs;
+using Gameplay.HitBoxes.Extensions;
+using Gameplay.HitBoxes.Structs;
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace HitBoxes {
+namespace Gameplay.HitBoxes.Comps {
    [DisallowMultipleComponent]
    public class HitBoxProv : EcsProvider<HitBox> {
       private void OnDrawGizmosSelected() => component.Area.DrawGizmos(transform.localToWorldMatrix, Color.red);
