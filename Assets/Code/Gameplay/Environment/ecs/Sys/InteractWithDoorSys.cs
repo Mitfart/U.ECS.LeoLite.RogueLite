@@ -1,9 +1,10 @@
-﻿using Gameplay.Interactable;
+﻿using Gameplay.Environment.ecs.Comp;
+using Gameplay.Interactable;
 using Infrastructure.StateMachine;
 using Infrastructure.StateMachine.States;
 using Leopotam.EcsLite;
 
-namespace Gameplay.Level.Sys {
+namespace Gameplay.Environment.ecs.Sys {
    public class InteractWithDoorSys : IEcsRunSystem, IEcsInitSystem {
       private readonly IGameStateMachine _stateMachine;
 
@@ -32,6 +33,7 @@ namespace Gameplay.Level.Sys {
             ref Door door = ref _doorPool.Get(e);
 
             _stateMachine.Enter<LoadLevelState, NextLevel>(door.NextLevel);
+            return;
          }
       }
    }

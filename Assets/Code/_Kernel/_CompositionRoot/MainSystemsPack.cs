@@ -1,8 +1,8 @@
 using Engine.Ecs;
 using Events;
 using Gameplay.Destroy;
+using Gameplay.Environment.ecs;
 using Gameplay.HitBoxes;
-using Gameplay.Level;
 using Gameplay.Movement;
 using Gameplay.Player;
 using Gameplay.Unit;

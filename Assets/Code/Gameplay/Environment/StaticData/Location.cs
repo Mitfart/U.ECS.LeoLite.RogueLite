@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Gameplay.Level.StaticData {
+namespace Gameplay.Environment.StaticData {
    [CreateAssetMenu]
    public class Location : ScriptableObject {
       [SerializeField] private List<Location> nextLocations = new();

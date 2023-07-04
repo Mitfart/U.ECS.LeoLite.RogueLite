@@ -1,20 +1,25 @@
 ﻿using Extensions.Collections;
-using Gameplay.Level;
-using Gameplay.Level.StaticData;
+using Gameplay.Environment;
+using Gameplay.Environment.StaticData;
+using Infrastructure.AssetsManagement;
 
 namespace Infrastructure.StateMachine.States {
    public class SetupGameState : GameState {
-      private readonly Location _location;
+      public Location StartLocation { get; }
 
-      public SetupGameState(Location location) {
-         _location = location;
+
+      public SetupGameState(
+         IGameStateMachine stateMachine,
+         IAssets           assets
+      ) : base(stateMachine) {
+         StartLocation = assets.Load<Location>(AssetPath.START_LOCATION);
       }
 
       public override void Enter() {
          StateMachine.Enter<LoadLevelState, NextLevel>(
             new NextLevel(
-               _location,
-               _location.DefaultRooms.Random()
+               StartLocation,
+               StartLocation.DefaultRooms.Random()
             )
          );
       }

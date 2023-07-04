@@ -1,7 +1,7 @@
 ﻿using Engine.Ecs;
-using Gameplay.Level.Sys;
+using Gameplay.Environment.ecs.Sys;
 
-namespace Gameplay.Level {
+namespace Gameplay.Environment.ecs {
    public class LevelSystems : EcsSystemsPack {
       protected override void RegisterSystems() {
          Add<InteractWithDoorSys>();

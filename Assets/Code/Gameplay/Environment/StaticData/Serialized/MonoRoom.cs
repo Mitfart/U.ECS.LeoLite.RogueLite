@@ -1,10 +1,13 @@
 ﻿#if UNITY_EDITOR
-using Gameplay.Level.StaticData;
+using System.Collections.Generic;
+using System.Linq;
+using Gameplay.Environment.StaticData;
+using Gameplay.Environment.StaticData.Serialized;
 using TNRD.Utilities;
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Gameplay.Level.Serialized {
+namespace Gameplay.Environment.Serialized {
    [RequireComponent(typeof(UniqueID))]
    public class MonoRoom : MonoBehaviour, ISerializationCallbackReceiver {
       private const string _ENTER_POINT_NAME            = "Enter Point";
@@ -19,9 +22,9 @@ namespace Gameplay.Level.Serialized {
 
       [SerializeField, HideInInspector] private UniqueID uniqueID;
 
-      private Vector3      _enterPoint;
-      private Vector3[]    _exitPoints;
-      private SpawnPoint[] _spawnPoints;
+      private Vector3                 _enterPoint;
+      private IEnumerable<Vector3>    _exitPoints;
+      private IEnumerable<SpawnPoint> _spawnPoints;
 
 
 
@@ -46,25 +49,27 @@ namespace Gameplay.Level.Serialized {
       private void InitEnterPoint() => _enterPoint = enter.position;
 
       private void InitExitPoints() {
-         Transform[] transformPoints = exitsContainer.GetComponentsInChildren<Transform>();
-         int         count           = transformPoints.Length - 1; // first is parent
-
-         _exitPoints = new Vector3[count];
-
-         for (var i = 0; i < count; i++) {
-            Transform transformPoint = transformPoints[i + 1]; // first is parent => shift by 1
-            _exitPoints[i] = transformPoint.position;
-
-            transformPoint.gameObject.SetIcon(ShapeIcon.CircleBlue);
-         }
+         _exitPoints =
+            exitsContainer
+              .GetComponentsInChildren<MonoExit>()
+              .Select(
+                  exit => {
+                     exit.gameObject.SetIcon(ShapeIcon.CircleBlue);
+                     return exit.Position;
+                  }
+               );
       }
 
       private void InitSpawnPoints() {
-         _spawnPoints = spawnPointsContainer.GetComponentsInChildren<SpawnPoint>();
-
-         foreach (SpawnPoint spawnPoint in _spawnPoints) {
-            spawnPoint.gameObject.SetIcon(ShapeIcon.DiamondRed);
-         }
+         _spawnPoints =
+            spawnPointsContainer
+              .GetComponentsInChildren<MonoSpawnPoint>()
+              .Select(
+                  point => {
+                     point.gameObject.SetIcon(ShapeIcon.DiamondRed);
+                     return point.SpawnPoint;
+                  }
+               );
       }
 
 

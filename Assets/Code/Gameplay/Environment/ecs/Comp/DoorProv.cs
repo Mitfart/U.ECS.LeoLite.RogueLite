@@ -2,7 +2,7 @@
 using Mitfart.LeoECSLite.UniLeo.Providers;
 using UnityEngine;
 
-namespace Gameplay.Level {
+namespace Gameplay.Environment.ecs.Comp {
    [DisallowMultipleComponent] public class DoorProv : EcsProvider<Door> { }
 
    [Serializable]

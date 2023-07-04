@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Gameplay.Level.StaticData;
+using Gameplay.Environment.StaticData;
 
-namespace Gameplay.Level {
+namespace Gameplay.Environment {
    public class Level {
       private readonly List<Location> _passedLocations;
       private readonly List<Room>     _passedRooms;

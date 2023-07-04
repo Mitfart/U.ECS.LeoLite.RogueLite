@@ -1,10 +1,12 @@
-﻿using Debug;
+﻿using System.Collections.Generic;
+using Debug;
 using Engine;
 using Events;
-using Gameplay.Level;
-using Gameplay.Level.StaticData;
+using Gameplay.Environment;
 using Infrastructure.AssetsManagement;
 using Infrastructure.AssetsManagement.VContainerExtensions;
+using Infrastructure.Factories;
+using Infrastructure.Factories.Extensions;
 using Infrastructure.Loading;
 using Infrastructure.Render;
 using Infrastructure.StateMachine;
@@ -29,12 +31,14 @@ public class GameScope : LifetimeScope {
       RegRender();
       RegLoadingCurtain();
 
-      RegStage();
-      RegLocation();
+      RegLevel();
+
+      RegFactories();
 
       RegEngine();
 
       RegGameStateMachine();
+      RegStates();
    }
 
 
@@ -43,12 +47,20 @@ public class GameScope : LifetimeScope {
    private void RegInputControls() => _di.Register<Controls>(Lifetime.Singleton);
    private void RegAssets()        => _di.Register<IAssets, Assets>(Lifetime.Singleton);
 
-   private void RegGizmosService()  => _di.RegPrefabInstance<GizmosService>(AssetPath.GIZMOS_SERVICE);
-   private void RegRender()         => _di.RegPrefabInstance<Render>(AssetPath.RENDER);
-   private void RegLoadingCurtain() => _di.RegPrefabInstance<LoadingCurtain>(AssetPath.LOADING_CURTAIN);
+   private void RegGizmosService()  => _di.RegInstanceInstantly<GizmosService>(AssetPath.GIZMOS_SERVICE);
+   private void RegRender()         => _di.RegInstanceInstantly<Render>(AssetPath.RENDER);
+   private void RegLoadingCurtain() => _di.RegInstanceInstantly<LoadingCurtain>(AssetPath.LOADING_CURTAIN);
 
-   private void RegStage()    => _di.Register<Level>(Lifetime.Singleton);
-   private void RegLocation() => _di.RegScriptable<Location>(AssetPath.START_LOCATION);
+
+   private void RegLevel() => _di.Register<Level>(Lifetime.Singleton);
+
+
+   private void RegFactories() {
+      _di.Register<EnvironmentFactory>(Lifetime.Singleton).AsSelf().AsImplementedInterfaces();
+      _di.Register<EnemyFactory>(Lifetime.Singleton).AsSelf().AsImplementedInterfaces();
+      _di.Register<PlayerFactory>(Lifetime.Singleton).AsSelf().AsImplementedInterfaces();
+   }
+
 
    private void RegEngine() {
       new MainSystemsPack().Install(_di);
@@ -57,13 +69,24 @@ public class GameScope : LifetimeScope {
       _di.RegisterEntryPoint<EcsEngine>();
    }
 
+
    private void RegGameStateMachine() {
+      _di.Register<IGameStateMachine, GameStateMachine>(Lifetime.Singleton);
+      _di.RegisterBuildCallback(
+         resolver =>
+            resolver
+              .Resolve<IGameStateMachine>()
+              .RegisterStates(
+                  resolver.Resolve<IReadOnlyList<IGameState>>()
+               )
+      );
+   }
+
+   private void RegStates() {
       Reg<BootstrapState>();
       Reg<SetupGameState>();
       Reg<LoadLevelState>();
       Reg<GameLoopState>();
-
-      _di.Register<IGameStateMachine, GameStateMachine>(Lifetime.Singleton);
 
 
       void Reg<TState>() where TState : IGameState {

@@ -1,8 +1,7 @@
 ﻿using System.Linq;
-using UnityEditor;
 using UnityEngine;
 
-namespace Gameplay.Level {
+namespace Gameplay.Environment {
    [DisallowMultipleComponent]
    public class UniqueID : MonoBehaviour, ISerializationCallbackReceiver {
       [field: SerializeField] public string ID { get; private set; }
@@ -25,7 +24,7 @@ namespace Gameplay.Level {
       private bool   ValidID()                  => !string.IsNullOrWhiteSpace(ID) && Unique();
       private bool   Unique()                   => !FindObjectsByType<UniqueID>(FindObjectsSortMode.None).Any(HaveSameID);
       private bool   HaveSameID(UniqueID other) => other != this && other.ID == ID;
-      private string GenerateID()               => $"{SceneName()}_{GUID.Generate()}";
+      private string GenerateID()               => $"{SceneName()}_{UnityEditor.GUID.Generate()}";
       private string SceneName()                => gameObject.scene.name;
       private bool   Prefab()                   => gameObject.scene.rootCount == 0;
 #endif

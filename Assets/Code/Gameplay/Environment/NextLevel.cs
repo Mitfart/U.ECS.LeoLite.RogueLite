@@ -1,6 +1,6 @@
-﻿using Gameplay.Level.StaticData;
+﻿using Gameplay.Environment.StaticData;
 
-namespace Gameplay.Level {
+namespace Gameplay.Environment {
    public struct NextLevel {
       public readonly Location Location;
       public readonly Room     Room;

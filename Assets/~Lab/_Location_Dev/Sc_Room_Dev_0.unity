@@ -167,7 +167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b17732bc7e6d4665964bc9981a659014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Enemy>k__BackingField: {fileID: 229363512544869400, guid: 392a3e51c95e6434eb45e48d99a4ab6d, type: 3}
+  SpawnPoint:
+    EnemyType: 2
+    Position: {x: -4.3, y: 0.32, z: 0}
 --- !u!1 &1096822953
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,7 +214,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b17732bc7e6d4665964bc9981a659014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Enemy>k__BackingField: {fileID: 229363512544869400, guid: 392a3e51c95e6434eb45e48d99a4ab6d, type: 3}
+  SpawnPoint:
+    EnemyType: 2
+    Position: {x: -10.55, y: 0.32, z: 0}
 --- !u!1 &1194318192
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,7 +261,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b17732bc7e6d4665964bc9981a659014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Enemy>k__BackingField: {fileID: 229363512544869400, guid: 392a3e51c95e6434eb45e48d99a4ab6d, type: 3}
+  SpawnPoint:
+    EnemyType: 2
+    Position: {x: -8.05, y: 0.32, z: 0}
 --- !u!1 &1273099729
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,7 +308,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b17732bc7e6d4665964bc9981a659014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Enemy>k__BackingField: {fileID: 229363512544869400, guid: 392a3e51c95e6434eb45e48d99a4ab6d, type: 3}
+  SpawnPoint:
+    EnemyType: 2
+    Position: {x: -9.3, y: 0.32, z: 0}
 --- !u!1 &1394634840
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,7 +355,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b17732bc7e6d4665964bc9981a659014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Enemy>k__BackingField: {fileID: 229363512544869400, guid: 392a3e51c95e6434eb45e48d99a4ab6d, type: 3}
+  SpawnPoint:
+    EnemyType: 2
+    Position: {x: -5.55, y: 0.32, z: 0}
 --- !u!1001 &1513680233
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -514,7 +524,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b17732bc7e6d4665964bc9981a659014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Enemy>k__BackingField: {fileID: 229363512544869400, guid: 392a3e51c95e6434eb45e48d99a4ab6d, type: 3}
+  SpawnPoint:
+    EnemyType: 2
+    Position: {x: -6.8, y: 0.32, z: 0}
 --- !u!114 &139688600006164757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,7 +539,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b17732bc7e6d4665964bc9981a659014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Enemy>k__BackingField: {fileID: 6365561691766978325, guid: 800a553deaa78cc46b0fd990b5688d15, type: 3}
+  SpawnPoint:
+    EnemyType: 1
+    Position: {x: -4, y: -7.5, z: 0}
 --- !u!1 &840883985878248340
 GameObject:
   m_ObjectHideFlags: 0
@@ -11711,6 +11725,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3765017997858080322}
+  - component: {fileID: 4998411058544329150}
   m_Layer: 0
   m_Name: ExitPoint
   m_TagString: Untagged
@@ -11718,6 +11733,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4998411058544329150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4998411058544329149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c0e5ef0cdb6439282dc44ae336dab18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5596604038650064035
 GameObject:
   m_ObjectHideFlags: 0
@@ -11773,7 +11800,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b17732bc7e6d4665964bc9981a659014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Enemy>k__BackingField: {fileID: 6365561691766978325, guid: 800a553deaa78cc46b0fd990b5688d15, type: 3}
+  SpawnPoint:
+    EnemyType: 1
+    Position: {x: 20, y: 7.5, z: 0}
 --- !u!4 &5951816955695934757
 Transform:
   m_ObjectHideFlags: 0
@@ -11816,7 +11845,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b17732bc7e6d4665964bc9981a659014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Enemy>k__BackingField: {fileID: 6365561691766978325, guid: 800a553deaa78cc46b0fd990b5688d15, type: 3}
+  SpawnPoint:
+    EnemyType: 1
+    Position: {x: -14, y: -4, z: 0}
 --- !u!19719996 &7119355399534909881
 TilemapCollider2D:
   m_ObjectHideFlags: 0

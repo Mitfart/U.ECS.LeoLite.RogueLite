@@ -3,19 +3,22 @@ using System.Collections.Generic;
 
 namespace Infrastructure.StateMachine {
    public class GameStateMachine : IGameStateMachine {
-      private readonly Dictionary<Type, IGameState> _states;
+      private Dictionary<Type, IGameState> _states;
 
       private IGameState _currentState;
 
 
 
-      public GameStateMachine(IReadOnlyList<IGameState> gameStates) {
+      public IGameStateMachine RegisterStates(IReadOnlyList<IGameState> gameStates) {
          _states = new Dictionary<Type, IGameState>(gameStates.Count);
 
-         RegisterStates(gameStates);
-      }
-
-
+         foreach (IGameState gameState in gameStates)
+            RegisterState(gameState);
+         
+         return this;
+      } 
+      
+      
 
       public void Enter<TState>() where TState : class, IGameState //                                    
          => ChangeState<TState>().Enter();
@@ -25,17 +28,7 @@ namespace Infrastructure.StateMachine {
 
 
 
-      private void RegisterStates(IEnumerable<IGameState> gameStates) {
-         foreach (IGameState gameState in gameStates)
-            RegisterState(gameState);
-      }
-
-
-
-      private void RegisterState<TState>(TState state) where TState : IGameState {
-         state.Init(this);
-         _states.Add(state.GetType(), state);
-      }
+      private void RegisterState<TState>(TState state) where TState : IGameState => _states.Add(state.GetType(), state);
 
       private TState ChangeState<TState>() where TState : class, IGameState {
          _currentState?.Exit();

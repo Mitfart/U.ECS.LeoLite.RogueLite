@@ -1,21 +1,23 @@
-using System.Linq;
 using Engine;
 using Extensions.Collections;
-using Gameplay.Level;
-using Gameplay.Level.StaticData;
-using Infrastructure.AssetsManagement;
+using Gameplay.Environment;
+using Gameplay.Environment.StaticData;
+using Infrastructure.Factories;
+using Infrastructure.Factories.Extensions;
 using Infrastructure.Loading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Infrastructure.StateMachine.States {
    public class LoadLevelState : GameState, IDataRequireState<NextLevel> {
-      private readonly ISceneLoader    _sceneLoader;
-      private readonly ILoadingCurtain _loadingCurtain;
-      private readonly IAssets         _assets;
-      private readonly Level           _level;
-      private readonly Controls        _controls;
-      private readonly IEngine         _engine;
+      private readonly ISceneLoader       _sceneLoader;
+      private readonly ILoadingCurtain    _loadingCurtain;
+      private readonly EnemyFactory       _enemyFactory;
+      private readonly PlayerFactory      _playerFactory;
+      private readonly EnvironmentFactory _environmentFactory;
+      private readonly Level              _level;
+      private readonly Controls           _controls;
+      private readonly IEngine            _engine;
 
       private NextLevel _nextLevel;
 
@@ -25,19 +27,24 @@ namespace Infrastructure.StateMachine.States {
 
 
       public LoadLevelState(
-         ISceneLoader    sceneLoader,
-         ILoadingCurtain loadingCurtain,
-         IAssets         assets,
-         Level           level,
-         Controls        controls,
-         IEngine         engine
-      ) {
-         _sceneLoader    = sceneLoader;
-         _loadingCurtain = loadingCurtain;
-         _controls       = controls;
-         _engine         = engine;
-         _assets         = assets;
-         _level          = level;
+         IGameStateMachine  stateMachine,
+         ISceneLoader       sceneLoader,
+         ILoadingCurtain    loadingCurtain,
+         EnemyFactory       enemyFactory,
+         PlayerFactory      playerFactory,
+         EnvironmentFactory environmentFactory,
+         Level              level,
+         Controls           controls,
+         IEngine            engine
+      ) : base(stateMachine) {
+         _sceneLoader        = sceneLoader;
+         _loadingCurtain     = loadingCurtain;
+         _enemyFactory       = enemyFactory;
+         _playerFactory      = playerFactory;
+         _environmentFactory = environmentFactory;
+         _controls           = controls;
+         _engine             = engine;
+         _level              = level;
       }
 
 
@@ -91,33 +98,26 @@ namespace Infrastructure.StateMachine.States {
 
 
       private void SpawnEnemies() {
-         foreach (SpawnPoint spawnPoint in NextRoom.SpawnPoints)
-            _assets.Ins(
-               spawnPoint.Enemy,
-               at: spawnPoint.Position
+         foreach (SpawnPoint spawn in NextRoom.SpawnPoints)
+            _enemyFactory.Spawn(
+               spawn.EnemyType,
+               at: spawn.Position
             );
       }
 
       private void SpawnPlayer() {
-         _assets.Ins<GameObject>(
-            AssetPath.PLAYER,
-            at: NextRoom.EnterPoint
+         _playerFactory.Spawn(
+            NextRoom.EnterPoint
          );
       }
 
       private void CreateDoors() {
-         foreach (Vector3 exitPoint in NextRoom.ExitPoints) {
-            DoorProv doorIns = _assets.Ins<DoorProv>(
-               AssetPath.DOOR,
-               at: exitPoint
+         foreach (Vector3 exitPoint in NextRoom.ExitPoints)
+            _environmentFactory.CreateDoor(
+               exitPoint,
+               _level.Location,
+               _level.Location.DefaultRooms.Random( /*_level.PassedRooms.ToArray()*/)
             );
-
-            doorIns.component.NextLevel
-               = new NextLevel(
-                  _level.Location,
-                  _level.Location.DefaultRooms.Random(_level.PassedRooms.ToArray())
-               );
-         }
       }
    }
 }

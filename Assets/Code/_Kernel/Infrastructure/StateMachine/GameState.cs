@@ -1,9 +1,12 @@
 ﻿namespace Infrastructure.StateMachine {
    public abstract class GameState : IGameState {
-      public IGameStateMachine StateMachine { get; private set; }
+      public IGameStateMachine StateMachine { get; }
 
 
-      public void Init(IGameStateMachine stateMachine) => StateMachine = stateMachine;
+
+      protected GameState(IGameStateMachine gameStateMachine) {
+         StateMachine = gameStateMachine;
+      }
 
       public abstract void Enter();
       public virtual  void Exit() { }

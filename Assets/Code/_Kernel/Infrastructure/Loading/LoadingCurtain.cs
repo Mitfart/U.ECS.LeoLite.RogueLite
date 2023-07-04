@@ -12,16 +12,21 @@ namespace Infrastructure.Loading {
 
       private void Awake() => DontDestroyOnLoad(this);
 
-      public void Show() => StartCoroutine(ShowRoutine());
+      public void Show() {
+         gameObject.SetActive(value: true);
+         StartCoroutine(ShowRoutine());
+      }
 
-      public void Hide() => StartCoroutine(HideRoutine());
+      public void Hide() {
+         StartCoroutine(HideRoutine());
+         gameObject.SetActive(value: false);
+      }
 
       public void Progress(float progress) { }
 
 
 
       private IEnumerator ShowRoutine() {
-         gameObject.SetActive(value: true);
          group.alpha = 0f;
 
          _startTime = Time.time;
@@ -47,8 +52,6 @@ namespace Infrastructure.Loading {
 
             passedTime = Time.time - _startTime;
          }
-
-         gameObject.SetActive(value: false);
       }
    }
 }

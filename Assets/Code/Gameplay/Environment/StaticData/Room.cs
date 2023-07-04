@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-namespace Gameplay.Level.StaticData {
+namespace Gameplay.Environment.StaticData {
    [Serializable]
    public class Room {
       [SerializeField] private string       id;
@@ -20,19 +21,19 @@ namespace Gameplay.Level.StaticData {
       public IReadOnlyList<SpawnPoint> SpawnPoints => spawnPoints;
 
       public Room(
-         string       id,
-         RoomType     type,
-         string       sceneName,
-         Vector3      enterPoint,
-         Vector3[]    exitPoints,
-         SpawnPoint[] spawnPoints
+         string                  id,
+         RoomType                type,
+         string                  sceneName,
+         Vector3                 enterPoint,
+         IEnumerable<Vector3>    exitPoints,
+         IEnumerable<SpawnPoint> spawnPoints
       ) {
          this.id          = id;
          this.type        = type;
          this.sceneName   = sceneName;
          this.enterPoint  = enterPoint;
-         this.exitPoints  = exitPoints;
-         this.spawnPoints = spawnPoints;
+         this.exitPoints  = exitPoints.ToArray();
+         this.spawnPoints = spawnPoints.ToArray();
       }
    }
 }

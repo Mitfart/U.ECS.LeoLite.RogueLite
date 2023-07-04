@@ -1,21 +1,23 @@
-﻿using UnityEngine;
+﻿using Extensions.UnityObject;
+using UnityEngine;
 using VContainer;
 
 namespace Infrastructure.AssetsManagement.VContainerExtensions {
    public static class RegPrefabInstanceExt {
-      public static void RegPrefabInstance<TAsset>(this IContainerBuilder di, string path) where TAsset : Object {
-         di.Register(
-               r => {
-                  TAsset ins = r.Resolve<IAssets>().Ins<TAsset>(path);
-                  Object.DontDestroyOnLoad(ins);
-                  return ins;
-               },
-               Lifetime.Singleton
-            )
-           .AsSelf()
-           .AsImplementedInterfaces();
+      public static void RegInstance<TAsset>(this IContainerBuilder di, string path) where TAsset : Object
+         => di.Register(
+                  r =>
+                     r.Resolve<IAssets>()
+                      .Ins<TAsset>(path)
+                      .DontDestroy(),
+                  Lifetime.Singleton
+               )
+              .AsSelf()
+              .AsImplementedInterfaces();
 
-         di.RegisterBuildCallback(r => r.Resolve<TAsset>());
+      public static void RegInstanceInstantly<TAsset>(this IContainerBuilder di, string path) where TAsset : Object {
+         di.RegInstance<TAsset>(path);
+         di.ResolveOnBuild<TAsset>();
       }
    }
 }
