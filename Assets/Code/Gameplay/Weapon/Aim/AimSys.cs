@@ -1,47 +1,45 @@
-using System;
 using Gameplay.UnityRef.Transform.Comp;
 using Gameplay.UnityRef.Transform.Extensions;
 using Gameplay.Weapon._base;
 using Leopotam.EcsLite;
+using UnityEngine;
 
 namespace Gameplay.Weapon.Aim {
    public class AimSys : IEcsRunSystem, IEcsInitSystem {
       private EcsWorld  _world;
       private EcsFilter _filter;
 
-      private EcsPool<WeaponOwner>  _activeWeaponsPool;
+      private EcsPool<WeaponOwner>  _weaponOwnerPool;
       private EcsPool<AimPosition>  _aimPositionPool;
       private EcsPool<EcsTransform> _ecsTransformPool;
 
-      
-      
+
+
       public void Init(IEcsSystems systems) {
          _world  = systems.GetWorld();
          _filter = _world.Filter<WeaponOwner>().Inc<AimPosition>().End();
 
-         _activeWeaponsPool = _world.GetPool<WeaponOwner>();
-         _aimPositionPool   = _world.GetPool<AimPosition>();
-         _ecsTransformPool  = _world.GetPool<EcsTransform>();
+         _weaponOwnerPool  = _world.GetPool<WeaponOwner>();
+         _aimPositionPool  = _world.GetPool<AimPosition>();
+         _ecsTransformPool = _world.GetPool<EcsTransform>();
       }
-      
+
       public void Run(IEcsSystems systems) {
          foreach (int e in _filter) {
-            ref WeaponOwner weaponOwner = ref _activeWeaponsPool.Get(e);
-            ref AimPosition aimPosition = ref _aimPositionPool.Get(e);
-
-            GetTransform(weaponOwner.Weapon).LookAt2D(aimPosition.value);
+            if (HasWeapon(e, out int weaponE))
+               Transform(weaponE)
+                 .LookAt2D(AimPosition(e));
          }
       }
 
 
 
-      private ref EcsTransform GetTransform(EcsPackedEntity weapon) {
-         if (!GetEntity(weapon, out int weaponE))
-            throw new Exception(message: "Weapon is not set!");
-
-         return ref _ecsTransformPool.Get(weaponE);
+      private bool HasWeapon(int ownerE, out int weaponE) {
+         weaponE = -1;
+         return _weaponOwnerPool.Get(ownerE).weapon?.Unpack(out _, out weaponE) == true;
       }
 
-      private bool GetEntity(EcsPackedEntity activeWeapon, out int weaponE) => activeWeapon.Unpack(_world, out weaponE);
+      private ref Vector3      AimPosition(int e)       => ref _aimPositionPool.Get(e).value;
+      private ref EcsTransform Transform(int   weaponE) => ref _ecsTransformPool.Get(weaponE);
    }
 }

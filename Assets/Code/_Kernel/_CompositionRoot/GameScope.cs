@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Debug;
 using Engine;
+using Engine.Ecs;
 using Events;
 using Gameplay.Environment;
 using Infrastructure.AssetsManagement;
@@ -63,10 +64,13 @@ public class GameScope : LifetimeScope {
 
 
    private void RegEngine() {
-      new MainSystemsPack().Install(_di);
       _di.Register(_ => new EcsWorld(), Lifetime.Singleton);
+
       _di.Register<EventsBus>(Lifetime.Singleton);
-      _di.RegisterEntryPoint<EcsEngine>();
+
+      new MainSystemsPack().Install(_di);
+      _di.Register<EngineSystems>(Lifetime.Singleton).AsImplementedInterfaces();
+      _di.Register<EcsEngine>(Lifetime.Singleton).AsImplementedInterfaces();
    }
 
 

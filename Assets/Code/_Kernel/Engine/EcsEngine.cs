@@ -1,24 +1,24 @@
-using System.Collections.Generic;
+using System;
 using Engine.Ecs;
 using Leopotam.EcsLite;
+using Mitfart.LeoECSLite.UnityIntegration.Extensions;
+using VContainer.Unity;
 
 namespace Engine {
-   public sealed class EcsEngine : IEngine {
-      private readonly EscExtendedSystems _systems;
+   public sealed class EcsEngine : IEngine, ITickable, IFixedTickable, IDisposable {
+      private readonly EcsWorld       _world;
+      private readonly IEngineSystems _systems;
 
       public bool Enabled { get; private set; }
 
 
 
-      public EcsEngine(EcsWorld world, IEnumerable<IEcsSystem> systems) {
-         _systems = new EscExtendedSystems(world);
-         AddSystems(systems);
+      public EcsEngine(EcsWorld world, IEngineSystems systems) {
+         _world   = world;
+         _systems = systems;
       }
 
 
-
-      public void Initialize() => _systems.Init();
-      public void Dispose()    => _systems.Destroy();
 
       public void Tick() {
          if (Enabled)
@@ -30,14 +30,13 @@ namespace Engine {
             _systems.FixedRun();
       }
 
+
+
+      public void Dispose() => _systems.Dispose();
+
       public void Enable()  => Enabled = true;
       public void Disable() => Enabled = false;
 
-
-
-      private void AddSystems(IEnumerable<IEcsSystem> systems) {
-         foreach (IEcsSystem system in systems)
-            _systems.Add(system);
-      }
+      public void Clear() => _world.ForeachEntity(_world.DelEntity);
    }
 }

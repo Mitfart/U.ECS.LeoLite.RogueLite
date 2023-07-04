@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Engine;
 using Extensions.Collections;
 using Gameplay.Environment;
@@ -51,16 +52,18 @@ namespace Infrastructure.StateMachine.States {
 
       public IDataRequireState<NextLevel> SetData(NextLevel data) {
          _nextLevel = data;
-
-         UpdateCurrentLevel();
          return this;
       }
 
       public override void Enter() {
-         _controls.Disable();
-         _engine.Disable();
-
          _loadingCurtain.Show();
+
+         _controls.Disable();
+
+         _engine.Disable();
+         _engine.Clear();
+
+         ResetFactories();
 
          LoadRoom();
       }
@@ -79,6 +82,8 @@ namespace Infrastructure.StateMachine.States {
          SpawnEnemies();
          SpawnPlayer();
          CreateDoors();
+
+         UpdateCurrentLevel();
 
          StateMachine.Enter<GameLoopState>();
       }
@@ -115,9 +120,17 @@ namespace Infrastructure.StateMachine.States {
          foreach (Vector3 exitPoint in NextRoom.ExitPoints)
             _environmentFactory.CreateDoor(
                exitPoint,
-               _level.Location,
-               _level.Location.DefaultRooms.Random( /*_level.PassedRooms.ToArray()*/)
+               NextLocation,
+               NextLocation.DefaultRooms.Random( /*_level.PassedRooms.ToArray()*/)
             );
+      }
+
+
+
+      private void ResetFactories() {
+         _environmentFactory.Reset();
+         _enemyFactory.Reset();
+         _playerFactory.Reset();
       }
    }
 }

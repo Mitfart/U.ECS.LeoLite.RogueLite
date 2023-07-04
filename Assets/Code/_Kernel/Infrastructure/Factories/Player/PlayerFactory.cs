@@ -13,6 +13,12 @@ namespace Infrastructure.Factories.Extensions {
          _players = new List<ConvertToEntity>();
       }
 
+      public override void Reset() {
+         _players.Clear();
+      }
+
+
+
       public ConvertToEntity Spawn(Vector3 at) {
          var playerIns = Assets.Ins<ConvertToEntity>(AssetPath.PLAYER, at);
          _players.Add(playerIns);

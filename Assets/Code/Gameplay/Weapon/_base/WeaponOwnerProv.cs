@@ -3,19 +3,28 @@ using Extensions.Ecs;
 using Extensions.Unileo;
 using Leopotam.EcsLite;
 using Mitfart.LeoECSLite.UniLeo.Providers;
-using Mitfart.LeoECSLite.UnityIntegration.Attributes;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Gameplay.Weapon._base {
    [DisallowMultipleComponent]
    public sealed class WeaponOwnerProv : BaseEcsProvider<WeaponOwner> {
-      [field: SerializeField] public WeaponTagProv Weapon { get; private set; }
+      public WeaponProv weapon;
 
-      protected override void Add(EcsPool<WeaponOwner> pool, int e, EcsWorld world) => pool.Set(e).Weapon = Weapon.AsPackedEntity();
+      private void OnValidate() {
+         if (!weapon.IsUnityNull())
+            weapon.owner = this;
+      }
+
+      protected override void Add(EcsPool<WeaponOwner> pool, int e, EcsWorld world)
+         => pool.Set(e).weapon =
+            !weapon.IsUnityNull()
+               ? weapon.AsPackedEntityWithWorld()
+               : null;
    }
 
    [Serializable]
    public struct WeaponOwner {
-      [PackedEntity] public EcsPackedEntity Weapon;
+      public EcsPackedEntityWithWorld? weapon;
    }
 }

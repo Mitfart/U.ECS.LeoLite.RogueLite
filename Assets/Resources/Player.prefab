@@ -326,7 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2240c27dabc645d2a5c202cf26864a71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Weapon>k__BackingField: {fileID: 5053100043317622649}
+  weapon: {fileID: 5053100043317622649}
 --- !u!114 &5644176589929449188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,6 +592,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5644176589929449212}
     m_Modifications:
+    - target: {fileID: 5600975155975501513, guid: b3b1e65ca75e192409a9983009d1ee8a, type: 3}
+      propertyPath: owner
+      value: 
+      objectReference: {fileID: 5644176589929449189}
     - target: {fileID: 5600975155975501518, guid: b3b1e65ca75e192409a9983009d1ee8a, type: 3}
       propertyPath: m_Name
       value: Weapon_Base

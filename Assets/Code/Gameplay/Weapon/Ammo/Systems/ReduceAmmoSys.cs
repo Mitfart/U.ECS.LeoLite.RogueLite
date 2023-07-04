@@ -17,7 +17,7 @@ namespace Gameplay.Weapon.Ammo.Systems {
 
       public void Init(IEcsSystems systems) {
          _world  = systems.GetWorld();
-         _filter = _world.Filter<WeaponTag>().Inc<Magazine>().Exc<BlockAttack>().End();
+         _filter = _world.Filter<_base.Weapon>().Inc<Magazine>().Exc<BlockAttack>().End();
 
          _magazinePool    = _world.GetPool<Magazine>();
          _blockAttackPool = _world.GetPool<BlockAttack>();

@@ -13,9 +13,7 @@ namespace Extensions.Ecs {
       }
 
       public static bool TryGet<T>(this EcsPool<T> pool, int e, out T value) where T : struct {
-         EcsWorld world = pool.GetWorld();
-
-         if (e.IsAlive(world) && pool.Has(e)) {
+         if (pool.Has(e)) {
             value = pool.Get(e);
             return true;
          }

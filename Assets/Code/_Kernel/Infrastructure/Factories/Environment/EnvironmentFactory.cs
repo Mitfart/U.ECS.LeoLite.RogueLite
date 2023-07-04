@@ -16,6 +16,12 @@ namespace Infrastructure.Factories {
          _doors = new List<ConvertToEntity>();
       }
 
+      public override void Reset() {
+         _doors.Clear();
+      }
+      
+      
+
       public DoorProv CreateDoor(Vector3 at, NextLevel nextLevel) {
          DoorProv doorIns = Assets.Ins<DoorProv>(AssetPath.DOOR, at);
          doorIns.component.NextLevel = nextLevel;

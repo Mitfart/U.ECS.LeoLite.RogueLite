@@ -19,18 +19,14 @@ namespace Infrastructure.Loading {
          Action<Scene> onLoaded,
          Action<float> onLoading
       ) {
-#if UNITY_EDITOR
-         if (AlreadyLoaded(name, out Scene scene)) {
-            onLoaded?.Invoke(scene);
-            return;
-         }
-#endif
          AsyncOperation loadOperation = SceneManager.LoadSceneAsync(name);
 
          while (!loadOperation.isDone) {
             onLoading?.Invoke(loadOperation.progress);
-            await Task.Delay(millisecondsDelay: 100);
+            await Task.Delay(10);
          }
+         
+         await Task.Delay(1000);
 
 #if UNITY_EDITOR
          if (!Application.isPlaying) // prevent from switching / deleting scene after exit playmode

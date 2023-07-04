@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Infrastructure.Loading {
@@ -12,45 +13,36 @@ namespace Infrastructure.Loading {
 
       private void Awake() => DontDestroyOnLoad(this);
 
-      public void Show() {
-         gameObject.SetActive(value: true);
-         StartCoroutine(ShowRoutine());
-      }
-
-      public void Hide() {
-         StartCoroutine(HideRoutine());
-         gameObject.SetActive(value: false);
-      }
+      public void Show() => StartCoroutine(ShowRoutine());
+      public void Hide() => StartCoroutine(HideRoutine());
 
       public void Progress(float progress) { }
 
 
 
       private IEnumerator ShowRoutine() {
-         group.alpha = 0f;
+         group.alpha = 0;
 
          _startTime = Time.time;
          var passedTime = 0f;
 
          while (passedTime < fadeDuration) {
             group.alpha = passedTime / fadeDuration;
+            passedTime  = Time.time - _startTime;
             yield return null;
-
-            passedTime = Time.time - _startTime;
          }
       }
 
       private IEnumerator HideRoutine() {
-         group.alpha = 1f;
+         group.alpha = 1;
 
          _startTime = Time.time;
          var passedTime = 0f;
 
          while (passedTime < fadeDuration) {
-            group.alpha = 1f - passedTime / fadeDuration;
+            group.alpha = 1f        - passedTime / fadeDuration;
+            passedTime  = Time.time - _startTime;
             yield return null;
-
-            passedTime = Time.time - _startTime;
          }
       }
    }

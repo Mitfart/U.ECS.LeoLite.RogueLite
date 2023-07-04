@@ -11,6 +11,7 @@ namespace Gameplay.Movement.Smooth {
       private EcsPool<EcsTransform>    _transformPool;
       private EcsPool<SmoothTransform> _smoothPool;
 
+      
       public void Init(IEcsSystems systems) {
          _world  = systems.GetWorld();
          _filter = _world.Filter<EcsTransform>().Inc<SmoothTransform>().Exc<PhysicsMovement>().End();
@@ -20,9 +21,7 @@ namespace Gameplay.Movement.Smooth {
 
          InitEntities();
       }
-
-
-
+      
       public void Run(IEcsSystems systems) {
          float delta = Time.deltaTime;
 

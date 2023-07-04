@@ -15,7 +15,7 @@ namespace Gameplay.Weapon.Attack.Systems {
 
       public void Init(IEcsSystems systems) {
          _world  = systems.GetWorld();
-         _filter = _world.Filter<RestoreAttackTimer>().Inc<WeaponTag>().Exc<BlockAttack>().End();
+         _filter = _world.Filter<RestoreAttackTimer>().Inc<_base.Weapon>().Exc<BlockAttack>().End();
 
          _restoreAttackPool = _world.GetPool<RestoreAttackTimer>();
          _cantAttackPool    = _world.GetPool<BlockAttack>();

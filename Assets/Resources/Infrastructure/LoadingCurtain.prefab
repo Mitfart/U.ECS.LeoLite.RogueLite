@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: {fileID: -5954731443899530760}
-  fadeDuration: 0.5
+  fadeDuration: 0.25
 --- !u!1 &5323613122926743174
 GameObject:
   m_ObjectHideFlags: 0

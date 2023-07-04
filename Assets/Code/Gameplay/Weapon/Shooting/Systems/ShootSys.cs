@@ -33,7 +33,7 @@ namespace Gameplay.Weapon.Shooting.Systems {
 
       public void Init(IEcsSystems systems) {
          _world = systems.GetWorld();
-         _filter = _world.Filter<WeaponTag>()
+         _filter = _world.Filter<_base.Weapon>()
                          .Inc<Projectiles>()
                          .Inc<ProjectilesSpawnOrigins>()
                          .Inc<WantAttack>()
