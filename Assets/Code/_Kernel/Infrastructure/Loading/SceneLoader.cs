@@ -25,8 +25,6 @@ namespace Infrastructure.Loading {
             onLoading?.Invoke(loadOperation.progress);
             await Task.Delay(10);
          }
-         
-         await Task.Delay(1000);
 
 #if UNITY_EDITOR
          if (!Application.isPlaying) // prevent from switching / deleting scene after exit playmode
