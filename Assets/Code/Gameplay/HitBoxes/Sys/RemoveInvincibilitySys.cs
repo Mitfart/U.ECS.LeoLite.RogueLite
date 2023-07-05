@@ -1,15 +1,22 @@
 ﻿using Gameplay.HitBoxes.Comps;
+using Infrastructure.Services.Time;
 using Leopotam.EcsLite;
 using UnityEngine;
 
 namespace Gameplay.HitBoxes.Sys {
    public class RemoveInvincibilitySys : IEcsRunSystem, IEcsInitSystem {
+      private readonly ITimeService _timeService;
+
       private EcsWorld  _world;
       private EcsFilter _filter;
 
       private EcsPool<Invincible> _invinciblePool;
 
 
+
+      public RemoveInvincibilitySys(ITimeService timeService) {
+         _timeService = timeService;
+      }
 
       public void Init(IEcsSystems systems) {
          _world  = systems.GetWorld();
@@ -26,7 +33,7 @@ namespace Gameplay.HitBoxes.Sys {
 
 
 
-      private bool PassInvincibilityTime(int entity) => Time.time - _invinciblePool.Get(entity).startTime > _invinciblePool.Get(entity).duration;
+      private bool PassInvincibilityTime(int entity) => _timeService.Time - _invinciblePool.Get(entity).startTime > _invinciblePool.Get(entity).duration;
       private void MakeNotInvincible(int     entity) => _invinciblePool.Del(entity);
    }
 }

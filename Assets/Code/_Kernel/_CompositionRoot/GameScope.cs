@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Debug;
 using Engine;
 using Engine.Ecs;
 using Events;
@@ -11,6 +10,8 @@ using Infrastructure.Factories.Extensions;
 using Infrastructure.Factories.Projectiles;
 using Infrastructure.Loading;
 using Infrastructure.Render;
+using Infrastructure.Services.Gizmos;
+using Infrastructure.Services.Time;
 using Infrastructure.StateMachine;
 using Infrastructure.StateMachine.States;
 using Leopotam.EcsLite;
@@ -25,6 +26,7 @@ public class GameScope : LifetimeScope {
    protected override void Configure(IContainerBuilder di) {
       _di = di;
 
+      RegTimeService();
       RegSceneLoader();
       RegInputControls();
 
@@ -45,6 +47,7 @@ public class GameScope : LifetimeScope {
 
 
 
+   private void RegTimeService()   => _di.Register<ITimeService, TimeService>(Lifetime.Singleton);
    private void RegSceneLoader()   => _di.Register<ISceneLoader, SceneLoader>(Lifetime.Singleton);
    private void RegInputControls() => _di.Register<Controls>(Lifetime.Singleton);
    private void RegAssets()        => _di.Register<IAssets, Assets>(Lifetime.Singleton);

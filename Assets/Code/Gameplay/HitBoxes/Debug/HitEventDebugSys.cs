@@ -1,7 +1,7 @@
-using Debug;
 using Events;
 using Gameplay.HitBoxes.Comps;
 using Gameplay.HitBoxes.Extensions;
+using Infrastructure.Services.Gizmos;
 using Leopotam.EcsLite;
 
 namespace Gameplay.HitBoxes.Debug {

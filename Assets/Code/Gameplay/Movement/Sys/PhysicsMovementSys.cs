@@ -1,11 +1,14 @@
 using Engine.Ecs;
 using Gameplay.Movement.Comps;
 using Gameplay.UnityRef.Physics;
+using Infrastructure.Services.Time;
 using Leopotam.EcsLite;
 using UnityEngine;
 
 namespace Gameplay.Movement.Sys {
    public class PhysicsMovementSys : IEcsFixedRunSystem, IEcsInitSystem {
+      private readonly ITimeService _timeService;
+
       private EcsWorld  _world;
       private EcsFilter _filter;
 
@@ -16,8 +19,12 @@ namespace Gameplay.Movement.Sys {
 
 
 
+      public PhysicsMovementSys(ITimeService timeService) {
+         _timeService = timeService;
+      }
+
       public void FixedRun(IEcsSystems systems) {
-         float delta        = Time.fixedDeltaTime;
+         float delta        = _timeService.Delta;
          float dividedDelta = 1f / delta;
 
 

@@ -1,11 +1,14 @@
 using Extensions.Ecs;
 using Gameplay.Movement.Comps;
 using Gameplay.UnityRef.Transform.Comp;
+using Infrastructure.Services.Time;
 using Leopotam.EcsLite;
 using UnityEngine;
 
 namespace Gameplay.Movement.Sys {
    public class TransformMovementSys : IEcsRunSystem, IEcsInitSystem {
+      private readonly ITimeService _timeService;
+
       private EcsWorld  _world;
       private EcsFilter _filter;
 
@@ -13,8 +16,12 @@ namespace Gameplay.Movement.Sys {
       private EcsPool<MoveDirection> _moveDirectionPool;
       private EcsPool<Speed>         _speedPool;
 
-      
-      
+
+
+      public TransformMovementSys(ITimeService timeService) {
+         _timeService = timeService;
+      }
+
       public void Init(IEcsSystems systems) {
          _world  = systems.GetWorld();
          _filter = _world.Filter<EcsTransform>().Inc<MoveDirection>().Exc<PhysicsMovement>().End();
@@ -24,9 +31,9 @@ namespace Gameplay.Movement.Sys {
 
          _speedPool = _world.GetPool<Speed>();
       }
-      
+
       public void Run(IEcsSystems systems) {
-         float delta = Time.deltaTime;
+         float delta = _timeService.Delta;
 
          foreach (int e in _filter) {
             ref EcsTransform  transform     = ref _transformPool.Get(e);

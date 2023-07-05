@@ -2,21 +2,25 @@
 using Extensions.Ecs;
 using Gameplay.HitBoxes.Comps;
 using Gameplay.Unit.Comps;
+using Infrastructure.Services.Time;
 using Leopotam.EcsLite;
 using UnityEngine;
 
 namespace Gameplay.HitBoxes.Sys {
    public class InvincibilityAfterHitEventSys : IEcsRunSystem, IEcsInitSystem {
-      private readonly EventsBus _eventsBus;
-      private          EcsWorld  _world;
+      private readonly EventsBus    _eventsBus;
+      private readonly ITimeService _timeService;
+
+      private EcsWorld _world;
 
       private EcsPool<Invincible>            _invinciblePool;
       private EcsPool<InvincibilityDuration> _invincibilityDurationPool;
 
 
 
-      public InvincibilityAfterHitEventSys(EventsBus eventsBus) {
-         _eventsBus = eventsBus;
+      public InvincibilityAfterHitEventSys(EventsBus eventsBus, ITimeService timeService) {
+         _eventsBus   = eventsBus;
+         _timeService = timeService;
       }
 
       public void Init(IEcsSystems systems) {
@@ -42,7 +46,7 @@ namespace Gameplay.HitBoxes.Sys {
 
 
 
-      private void  MakeInvincible(int takerE) => _invinciblePool.Add(takerE) = new Invincible { duration = Duration(takerE), startTime = Time.time };
+      private void  MakeInvincible(int takerE) => _invinciblePool.Add(takerE) = new Invincible { duration = Duration(takerE), startTime = _timeService.Time };
       private bool  Invincible(int     takerE) => _invinciblePool.Has(takerE);
       private float Duration(int       takerE) => _invincibilityDurationPool.TryGet(takerE, out InvincibilityDuration duration) ? duration.duration : 0f;
    }
