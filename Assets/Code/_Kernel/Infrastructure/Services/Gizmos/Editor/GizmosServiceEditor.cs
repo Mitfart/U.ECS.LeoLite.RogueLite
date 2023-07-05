@@ -1,8 +1,8 @@
-using Debug;
+using Infrastructure.Services.Gizmos;
 using UnityEditor;
 using UnityEngine;
 
-namespace _Kernel.Debug.Editor {
+namespace _Kernel.Infrastructure.Services.Gizmos.Editor {
    [CustomEditor(typeof(GizmosService))]
    public class GizmosServiceEditor : UnityEditor.Editor {
       public override void OnInspectorGUI() {

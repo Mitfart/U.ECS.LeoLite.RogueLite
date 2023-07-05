@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Debug {
+namespace Infrastructure.Services.Gizmos {
    public class GizmosService : MonoBehaviour {
       private HashSet<Action> _prevToDraw;
       private HashSet<Action> _toDraw;
@@ -80,8 +80,8 @@ namespace Debug {
       private void DrawPrev() => (_prevToDraw, _toDraw) = (_toDraw, _prevToDraw);
 
       private static void ResetGizmos() {
-         Gizmos.color  = Color.white;
-         Gizmos.matrix = Matrix4x4.identity;
+         UnityEngine.Gizmos.color  = Color.white;
+         UnityEngine.Gizmos.matrix = Matrix4x4.identity;
       }
    }
 }
