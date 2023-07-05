@@ -17,9 +17,8 @@ namespace Gameplay.Unit.Behavior.Comps {
 
 
       public void Run(IEcsSystems systems) {
-         foreach (int e in _filter) {
-            _behaviorPool.Get(e).Tree.Run(e, _world);
-         }
+         foreach (int e in _filter)
+            _behaviorPool.Get(e).Tree.Run();
       }
    }
 }

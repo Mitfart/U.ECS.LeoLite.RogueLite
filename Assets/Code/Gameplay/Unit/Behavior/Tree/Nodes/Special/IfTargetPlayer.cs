@@ -17,24 +17,25 @@ namespace Gameplay.Unit.Behavior.Nodes.Special {
 
 
 
-      protected override void OnBegin(int e, EcsWorld world) {
-         _playerFilter = world.Filter<PlayerTag>().Inc<EcsTransform>().End();
+      protected override void OnInit() {
+         _playerFilter = World.Filter<PlayerTag>().Inc<EcsTransform>().End();
 
-         _targetPool       = world.GetPool<Target>();
-         _viewRadiusPool   = world.GetPool<ViewRadius>();
-         _ecsTransformPool = world.GetPool<EcsTransform>();
+         _targetPool       = World.GetPool<Target>();
+         _viewRadiusPool   = World.GetPool<ViewRadius>();
+         _ecsTransformPool = World.GetPool<EcsTransform>();
       }
 
-      protected override bool Condition(int e, EcsWorld world) {
-         if (!FindClosestPlayer(e, out int closestPlayerE))
+      protected override bool Condition() {
+         if (!FindClosestPlayer(Entity, out int closestPlayerE))
             return false;
 
-         ref Target target = ref _targetPool.Get(e);
-         target.Value = world.PackEntityWithWorld(closestPlayerE);
+         SetTarget(closestPlayerE);
          return true;
       }
 
 
+
+      private void SetTarget(int closestPlayerE) => _targetPool.Get(Entity).Value = World.PackEntityWithWorld(closestPlayerE);
 
       private bool FindClosestPlayer(int e, out int closestPlayerE) {
          float minDistance = ViewRadius(e);
@@ -56,8 +57,7 @@ namespace Gameplay.Unit.Behavior.Nodes.Special {
          return closestPlayerE >= 0;
       }
 
-      private float ViewRadius(int e) => _viewRadiusPool.TryGet(e, out ViewRadius viewRadius) ? viewRadius.value : float.MaxValue;
-
-      private Vector3 Position(int e) => _ecsTransformPool.Get(e).Position;
+      private float   ViewRadius(int e) => _viewRadiusPool.TryGet(e, out ViewRadius viewRadius) ? viewRadius.value : float.MaxValue;
+      private Vector3 Position(int   e) => _ecsTransformPool.Get(e).Position;
    }
 }

@@ -1,5 +1,3 @@
-using Leopotam.EcsLite;
-
 namespace Gameplay.Unit.Behavior.Nodes.Structural {
    public abstract class ConditionNode : BehaviorNode {
       private BehaviorNode True  { get; }
@@ -14,9 +12,12 @@ namespace Gameplay.Unit.Behavior.Nodes.Structural {
 
 
 
-      protected override BehaviorState OnRun(int e, EcsWorld world) => Condition(e, world) ? True.Run(e, world) : False.Run(e, world);
+      protected override BehaviorState OnRun()
+         => Condition()
+            ? True.Run()
+            : False.Run();
 
 
-      protected abstract bool Condition(int e, EcsWorld world);
+      protected abstract bool Condition();
    }
 }

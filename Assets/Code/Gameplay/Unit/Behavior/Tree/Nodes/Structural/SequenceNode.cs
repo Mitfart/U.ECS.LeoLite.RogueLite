@@ -1,12 +1,10 @@
-using Leopotam.EcsLite;
-
 namespace Gameplay.Unit.Behavior.Nodes.Structural {
    public class SequenceNode : BehaviorNode {
       public SequenceNode(params BehaviorNode[] childNodes) : base(childNodes) { }
 
-      protected override BehaviorState OnRun(int e, EcsWorld world) {
+      protected override BehaviorState OnRun() {
          foreach (BehaviorNode node in ChildNodes) {
-            BehaviorState childState = node.Run(e, world);
+            BehaviorState childState = node.Run();
 
             if (childState == BehaviorState.Success)
                continue;

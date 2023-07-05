@@ -669,7 +669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   component:
-    value: 10
+    value: 5
 --- !u!114 &1017477602
 MonoBehaviour:
   m_ObjectHideFlags: 0

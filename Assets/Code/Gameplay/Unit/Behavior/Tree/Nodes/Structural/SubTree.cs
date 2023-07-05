@@ -1,6 +1,4 @@
-﻿using Leopotam.EcsLite;
-
-namespace Gameplay.Unit.Behavior.Nodes.Structural {
+﻿namespace Gameplay.Unit.Behavior.Nodes.Structural {
    public class SubTree : BehaviorNode {
       private readonly BehaviorTree _behaviorTree;
 
@@ -12,6 +10,6 @@ namespace Gameplay.Unit.Behavior.Nodes.Structural {
 
 
 
-      protected override BehaviorState OnRun(int e, EcsWorld world) => _behaviorTree.Run(e, world);
+      protected override BehaviorState OnRun() => _behaviorTree.Run();
    }
 }

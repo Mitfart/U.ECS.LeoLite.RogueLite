@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a635fe2bcb04aacbcbecc7930125ca2, type: 3}
   m_Name: New Move To Target BSP
   m_EditorClassIdentifier: 
-  waitTime: 1.39
+  waitTime:
+    min: 0.25
+    max: 1
+    rounded: 0
+    minEdge: 0
+    maxEdge: 1
