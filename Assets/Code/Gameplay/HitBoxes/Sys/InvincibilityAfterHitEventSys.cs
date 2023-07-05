@@ -33,9 +33,6 @@ namespace Gameplay.HitBoxes.Sys {
 
             if (Invincible(takerE)) {
                hitEventPool.Del(ev);
-
-               if (PassInvincibilityTime(takerE))
-                  MakeNotInvincible(takerE);
                continue;
             }
 
@@ -45,14 +42,8 @@ namespace Gameplay.HitBoxes.Sys {
 
 
 
-      private bool PassInvincibilityTime(int takerE) => Time.time - _invinciblePool.Get(takerE).startTime > _invinciblePool.Get(takerE).duration;
-
-      private void MakeNotInvincible(int takerE) => _invinciblePool.Del(takerE);
-
-      private void MakeInvincible(int takerE) => _invinciblePool.Add(takerE) = new Invincible(Duration(takerE));
-
-      private bool Invincible(int takerE) => _invinciblePool.Has(takerE);
-
-      private float Duration(int takerE) => _invincibilityDurationPool.TryGet(takerE, out InvincibilityDuration duration) ? duration.duration : 0f;
+      private void  MakeInvincible(int takerE) => _invinciblePool.Add(takerE) = new Invincible { duration = Duration(takerE), startTime = Time.time };
+      private bool  Invincible(int     takerE) => _invinciblePool.Has(takerE);
+      private float Duration(int       takerE) => _invincibilityDurationPool.TryGet(takerE, out InvincibilityDuration duration) ? duration.duration : 0f;
    }
 }

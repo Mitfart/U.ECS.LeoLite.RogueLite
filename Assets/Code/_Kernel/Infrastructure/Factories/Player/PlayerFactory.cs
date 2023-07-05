@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using Infrastructure.AssetsManagement;
 using Mitfart.LeoECSLite.UniLeo;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Infrastructure.Factories.Extensions {
    public class PlayerFactory : Factory {
+      private const string _CONTAINER_NAME = "Players";
+
       private readonly List<ConvertToEntity> _players;
 
 
@@ -14,15 +17,26 @@ namespace Infrastructure.Factories.Extensions {
       }
 
       public override void Reset() {
+         base.Reset();
+
          _players.Clear();
       }
 
 
 
       public ConvertToEntity Spawn(Vector3 at) {
-         var playerIns = Assets.Ins<ConvertToEntity>(AssetPath.PLAYER, at);
-         _players.Add(playerIns);
+         ConvertToEntity playerIns = Assets.Ins<ConvertToEntity>(
+            AssetPath.PLAYER,
+            at,
+            quaternion.identity,
+            Container(_CONTAINER_NAME)
+         );
+         Cache(playerIns);
          return playerIns;
       }
+
+
+
+      private void Cache(ConvertToEntity playerIns) => _players.Add(playerIns);
    }
 }

@@ -1,5 +1,4 @@
 using Extensions.Ecs;
-using Gameplay.Weapon._base;
 using Gameplay.Weapon.Ammo.Comps;
 using Gameplay.Weapon.Ammo.Extensions;
 using Gameplay.Weapon.Attack.Comps;

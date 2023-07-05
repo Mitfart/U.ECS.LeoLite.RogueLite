@@ -8,6 +8,7 @@ using Infrastructure.AssetsManagement;
 using Infrastructure.AssetsManagement.VContainerExtensions;
 using Infrastructure.Factories;
 using Infrastructure.Factories.Extensions;
+using Infrastructure.Factories.Projectiles;
 using Infrastructure.Loading;
 using Infrastructure.Render;
 using Infrastructure.StateMachine;
@@ -60,6 +61,7 @@ public class GameScope : LifetimeScope {
       _di.Register<EnvironmentFactory>(Lifetime.Singleton).AsSelf().AsImplementedInterfaces();
       _di.Register<EnemyFactory>(Lifetime.Singleton).AsSelf().AsImplementedInterfaces();
       _di.Register<PlayerFactory>(Lifetime.Singleton).AsSelf().AsImplementedInterfaces();
+      _di.Register<ProjectilesFactory>(Lifetime.Singleton).AsSelf().AsImplementedInterfaces();
    }
 
 

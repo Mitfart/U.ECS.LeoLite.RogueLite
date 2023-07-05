@@ -6,6 +6,7 @@ namespace Gameplay.HitBoxes {
    public class BattleSystems : EcsSystemsPack {
       protected override void RegisterSystems() {
          Add<CreateHitEventSys>();
+         Add<RemoveInvincibilitySys>();
          Add<InvincibilityAfterHitEventSys>();
 
 #if UNITY_EDITOR

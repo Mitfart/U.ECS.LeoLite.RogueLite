@@ -2,6 +2,6 @@
    public enum EnemyType {
       Unset,
       Dummy,
-      Dummy_NoAI,
+      Dummy_NoAI
    }
 }

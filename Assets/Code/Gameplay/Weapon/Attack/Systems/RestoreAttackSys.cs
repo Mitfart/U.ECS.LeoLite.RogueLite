@@ -1,5 +1,4 @@
 using Extensions.Ecs;
-using Gameplay.Weapon._base;
 using Gameplay.Weapon.Attack.Comps;
 using Leopotam.EcsLite;
 using UnityEngine;

@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   component:
-    amount: 3
+    amount: 0
     elapsedCount: 0
 --- !u!114 &5828881352309503415
 MonoBehaviour:

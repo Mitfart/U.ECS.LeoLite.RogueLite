@@ -45,9 +45,6 @@ GameObject:
   - component: {fileID: -4066408015952443023}
   - component: {fileID: 5600975155975501556}
   - component: {fileID: 5600975155975501559}
-  - component: {fileID: 5600975155975501515}
-  - component: {fileID: 5600975155975501514}
-  - component: {fileID: 5600975155975501557}
   - component: {fileID: 5600975155975501558}
   - component: {fileID: 4888014796635264992}
   m_Layer: 0
@@ -98,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ff1b198c99245939942f6785e159e90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: {fileID: 0}
 --- !u!114 &-4066408015952443023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,48 +136,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   origins:
   - {fileID: 5600975155814994291}
---- !u!114 &5600975155975501515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5600975155975501518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a436d74aab5149cab558601b5ec870de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  component:
-    amount: 5
-    size: 5
---- !u!114 &5600975155975501514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5600975155975501518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f722c8de2ef4b54a48377f137d31caa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  component:
-    duration: 0.25
-    startTime: 0
---- !u!114 &5600975155975501557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5600975155975501518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 042cf00be14e4650895f673ed70d5afc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5600975155975501558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   component:
-    duration: 0.5
+    duration: 0.05
     startTime: 0
 --- !u!114 &4888014796635264992
 MonoBehaviour:

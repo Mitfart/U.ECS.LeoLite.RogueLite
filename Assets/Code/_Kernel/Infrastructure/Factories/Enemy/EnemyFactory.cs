@@ -7,8 +7,9 @@ using UnityEngine;
 
 namespace Infrastructure.Factories {
    public class EnemyFactory : Factory {
-      private readonly Dictionary<EnemyType, List<ConvertToEntity>> _enemies;
+      private const string _CONTAINER_NAME = "Enemies";
 
+      private readonly Dictionary<EnemyType, List<ConvertToEntity>> _enemies;
 
 
       public EnemyFactory(IAssets assets) : base(assets) {
@@ -16,6 +17,8 @@ namespace Infrastructure.Factories {
       }
 
       public override void Reset() {
+         base.Reset();
+
          foreach (List<ConvertToEntity> enemies in _enemies.Values)
             enemies.Clear();
          _enemies.Clear();
@@ -25,7 +28,13 @@ namespace Infrastructure.Factories {
 
       public ConvertToEntity Spawn(EnemyType enemyType, Vector3 at) {
          try {
-            ConvertToEntity enemyIns = Assets.Ins<ConvertToEntity>(PathOf(enemyType), at);
+            ConvertToEntity enemyIns = Assets.Ins<ConvertToEntity>(
+               AssetPath.EnemyPath(enemyType),
+               at,
+               Quaternion.identity,
+               Container(_CONTAINER_NAME, enemyType.ToString())
+            );
+
             Cache(enemyType, enemyIns);
             return enemyIns;
          } catch (Exception) {
@@ -36,12 +45,9 @@ namespace Infrastructure.Factories {
 
 
 
-      private void Cache(EnemyType enemyType, ConvertToEntity enemyIns) {
-         _enemies
+      private void Cache(EnemyType enemyType, ConvertToEntity ins)
+         => _enemies
            .GetOrCreate(enemyType)
-           .Add(enemyIns);
-      }
-
-      private static string PathOf(EnemyType enemyType) => $"Enemies/{enemyType.ToString()}";
+           .Add(ins);
    }
 }

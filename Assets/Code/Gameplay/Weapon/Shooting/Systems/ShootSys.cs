@@ -1,24 +1,22 @@
 using System.Collections.Generic;
+using Extensions.Collections;
+using Extensions.Ecs;
 using Gameplay.UnityRef.Transform.Comp;
 using Gameplay.UnityRef.Transform.Extensions;
-using Gameplay.Weapon._base;
 using Gameplay.Weapon.Attack.Comps;
 using Gameplay.Weapon.Shooting.Comps;
+using Infrastructure.Factories.Projectiles;
 using Leopotam.EcsLite;
 using Mitfart.LeoECSLite.UniLeo;
+using Structs.Ranged;
 using UnityEngine;
-using VContainer;
-using VContainer.Unity;
 
 namespace Gameplay.Weapon.Shooting.Systems {
    public class ShootSys : IEcsRunSystem, IEcsInitSystem {
-      private const string _PROJECTILES_CONTAINER_NAME = "Projectiles Container";
-
-      private readonly IObjectResolver _di;
+      private readonly ProjectilesFactory _projectilesFactory;
 
       private EcsWorld  _world;
       private EcsFilter _filter;
-      private Transform _insContainer;
 
       private EcsPool<Projectiles>             _projectilesPool;
       private EcsPool<ProjectilesSpawnOrigins> _shootOriginsPool;
@@ -27,8 +25,8 @@ namespace Gameplay.Weapon.Shooting.Systems {
 
 
 
-      public ShootSys(IObjectResolver di) {
-         _di = di;
+      public ShootSys(ProjectilesFactory projectilesFactory) {
+         _projectilesFactory = projectilesFactory;
       }
 
       public void Init(IEcsSystems systems) {
@@ -45,16 +43,18 @@ namespace Gameplay.Weapon.Shooting.Systems {
 
          _isAttackingPool = _world.GetPool<IsAttacking>();
          _spreadAnglePool = _world.GetPool<SpreadAngle>();
-
-         _insContainer = InsContainer();
       }
 
       public void Run(IEcsSystems systems) {
          foreach (int weaponE in _filter) {
             foreach (EcsTransform shootOrigin in ShootOrigins(weaponE)) {
-               EcsTransform insTransform = shootOrigin.Refresh();
+               EcsTransform insTransform = WithSpread(weaponE, shootOrigin.Refresh());
 
-               SpawnRandomProjectile(ref WithSpread(weaponE, ref insTransform), weaponE);
+               _projectilesFactory.Spawn(
+                  RandomProjectile(weaponE).name,
+                  insTransform.Position,
+                  insTransform.Rotation
+               );
             }
 
             MarkAttacking(weaponE);
@@ -63,28 +63,29 @@ namespace Gameplay.Weapon.Shooting.Systems {
 
 
 
-      private List<EcsTransform> ShootOrigins(int weaponE) => _shootOriginsPool.Get(weaponE).value;
-
-      private void MarkAttacking(int weaponE) => _isAttackingPool.Add(weaponE);
-
-      private ref EcsTransform WithSpread(int weaponE, ref EcsTransform insTransform) {
-         if (!_spreadAnglePool.Has(weaponE))
-            return ref insTransform;
+      private List<EcsTransform> ShootOrigins(int     weaponE) => _shootOriginsPool.Get(weaponE).value;
+      private ConvertToEntity    RandomProjectile(int weaponE) => _projectilesPool.Get(weaponE).value.Random();
+      private void               MarkAttacking(int    weaponE) => _isAttackingPool.Add(weaponE);
+      
+      private EcsTransform WithSpread(int weaponE, EcsTransform insTransform) {
+         if (!HasSpread(weaponE, out Ranged angle))
+            return insTransform;
 
          Vector3 angles = insTransform.EulerAngles();
-         angles.z += _spreadAnglePool.Get(weaponE).angle.GetRandom();
+         angles.z += angle.GetRandom();
          insTransform.SetEulerAngles(angles);
 
-         return ref insTransform;
+         return insTransform;
       }
 
-      private void SpawnRandomProjectile(ref EcsTransform insTransform, int weaponE) => _di.Instantiate(GetRandomProjectile(weaponE), _insContainer).transform.Sync(insTransform);
-
-      private ConvertToEntity GetRandomProjectile(int weaponE) {
-         ref List<ConvertToEntity> projectiles = ref _projectilesPool.Get(weaponE).value;
-         return projectiles[Random.Range(minInclusive: 0, projectiles.Count - 1)];
+      private bool HasSpread(int weaponE, out Ranged angle) {
+         if (_spreadAnglePool.TryGet(weaponE, out SpreadAngle spread)) {
+            angle = spread.angle;
+            return true;
+         }
+         
+         angle = default;
+         return false;
       }
-
-      private static Transform InsContainer() => new GameObject(_PROJECTILES_CONTAINER_NAME).transform;
    }
 }
