@@ -1,6 +1,6 @@
 ﻿using Extensions.Collections;
-using Gameplay.Environment;
-using Gameplay.Environment.StaticData;
+using Gameplay.Level;
+using Gameplay.Level.StaticData;
 using Infrastructure.AssetsManagement;
 
 namespace Infrastructure.StateMachine.States {
@@ -15,13 +15,12 @@ namespace Infrastructure.StateMachine.States {
          StartLocation = assets.Load<Location>(AssetPath.START_LOCATION);
       }
 
-      public override void Enter() {
-         StateMachine.Enter<LoadLevelState, NextLevel>(
+      public override void Enter()
+         => StateMachine.Enter<LoadLevelState, NextLevel>(
             new NextLevel(
                StartLocation,
                StartLocation.DefaultRooms.Random()
             )
          );
-      }
    }
 }

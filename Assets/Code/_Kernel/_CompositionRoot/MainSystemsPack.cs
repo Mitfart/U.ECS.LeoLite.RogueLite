@@ -1,11 +1,12 @@
-using Engine.Ecs;
 using Events;
+using Extensions.Ecs;
 using Gameplay.Destroy;
-using Gameplay.Environment.ecs;
 using Gameplay.HitBoxes;
+using Gameplay.Level.ecs.tmp;
 using Gameplay.Movement;
 using Gameplay.Player;
 using Gameplay.Unit;
+using Gameplay.Unit.Behavior;
 using Gameplay.UnityRef;
 using Gameplay.View;
 using Gameplay.Weapon;
@@ -21,8 +22,10 @@ public class MainSystemsPack : EcsSystemsPack {
       AddPack<GetUnityDataSystems>();
 
       AddPack<PlayerSystems>();
-      AddPack<MovementSystems>();
+      AddPack<BehaviorSystems>();
+
       AddPack<WeaponSystems>();
+      AddPack<MovementSystems>();
       AddPack<BattleSystems>();
       AddPack<UnitSystems>();
 

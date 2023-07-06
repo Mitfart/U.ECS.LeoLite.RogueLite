@@ -23,7 +23,7 @@ namespace Infrastructure.Loading {
 
          while (!loadOperation.isDone) {
             onLoading?.Invoke(loadOperation.progress);
-            await Task.Delay(10);
+            await Task.Delay(millisecondsDelay: 10);
          }
 
 #if UNITY_EDITOR

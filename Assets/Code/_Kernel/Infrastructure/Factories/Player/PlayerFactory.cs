@@ -4,7 +4,7 @@ using Mitfart.LeoECSLite.UniLeo;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace Infrastructure.Factories.Extensions {
+namespace Infrastructure.Factories {
    public class PlayerFactory : Factory {
       private const string _CONTAINER_NAME = "Players";
 

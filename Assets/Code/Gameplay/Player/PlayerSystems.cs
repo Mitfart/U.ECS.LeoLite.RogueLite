@@ -1,5 +1,4 @@
 ﻿using _Lab;
-using Engine.Ecs;
 using Extensions.Ecs;
 using Gameplay.Interactable;
 using Gameplay.Player.Sys;
@@ -14,6 +13,7 @@ namespace Gameplay.Player {
 
          Add<MovementInputSys>();
          Add<TestPlayerInputSys>();
+         Add<PlayerPathMoveToCursor>();
       }
    }
 }

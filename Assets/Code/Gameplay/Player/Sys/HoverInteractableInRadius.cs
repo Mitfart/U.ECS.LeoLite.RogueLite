@@ -1,10 +1,11 @@
 ﻿using Extensions.Ecs;
+using Gameplay.Interactable;
 using Gameplay.Player.Comps;
 using Gameplay.UnityRef.Transform.Comp;
 using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace Gameplay.Interactable {
+namespace Gameplay.Player.Sys {
    public class HoverInteractableInRadius : IEcsRunSystem, IEcsInitSystem {
       private EcsWorld _world;
 
@@ -21,7 +22,7 @@ namespace Gameplay.Interactable {
          _world = systems.GetWorld();
 
          _playerFilter       = _world.Filter<PlayerTag>().Inc<InteractRadius>().End();
-         _interactableFilter = _world.Filter<Interactable>().End();
+         _interactableFilter = _world.Filter<Interactable.Interactable>().End();
 
          _interactRadiusPool = _world.GetPool<InteractRadius>();
          _ecsTransformPool   = _world.GetPool<EcsTransform>();
@@ -53,7 +54,7 @@ namespace Gameplay.Interactable {
             entity          = interactableE;
          }
 
-         return entity.IsAlive(@in: _world);
+         return entity.IsAlive(_world);
       }
 
       private float DistanceBetween(int e1, int e2)
@@ -62,6 +63,6 @@ namespace Gameplay.Interactable {
             _ecsTransformPool.Get(e2).Position
          );
 
-      private void SetHovered(int entity, int by) => _hoveredPool.Set(entity).by = _world.PackEntityWithWorld(by);
+      private void SetHovered(int entity, int by) => _hoveredPool.Set(entity).By = _world.PackEntityWithWorld(by);
    }
 }

@@ -17,4 +17,4 @@ MonoBehaviour:
     max: 1
     rounded: 0
     minEdge: 0
-    maxEdge: 1
+    maxEdge: 10

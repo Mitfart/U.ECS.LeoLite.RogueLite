@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Gameplay.Environment;
-using Gameplay.Environment.ecs.Comp;
-using Gameplay.Environment.StaticData;
+using Gameplay.Level;
+using Gameplay.Level.ecs.tmp.Comp;
+using Gameplay.Level.StaticData;
 using Infrastructure.AssetsManagement;
 using Mitfart.LeoECSLite.UniLeo;
 using UnityEngine;

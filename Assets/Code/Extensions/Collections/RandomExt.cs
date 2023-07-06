@@ -10,7 +10,7 @@ namespace Extensions.Collections {
          collection.RemoveAll(exclude.Contains);
 
          if (collection.Count == 0)
-            throw new Exception("Excluded all items");
+            throw new Exception(message: "Excluded all items");
 
          return collection[collection.RandomIndex()];
       }

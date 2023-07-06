@@ -66,7 +66,7 @@ namespace Gameplay.Weapon.Shooting.Systems {
       private List<EcsTransform> ShootOrigins(int     weaponE) => _shootOriginsPool.Get(weaponE).value;
       private ConvertToEntity    RandomProjectile(int weaponE) => _projectilesPool.Get(weaponE).value.Random();
       private void               MarkAttacking(int    weaponE) => _isAttackingPool.Add(weaponE);
-      
+
       private EcsTransform WithSpread(int weaponE, EcsTransform insTransform) {
          if (!HasSpread(weaponE, out Ranged angle))
             return insTransform;
@@ -83,7 +83,7 @@ namespace Gameplay.Weapon.Shooting.Systems {
             angle = spread.angle;
             return true;
          }
-         
+
          angle = default;
          return false;
       }

@@ -6,6 +6,7 @@ namespace Infrastructure.AssetsManagement {
       public const string LOADING_CURTAIN = "Infrastructure/LoadingCurtain";
 
       public const string GIZMOS_SERVICE = "Services/GizmosService";
+      public const string AI_NAV_SERVICE = "Services/AINavService";
 
       public const string RENDER = "Render";
 

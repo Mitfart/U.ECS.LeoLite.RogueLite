@@ -12,13 +12,14 @@ namespace Infrastructure.StateMachine {
       public IGameStateMachine RegisterStates(IReadOnlyList<IGameState> gameStates) {
          _states = new Dictionary<Type, IGameState>(gameStates.Count);
 
-         foreach (IGameState gameState in gameStates)
+         foreach (IGameState gameState in gameStates) {
             RegisterState(gameState);
-         
+         }
+
          return this;
-      } 
-      
-      
+      }
+
+
 
       public void Enter<TState>() where TState : class, IGameState //                                    
          => ChangeState<TState>().Enter();

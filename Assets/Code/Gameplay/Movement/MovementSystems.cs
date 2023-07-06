@@ -1,4 +1,4 @@
-using Engine.Ecs;
+using Extensions.Ecs;
 using Gameplay.Movement.Smooth;
 using Gameplay.Movement.Sys;
 

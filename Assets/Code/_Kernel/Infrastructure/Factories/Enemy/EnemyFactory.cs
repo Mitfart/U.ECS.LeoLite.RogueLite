@@ -19,8 +19,10 @@ namespace Infrastructure.Factories {
       public override void Reset() {
          base.Reset();
 
-         foreach (List<ConvertToEntity> enemies in _enemies.Values)
+         foreach (List<ConvertToEntity> enemies in _enemies.Values) {
             enemies.Clear();
+         }
+
          _enemies.Clear();
       }
 
@@ -37,8 +39,8 @@ namespace Infrastructure.Factories {
 
             Cache(enemyType, enemyIns);
             return enemyIns;
-         } catch (Exception) {
-            UnityEngine.Debug.LogWarning($"Can't Spawn enemy! <{enemyType}>");
+         } catch (Exception exc) {
+            Debug.LogWarning($"Can't Spawn enemy! <{enemyType}> \n {exc}");
             return null;
          }
       }

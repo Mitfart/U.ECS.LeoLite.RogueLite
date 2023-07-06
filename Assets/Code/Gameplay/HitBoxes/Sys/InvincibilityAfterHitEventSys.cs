@@ -4,7 +4,6 @@ using Gameplay.HitBoxes.Comps;
 using Gameplay.Unit.Comps;
 using Infrastructure.Services.Time;
 using Leopotam.EcsLite;
-using UnityEngine;
 
 namespace Gameplay.HitBoxes.Sys {
    public class InvincibilityAfterHitEventSys : IEcsRunSystem, IEcsInitSystem {

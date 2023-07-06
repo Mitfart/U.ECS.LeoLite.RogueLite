@@ -11,9 +11,9 @@ namespace Infrastructure {
 
       public void Awake() {
          DontDestroyOnLoad(gameObject);
-         
+
          scope.Build();
-         
+
          EnterBootState();
       }
 

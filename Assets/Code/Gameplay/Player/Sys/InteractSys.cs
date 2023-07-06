@@ -32,8 +32,9 @@ namespace Gameplay.Player.Sys {
          if (!_controls.Game.Interact.triggered)
             return;
 
-         foreach (int e in _filter)
-            _interactedPool.Set(e).by = _hoveredPool.Get(e).by;
+         foreach (int e in _filter) {
+            _interactedPool.Set(e).By = _hoveredPool.Get(e).By;
+         }
       }
    }
 }

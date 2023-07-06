@@ -1,7 +1,6 @@
 ﻿using Gameplay.HitBoxes.Comps;
 using Infrastructure.Services.Time;
 using Leopotam.EcsLite;
-using UnityEngine;
 
 namespace Gameplay.HitBoxes.Sys {
    public class RemoveInvincibilitySys : IEcsRunSystem, IEcsInitSystem {
@@ -26,9 +25,10 @@ namespace Gameplay.HitBoxes.Sys {
       }
 
       public void Run(IEcsSystems systems) {
-         foreach (int e in _filter)
+         foreach (int e in _filter) {
             if (PassInvincibilityTime(e))
                MakeNotInvincible(e);
+         }
       }
 
 

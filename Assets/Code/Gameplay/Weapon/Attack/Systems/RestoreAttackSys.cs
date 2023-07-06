@@ -2,7 +2,6 @@ using Extensions.Ecs;
 using Gameplay.Weapon.Attack.Comps;
 using Infrastructure.Services.Time;
 using Leopotam.EcsLite;
-using UnityEngine;
 
 namespace Gameplay.Weapon.Attack.Systems {
    public class RestoreAttackSys : IEcsRunSystem, IEcsInitSystem {

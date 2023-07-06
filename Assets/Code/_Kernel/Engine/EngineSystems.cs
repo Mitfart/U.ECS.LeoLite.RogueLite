@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Leopotam.EcsLite;
 
-namespace Engine.Ecs {
+namespace Engine {
    public class EngineSystems : EcsSystems, IEngineSystems {
       private readonly IEnumerable<IEcsSystem> _rawSystems;
 
@@ -15,21 +15,21 @@ namespace Engine.Ecs {
       }
 
       public void Initialize() {
-         foreach (IEcsSystem system in _rawSystems)
+         foreach (IEcsSystem system in _rawSystems) {
             Add(system);
+         }
 
          Init();
       }
 
-      public void Dispose() {
-         Destroy();
-      }
+      public void Dispose() => Destroy();
 
 
 
       public void FixedRun() {
-         foreach (IEcsFixedRunSystem system in _fixedRunSystems)
+         foreach (IEcsFixedRunSystem system in _fixedRunSystems) {
             system.FixedRun(this);
+         }
       }
 
 

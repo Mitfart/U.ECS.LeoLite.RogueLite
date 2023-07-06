@@ -12,8 +12,8 @@ namespace Gameplay.Movement.Sys {
       private EcsPool<EcsTransform>   _displacementPool;
       private EcsPool<MoveDirection>  _moveDirectionPool;
 
-      
-      
+
+
       public void Init(IEcsSystems systems) {
          _world  = systems.GetWorld();
          _filter = _world.Filter<DirectionInput>().Inc<MoveDirection>().Inc<EcsTransform>().End();
@@ -22,7 +22,7 @@ namespace Gameplay.Movement.Sys {
          _directionInputPool = _world.GetPool<DirectionInput>();
          _displacementPool   = _world.GetPool<EcsTransform>();
       }
-      
+
       public void Run(IEcsSystems systems) {
          foreach (int e in _filter) {
             ref MoveDirection  moveDirection  = ref _moveDirectionPool.Get(e);

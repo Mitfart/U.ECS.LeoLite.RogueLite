@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using Engine;
-using Engine.Ecs;
 using Events;
-using Gameplay.Environment;
+using Gameplay.Level;
+using Gameplay.Unit.Behavior;
 using Infrastructure.AssetsManagement;
 using Infrastructure.AssetsManagement.VContainerExtensions;
 using Infrastructure.Factories;
-using Infrastructure.Factories.Extensions;
 using Infrastructure.Factories.Projectiles;
 using Infrastructure.Loading;
 using Infrastructure.Render;
@@ -35,6 +34,7 @@ public class GameScope : LifetimeScope {
       RegRender();
       RegLoadingCurtain();
 
+      RegAINavService();
       RegLevel();
 
       RegFactories();
@@ -57,7 +57,8 @@ public class GameScope : LifetimeScope {
    private void RegLoadingCurtain() => _di.RegInstanceInstantly<LoadingCurtain>(AssetPath.LOADING_CURTAIN);
 
 
-   private void RegLevel() => _di.Register<Level>(Lifetime.Singleton);
+   private void RegAINavService() => _di.RegInstanceInstantly<AINavService>(AssetPath.AI_NAV_SERVICE);
+   private void RegLevel()        => _di.Register<Level>(Lifetime.Singleton);
 
 
    private void RegFactories() {

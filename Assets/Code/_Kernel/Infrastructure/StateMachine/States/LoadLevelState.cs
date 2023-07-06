@@ -1,9 +1,8 @@
 using Engine;
 using Extensions.Collections;
-using Gameplay.Environment;
-using Gameplay.Environment.StaticData;
+using Gameplay.Level;
+using Gameplay.Level.StaticData;
 using Infrastructure.Factories;
-using Infrastructure.Factories.Extensions;
 using Infrastructure.Loading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -67,15 +66,11 @@ namespace Infrastructure.StateMachine.States {
          LoadRoom();
       }
 
-      public override void Exit() {
-         _loadingCurtain.Hide();
-      }
+      public override void Exit() => _loadingCurtain.Hide();
 
 
 
-      private void LoadRoom() {
-         _sceneLoader.Load(NextRoom.SceneName, OnLoaded);
-      }
+      private void LoadRoom() => _sceneLoader.Load(NextRoom.SceneName, OnLoaded);
 
       private void OnLoaded(Scene _) {
          SpawnEnemies();
@@ -96,32 +91,35 @@ namespace Infrastructure.StateMachine.States {
          _level.SetRoom(NextRoom);
 
 
-         bool NewLocation() => NextLocation != _level.Location;
+         bool NewLocation() {
+            return NextLocation != _level.Location;
+         }
       }
 
 
 
       private void SpawnEnemies() {
-         foreach (SpawnPoint spawn in NextRoom.SpawnPoints)
+         foreach (SpawnPoint spawn in NextRoom.SpawnPoints) {
             _enemyFactory.Spawn(
-               spawn.EnemyType,
-               at: spawn.Position
+               spawn.enemyType,
+               spawn.position
             );
+         }
       }
 
-      private void SpawnPlayer() {
-         _playerFactory.Spawn(
+      private void SpawnPlayer()
+         => _playerFactory.Spawn(
             NextRoom.EnterPoint
          );
-      }
 
       private void CreateDoors() {
-         foreach (Vector3 exitPoint in NextRoom.ExitPoints)
+         foreach (Vector3 exitPoint in NextRoom.ExitPoints) {
             _environmentFactory.CreateDoor(
                exitPoint,
                NextLocation,
                NextLocation.DefaultRooms.Random( /*_level.PassedRooms.ToArray()*/)
             );
+         }
       }
 
 

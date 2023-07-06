@@ -19,8 +19,9 @@ namespace Infrastructure.Factories.Projectiles {
       public override void Reset() {
          base.Reset();
 
-         foreach (List<ConvertToEntity> projectiles in _projectiles.Values)
+         foreach (List<ConvertToEntity> projectiles in _projectiles.Values) {
             projectiles.Clear();
+         }
 
          _projectiles.Clear();
       }

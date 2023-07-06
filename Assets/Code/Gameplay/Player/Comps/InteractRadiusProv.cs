@@ -1,6 +1,6 @@
 ﻿using System;
-using UnityEngine;
 using Mitfart.LeoECSLite.UniLeo.Providers;
+using UnityEngine;
 
 namespace Gameplay.Player.Comps {
    [DisallowMultipleComponent]

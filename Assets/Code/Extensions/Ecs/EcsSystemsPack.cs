@@ -3,7 +3,7 @@ using Leopotam.EcsLite;
 using VContainer;
 using VContainer.Unity;
 
-namespace Engine.Ecs {
+namespace Extensions.Ecs {
    public abstract class EcsSystemsPack : IInstaller {
       private IContainerBuilder _di;
 

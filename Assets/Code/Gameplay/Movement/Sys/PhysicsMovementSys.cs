@@ -1,4 +1,4 @@
-using Engine.Ecs;
+using Engine;
 using Gameplay.Movement.Comps;
 using Gameplay.UnityRef.Physics;
 using Infrastructure.Services.Time;
