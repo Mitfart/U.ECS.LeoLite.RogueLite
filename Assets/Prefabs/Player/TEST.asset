@@ -13,45 +13,44 @@ MonoBehaviour:
   m_Name: TEST
   m_EditorClassIdentifier: 
   value:
-    <Speed>k__BackingField: 10
-    <Accel>k__BackingField: 160
-    <MaxAccel>k__BackingField: 140
-    <AccelDotFactor>k__BackingField:
+    accel: 150
+    accelDotFactor:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.5
-        inSlope: 0.369155
-        outSlope: 0.369155
+        value: 0
+        inSlope: 0
+        outSlope: 0
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0.19166666
+        outWeight: 0
       - serializedVersion: 3
         time: 1
         value: 1
-        inSlope: 1.2305163
-        outSlope: 1.2305163
+        inSlope: 2
+        outSlope: 2
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.09583336
+        inWeight: 0
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    <MaxAccelDotFactor>k__BackingField:
+    maxAccel: 150
+    maxAccelDotFactor:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.5
-        inSlope: 1.0232223
-        outSlope: 1.0232223
+        value: 0
+        inSlope: 2
+        outSlope: 2
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0.108333334
+        outWeight: 0
       - serializedVersion: 3
         time: 1
         value: 1
@@ -64,4 +63,4 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    <Scale>k__BackingField: 1
+  <Speed>k__BackingField: 10

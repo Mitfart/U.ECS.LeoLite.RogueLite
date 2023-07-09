@@ -1,5 +1,4 @@
-﻿using Gameplay.Movement.Comps;
-using Gameplay.UnityRef.Transform.Comp;
+﻿using Gameplay.UnityRef.Transform.Comp;
 using Leopotam.EcsLite;
 using UnityEngine;
 
@@ -14,7 +13,9 @@ namespace Gameplay.Movement.Smooth {
 
       public void Init(IEcsSystems systems) {
          _world  = systems.GetWorld();
-         _filter = _world.Filter<EcsTransform>().Inc<SmoothTransform>().Exc<PhysicsMovement>().End();
+         _filter = _world.Filter<EcsTransform>()
+                         .Inc<SmoothTransform>()
+                         .End();
 
          _transformPool = _world.GetPool<EcsTransform>();
          _smoothPool    = _world.GetPool<SmoothTransform>();

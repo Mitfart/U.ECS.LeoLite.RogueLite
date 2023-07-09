@@ -30,12 +30,20 @@ namespace Gameplay.Unit.Behavior.ECS.Sys {
          foreach (int e in _filter) {
             ref Path path = ref _pathPool.Get(e);
 
-            var distance = Vector3.Distance(Position(e), path.NextCorner());
+            if (PassCorner(e, ref path))
+               SetNextCorner(ref path);
 
-            if (path.exist && distance <= 1)
-               path.cornerIndex = path.NextCornerIndex;
+            if (PassAllCorners(ref path))
+               End(ref path);
          }
       }
+
+
+
+      private        bool PassCorner(int          e, ref Path path) => Vector2.Distance(Position(e), path.NextCorner()) <= Consts.EPSILON;
+      private static void SetNextCorner(ref  Path path) => path.cornerIndex = path.NextCornerIndex;
+      private static bool PassAllCorners(ref Path path) => path.cornerIndex == path.MaxIndex;
+      private static void End(ref            Path path) => path.exist = false;
 
       private Vector3 Position(int entity) => _ecsTransformPool.Get(entity).Position;
    }

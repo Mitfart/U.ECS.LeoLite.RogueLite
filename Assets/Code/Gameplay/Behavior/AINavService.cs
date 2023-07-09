@@ -7,9 +7,8 @@ namespace Gameplay.Unit.Behavior {
 
 
 
-      public bool CalcPath(Vector3 start, Vector3 end, NavMeshPath path) {
-         agent.transform.position = start;
-         return agent.CalculatePath(end, path);
-      }
+      public bool CalcPath(Vector3 start, Vector3 end, NavMeshPath path)
+         => agent.Warp(start)
+         && agent.CalculatePath(end, path);
    }
 }

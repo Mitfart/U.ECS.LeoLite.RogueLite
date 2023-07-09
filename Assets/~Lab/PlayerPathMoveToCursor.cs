@@ -3,15 +3,8 @@ using Gameplay.Player.Comps;
 using Gameplay.Unit.Behavior;
 using Gameplay.Unit.Behavior.ECS.Comps;
 using Gameplay.UnityRef.Transform.Comp;
-using Gameplay.Weapon._base;
-using Gameplay.Weapon.Aim;
-using Gameplay.Weapon.Ammo.Comps;
-using Gameplay.Weapon.Ammo.Extensions;
-using Gameplay.Weapon.Ammo.Reload;
-using Gameplay.Weapon.Attack.Comps;
 using Leopotam.EcsLite;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace _Lab {
    public class PlayerPathMoveToCursor : IEcsRunSystem, IEcsInitSystem {
@@ -40,12 +33,12 @@ namespace _Lab {
       }
 
       public void Run(IEcsSystems systems) {
-         if (!MouseUtils.LeftBtnDown())
+         if (!MouseUtils.LeftBtn())
             return;
 
          Vector2 mousePos = MouseUtils.WorldPos2D();
 
-         foreach (int e in _filter) {
+         foreach (int e in _filter)
             _pathPool
               .Set(e)
               .Calc(
@@ -53,7 +46,6 @@ namespace _Lab {
                   _ecsTransformPool.Get(e).Position,
                   mousePos
                );
-         }
       }
    }
 }

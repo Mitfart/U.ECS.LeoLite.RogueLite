@@ -7,8 +7,7 @@ namespace Gameplay.Movement.Smooth {
 
 
 
-      private void Start() => value.Init(target.position);
-
+      private void Awake()  => value.Init(target.position);
       private void Update() => transform.position = value.Update(Time.deltaTime, target.position);
    }
 }

@@ -5,5 +5,6 @@
       float Time       { get; }
       float RealTime   { get; }
       float LevelTime  { get; }
+      float ReverseDelta  { get; }
    }
 }

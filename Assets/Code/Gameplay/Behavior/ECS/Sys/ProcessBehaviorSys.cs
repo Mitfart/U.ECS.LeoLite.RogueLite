@@ -1,5 +1,4 @@
 using Gameplay.Unit.Behavior.ECS.Comps;
-using Gameplay.Unit.Behavior.Tree.Nodes;
 using Leopotam.EcsLite;
 
 namespace Gameplay.Unit.Behavior.ECS.Sys {

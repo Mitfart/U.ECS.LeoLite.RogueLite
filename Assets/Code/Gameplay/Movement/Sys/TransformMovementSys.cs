@@ -1,8 +1,9 @@
-using Extensions.Ecs;
 using Gameplay.Movement.Comps;
 using Gameplay.UnityRef.Transform.Comp;
+using Gameplay.UnityRef.Transform.Extensions;
 using Infrastructure.Services.Time;
 using Leopotam.EcsLite;
+using UnityEngine;
 
 namespace Gameplay.Movement.Sys {
    public class TransformMovementSys : IEcsRunSystem, IEcsInitSystem {
@@ -11,9 +12,9 @@ namespace Gameplay.Movement.Sys {
       private EcsWorld  _world;
       private EcsFilter _filter;
 
-      private EcsPool<EcsTransform>  _transformPool;
-      private EcsPool<MoveDirection> _moveDirectionPool;
-      private EcsPool<Speed>         _speedPool;
+      private EcsPool<EcsTransform> _transformPool;
+      private EcsPool<MoveTo>       _moveDirectionPool;
+      private EcsPool<Speed>        _speedPool;
 
 
 
@@ -22,26 +23,32 @@ namespace Gameplay.Movement.Sys {
       }
 
       public void Init(IEcsSystems systems) {
-         _world  = systems.GetWorld();
-         _filter = _world.Filter<EcsTransform>().Inc<MoveDirection>().Exc<PhysicsMovement>().End();
+         _world = systems.GetWorld();
+         _filter = _world.Filter<EcsTransform>()
+                         .Inc<MoveTo>()
+                         .Inc<Speed>()
+                         .End();
 
          _transformPool     = _world.GetPool<EcsTransform>();
-         _moveDirectionPool = _world.GetPool<MoveDirection>();
-
-         _speedPool = _world.GetPool<Speed>();
+         _moveDirectionPool = _world.GetPool<MoveTo>();
+         _speedPool         = _world.GetPool<Speed>();
       }
 
       public void Run(IEcsSystems systems) {
          float delta = _timeService.Delta;
 
-         foreach (int e in _filter) {
-            ref EcsTransform  transform     = ref _transformPool.Get(e);
-            ref MoveDirection moveDirection = ref _moveDirectionPool.Get(e);
-
-            float speed = _speedPool.TryGet(e, out Speed ms) ? ms.value : 1f;
-
-            transform.Position += moveDirection.value * (speed * delta);
-         }
+         foreach (int e in _filter)
+            Transform(e)
+              .MoveTo(
+                  Target(e),
+                  Speed(e) * delta
+               );
       }
+
+
+
+      private ref EcsTransform Transform(int e) => ref _transformPool.Get(e);
+      private ref Vector3      Target(int    e) => ref _moveDirectionPool.Get(e).position;
+      private ref float        Speed(int     e) => ref _speedPool.Get(e).value;
    }
 }
