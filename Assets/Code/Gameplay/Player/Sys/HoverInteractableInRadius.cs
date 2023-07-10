@@ -21,7 +21,7 @@ namespace Gameplay.Player.Sys {
       public void Init(IEcsSystems systems) {
          _world = systems.GetWorld();
 
-         _playerFilter       = _world.Filter<PlayerTag>().Inc<InteractRadius>().End();
+         _playerFilter       = _world.Filter<Comps.Player>().Inc<InteractRadius>().End();
          _interactableFilter = _world.Filter<Interactable.Interactable>().End();
 
          _interactRadiusPool = _world.GetPool<InteractRadius>();

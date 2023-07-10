@@ -29,7 +29,7 @@ namespace Gameplay.Unit.Behavior.ECS.Debug {
          foreach (int e in _filter) {
             Path path = _pathPool.Get(e);
             
-            if (!path.exist)
+            if (!path.Exist)
                continue;
 
             _gizmosService.Draw(

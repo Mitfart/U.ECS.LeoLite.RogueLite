@@ -33,7 +33,7 @@ namespace Gameplay.HitBoxes.Debug {
 
       public void Run(IEcsSystems systems) {
          foreach (int e in _filter) {
-            Area area = _hitBoxPool.Get(e).Area;
+            Area area = _hitBoxPool.Get(e).area;
 
             Matrix4x4 matrix = _ecsTransformPool.TryGet(e, out EcsTransform transform) ? transform.Matrix() : Matrix4x4.identity;
 

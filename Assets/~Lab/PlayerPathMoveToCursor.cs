@@ -5,6 +5,7 @@ using Gameplay.Unit.Behavior.ECS.Comps;
 using Gameplay.UnityRef.Transform.Comp;
 using Leopotam.EcsLite;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace _Lab {
    public class PlayerPathMoveToCursor : IEcsRunSystem, IEcsInitSystem {
@@ -24,7 +25,7 @@ namespace _Lab {
 
       public void Init(IEcsSystems systems) {
          _world = systems.GetWorld();
-         _filter = _world.Filter<PlayerTag>()
+         _filter = _world.Filter<Player>()
                          .Inc<EcsTransform>()
                          .End();
 
@@ -38,14 +39,19 @@ namespace _Lab {
 
          Vector2 mousePos = MouseUtils.WorldPos2D();
 
-         foreach (int e in _filter)
-            _pathPool
-              .Set(e)
-              .Calc(
-                  _navService,
-                  _ecsTransformPool.Get(e).Position,
-                  mousePos
+         foreach (int e in _filter) {
+            _navService
+              .CalcPath(
+                  Position(e),
+                  mousePos,
+                  Path(e)
                );
+         }
       }
+
+      
+      
+      private Vector3     Position(int e) => _ecsTransformPool.Get(e).Position;
+      private NavMeshPath Path(int     e) => _pathPool.Set(e).Value;
    }
 }

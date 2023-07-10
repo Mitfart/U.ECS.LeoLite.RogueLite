@@ -8,8 +8,6 @@ namespace Gameplay.Movement {
          Add<DirectionInputSys>();
 
          Add<TransformMovementSys>();
-
-         Add<SmoothTransformSys>();
       }
    }
 }

@@ -20,7 +20,7 @@ namespace Gameplay.Player.Sys {
 
       public void Init(IEcsSystems systems) {
          _world = systems.GetWorld();
-         _filter = _world.Filter<PlayerTag>()
+         _filter = _world.Filter<Comps.Player>()
                          .Inc<MoveTo>()
                          .End();
 

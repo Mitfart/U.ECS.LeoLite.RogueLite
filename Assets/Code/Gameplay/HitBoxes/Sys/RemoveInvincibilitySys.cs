@@ -25,10 +25,9 @@ namespace Gameplay.HitBoxes.Sys {
       }
 
       public void Run(IEcsSystems systems) {
-         foreach (int e in _filter) {
+         foreach (int e in _filter)
             if (PassInvincibilityTime(e))
                MakeNotInvincible(e);
-         }
       }
 
 

@@ -20,9 +20,8 @@ namespace Gameplay.UnityRef.Transform.Sys {
       }
 
       public void Run(IEcsSystems systems) {
-         foreach (int e in _filter) {
-            _ecs.Get(e).Sync(_uRef.Get(e).Component);
-         }
+         foreach (int e in _filter)
+            _ecs.Get(e).Sync(_uRef.Get(e).transform);
       }
    }
 }

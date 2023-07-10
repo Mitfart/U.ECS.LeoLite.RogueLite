@@ -38,7 +38,7 @@ namespace Gameplay.HitBoxes.Sys {
          foreach (int dealerE in _filter) {
             ref HitBox hitBox = ref _hitBoxPool.Get(dealerE);
 
-            Area area      = ToWorldArea(dealerE, hitBox.Area, out float angle);
+            Area area      = ToWorld(hitBox.area, dealerE, out float angle);
             int  hitsCount = CastHit(area, angle);
 
             for (var i = 0; i < hitsCount; i++) {
@@ -59,7 +59,7 @@ namespace Gameplay.HitBoxes.Sys {
 
 
 
-      private Area ToWorldArea(int dealerE, Area area, out float angle) {
+      private Area ToWorld(Area area, int dealerE, out float angle) {
          angle = 0f;
 
          if (!_ecsTransformPool.TryGet(dealerE, out EcsTransform dealerT))

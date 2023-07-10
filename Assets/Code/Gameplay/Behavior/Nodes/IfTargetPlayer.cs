@@ -19,7 +19,7 @@ namespace Gameplay.Unit.Behavior.Nodes {
 
 
       protected override void OnInit() {
-         _playerFilter = World.Filter<PlayerTag>().Inc<EcsTransform>().End();
+         _playerFilter = World.Filter<Player.Comps.Player>().Inc<EcsTransform>().End();
 
          _targetPool       = World.GetPool<Target>();
          _viewRadiusPool   = World.GetPool<ViewRadius>();

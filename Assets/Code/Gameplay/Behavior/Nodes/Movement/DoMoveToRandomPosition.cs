@@ -14,13 +14,18 @@ namespace Gameplay.Unit.Behavior.Nodes.Movement {
          _viewRadiusPool = World.GetPool<ViewRadius>();
       }
 
-      protected override void    OnBegin()     => _destination = RandomPosition();
+      protected override void OnBegin() {
+         do {
+            _destination = RandomPosition();
+         } while (!PathExist(_destination));
+      }
+
       protected override Vector3 Destination() => _destination;
 
 
 
       private Vector3 RandomPosition()         => RelativeRandomPosition() + Position(Entity);
-      private Vector3 RelativeRandomPosition() => (Vector3) Random.insideUnitCircle.normalized * ViewRadius();
+      private Vector3 RelativeRandomPosition() => (Vector3)Random.insideUnitCircle.normalized * ViewRadius();
       private float   ViewRadius()             => _viewRadiusPool.Get(Entity).value;
    }
 }

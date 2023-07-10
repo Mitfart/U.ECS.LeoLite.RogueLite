@@ -18,7 +18,7 @@ namespace Gameplay.Unit.Behavior.ECS.Sys {
       public void Init(IEcsSystems systems) {
          _world = systems.GetWorld();
          _filter = _world.Filter<Path>()
-                         .Inc<PlayerTag>()
+                         .Inc<Player.Comps.Player>()
                          .Inc<EcsTransform>()
                          .End();
 
@@ -34,7 +34,7 @@ namespace Gameplay.Unit.Behavior.ECS.Sys {
                SetNextCorner(ref path);
 
             if (PassAllCorners(ref path))
-               End(ref path);
+               path.End();
          }
       }
 
@@ -43,7 +43,6 @@ namespace Gameplay.Unit.Behavior.ECS.Sys {
       private        bool PassCorner(int          e, ref Path path) => Vector2.Distance(Position(e), path.NextCorner()) <= Consts.EPSILON;
       private static void SetNextCorner(ref  Path path) => path.cornerIndex = path.NextCornerIndex;
       private static bool PassAllCorners(ref Path path) => path.cornerIndex == path.MaxIndex;
-      private static void End(ref            Path path) => path.exist = false;
 
       private Vector3 Position(int entity) => _ecsTransformPool.Get(entity).Position;
    }

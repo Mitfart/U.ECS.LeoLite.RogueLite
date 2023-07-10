@@ -24,7 +24,7 @@ namespace _Lab {
 
       public void Init(IEcsSystems systems) {
          _world = systems.GetWorld();
-         _filter = _world.Filter<PlayerTag>()
+         _filter = _world.Filter<Player>()
                          .Inc<WeaponOwner>()
                          .End();
 
