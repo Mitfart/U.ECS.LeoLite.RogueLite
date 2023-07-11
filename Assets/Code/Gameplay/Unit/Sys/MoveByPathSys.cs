@@ -24,13 +24,17 @@ namespace Gameplay.Unit.Behavior.ECS.Sys {
       }
 
       public void Run(IEcsSystems systems) {
-         foreach (int e in _filter)
-            MoveTo(e, TargetPosition(e));
+         foreach (int e in _filter) {
+            ref Path path = ref Path(e);
+
+            if (path.Exist)
+               MoveTo(e, path.NextCorner());
+         }
       }
 
 
 
-      private void    MoveTo(int         e, Vector3 pos) => _moveToPool.Get(e).position = pos;
-      private Vector3 TargetPosition(int e) => _pathPool.Get(e).NextCorner();
+      private     void MoveTo(int e, Vector3 pos) => _moveToPool.Get(e).position = pos;
+      private ref Path Path(int   e) => ref _pathPool.Get(e);
    }
 }

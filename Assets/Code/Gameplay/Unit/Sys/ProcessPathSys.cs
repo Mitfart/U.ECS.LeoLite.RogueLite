@@ -31,17 +31,13 @@ namespace Gameplay.Unit.Behavior.ECS.Sys {
 
             if (PassCorner(e, ref path))
                SetNextCorner(ref path);
-
-            if (PassAllCorners(ref path))
-               path.End();
          }
       }
 
 
 
-      private        bool PassCorner(int          e, ref Path path) => Vector2.Distance(Position(e), path.NextCorner()) <= Consts.EPSILON;
-      private static void SetNextCorner(ref  Path path) => path.cornerIndex = path.NextCornerIndex;
-      private static bool PassAllCorners(ref Path path) => path.cornerIndex == path.MaxIndex;
+      private        bool PassCorner(int         e, ref Path path) => Vector3.Distance(Position(e), path.NextCorner()) <= Consts.EPSILON;
+      private static void SetNextCorner(ref Path path) => path.cornerIndex = path.NextCornerIndex;
 
       private Vector3 Position(int entity) => _ecsTransformPool.Get(entity).Position;
    }

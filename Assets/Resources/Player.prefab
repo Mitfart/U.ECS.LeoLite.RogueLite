@@ -165,6 +165,8 @@ GameObject:
   - component: {fileID: 6300028183732364540}
   - component: {fileID: 5644176589929449187}
   - component: {fileID: 5644176589929449186}
+  - component: {fileID: -430755168133420800}
+  - component: {fileID: 4088682848712238614}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -240,7 +242,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 248d32a9388ced148bf5bf196318a019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <SerializedAdapters>k__BackingField: []
+  <SerializedAdapters>k__BackingField:
+  - {fileID: 4088682848712238614}
+  - {fileID: -430755168133420800}
+  - {fileID: -430755168133420800}
+  - {fileID: 4088682848712238614}
+--- !u!114 &-430755168133420800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5644176589929449168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1324c0cf274464fa0dd5f2a5923d14e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Converter>k__BackingField: {fileID: 5644176589929449186}
+  interactor:
+    radius: 5
+--- !u!114 &4088682848712238614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5644176589929449168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca429401f8014d47b172b41b01014345, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Converter>k__BackingField: {fileID: 5644176589929449186}
+  speed: 10
 --- !u!1 &5644176589953165069
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,6 +368,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5644176589929449212}
     m_Modifications:
+    - target: {fileID: 5600975155975501512, guid: b3b1e65ca75e192409a9983009d1ee8a, type: 3}
+      propertyPath: <SerializedAdapters>k__BackingField.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5600975155975501512, guid: b3b1e65ca75e192409a9983009d1ee8a, type: 3}
+      propertyPath: <SerializedAdapters>k__BackingField.Array.data[1]
+      value: 
+      objectReference: {fileID: 5579049483258009416}
     - target: {fileID: 5600975155975501518, guid: b3b1e65ca75e192409a9983009d1ee8a, type: 3}
       propertyPath: m_Name
       value: Weapon_Base
@@ -391,3 +434,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5600975155975501519, guid: b3b1e65ca75e192409a9983009d1ee8a, type: 3}
   m_PrefabInstance: {fileID: 836155010059338160}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5579049483258009416 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5113377227071526648, guid: b3b1e65ca75e192409a9983009d1ee8a, type: 3}
+  m_PrefabInstance: {fileID: 836155010059338160}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71cf0322bd934481a2a9e40fcb121a28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

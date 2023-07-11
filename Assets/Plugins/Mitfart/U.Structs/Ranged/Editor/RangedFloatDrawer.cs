@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 
 namespace Structs.Ranged.Editor {
-   [CustomPropertyDrawer(typeof(RangeEdges))]
+   [CustomPropertyDrawer(typeof(RangeEdgesAttribute))]
    [CustomPropertyDrawer(typeof(Ranged), true)]
    public class RangedFloatDrawer : PropertyDrawer {
       private const string _MIN         = "min";
@@ -34,15 +34,15 @@ namespace Structs.Ranged.Editor {
          bool       round      = roundedProp.boolValue;
          float      minEdge    = minEdgeProp.floatValue;
          float      maxEdge    = maxEdgeProp.floatValue;
-         RangeEdges rangeEdges = attribute as RangeEdges ?? new RangeEdges(minEdge, maxEdge);
+         RangeEdgesAttribute rangeEdgesAttribute = attribute as RangeEdgesAttribute ?? new RangeEdgesAttribute(minEdge, maxEdge);
 
          Ranged ranged = Draw(
             position,
             new Ranged(
                min,
                max,
-               rangeEdges.Min,
-               rangeEdges.Max,
+               rangeEdgesAttribute.Min,
+               rangeEdgesAttribute.Max,
                round
             )
          );

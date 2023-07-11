@@ -1,18 +1,22 @@
 ﻿using System.Collections.Generic;
+using Gameplay.Player.Adapters;
 using Infrastructure.AssetsManagement;
-using Unity.Mathematics;
+using Leopotam.EcsLite;
 using UnityEngine;
 
 namespace Infrastructure.Factories {
    public class PlayerFactory : Factory {
       private const string _CONTAINER_NAME = "Players";
 
-      private readonly List<GameObject> _players;
+      private readonly List<PlayerAdapter> _players;
+
+      private readonly EcsWorld _world;
 
 
 
-      public PlayerFactory(IAssets assets) : base(assets) {
-         _players = new List<GameObject>();
+      public PlayerFactory(IAssets assets, EcsWorld world) : base(assets) {
+         _world   = world;
+         _players = new List<PlayerAdapter>();
       }
 
       public override void Reset() {
@@ -23,19 +27,22 @@ namespace Infrastructure.Factories {
 
 
 
-      public GameObject Spawn(Vector3 at) {
-         GameObject playerIns = Assets.Ins<GameObject>(
+      public PlayerAdapter Spawn(Vector3 at) {
+         PlayerAdapter playerIns = Assets.Ins<PlayerAdapter>(
             AssetPath.PLAYER,
             at,
-            quaternion.identity,
+            Quaternion.identity,
             Container(_CONTAINER_NAME)
          );
+
+         playerIns.Converter.Convert(_world, _world.NewEntity());
+
          Cache(playerIns);
          return playerIns;
       }
 
 
 
-      private void Cache(GameObject playerIns) => _players.Add(playerIns);
+      private void Cache(PlayerAdapter playerIns) => _players.Add(playerIns);
    }
 }

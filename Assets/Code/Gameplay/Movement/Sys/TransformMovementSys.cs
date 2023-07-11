@@ -13,7 +13,7 @@ namespace Gameplay.Movement.Sys {
       private EcsFilter _filter;
 
       private EcsPool<EcsTransform> _transformPool;
-      private EcsPool<MoveTo>       _moveDirectionPool;
+      private EcsPool<MoveTo>       _moveToPool;
       private EcsPool<Speed>        _speedPool;
 
 
@@ -29,9 +29,9 @@ namespace Gameplay.Movement.Sys {
                          .Inc<Speed>()
                          .End();
 
-         _transformPool     = _world.GetPool<EcsTransform>();
-         _moveDirectionPool = _world.GetPool<MoveTo>();
-         _speedPool         = _world.GetPool<Speed>();
+         _transformPool = _world.GetPool<EcsTransform>();
+         _moveToPool    = _world.GetPool<MoveTo>();
+         _speedPool     = _world.GetPool<Speed>();
       }
 
       public void Run(IEcsSystems systems) {
@@ -48,7 +48,7 @@ namespace Gameplay.Movement.Sys {
 
 
       private ref EcsTransform Transform(int e) => ref _transformPool.Get(e);
-      private ref Vector3      Target(int    e) => ref _moveDirectionPool.Get(e).position;
+      private ref Vector3      Target(int    e) => ref _moveToPool.Get(e).position;
       private ref float        Speed(int     e) => ref _speedPool.Get(e).value;
    }
 }

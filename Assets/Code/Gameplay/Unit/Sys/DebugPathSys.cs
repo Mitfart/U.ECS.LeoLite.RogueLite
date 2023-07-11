@@ -34,7 +34,7 @@ namespace Gameplay.Unit.Behavior.ECS.Debug {
 
             _gizmosService.Draw(
                () => {
-                  for (var i = 0; i < path.CornersCount - 1; i++) {
+                  for (var i = 0; i < path.MaxIndex; i++) {
                      Vector3 corner     = path.Corners[i];
                      Vector3 nextCorner = path.Corners[i + 1];
 

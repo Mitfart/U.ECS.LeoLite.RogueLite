@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Structs.Optional {
   [Serializable]
-  public struct Optional<T> {
+  public class Optional<T> {
     [SerializeField] private T    value;
     [SerializeField] private bool enabled;
 

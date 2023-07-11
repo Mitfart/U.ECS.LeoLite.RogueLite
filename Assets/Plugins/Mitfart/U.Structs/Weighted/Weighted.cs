@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Structs.Weighted {
   [Serializable]
-  public struct Weighted<T> {
+  public class Weighted<T> {
     [SerializeField] private T     value;
     [SerializeField] private float weight;
 

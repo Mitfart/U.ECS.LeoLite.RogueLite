@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Structs.Counted {
   [Serializable]
-  public struct Counted<T> {
+  public class Counted<T> {
     [SerializeField] private T   value;
     [SerializeField] private int count;
 

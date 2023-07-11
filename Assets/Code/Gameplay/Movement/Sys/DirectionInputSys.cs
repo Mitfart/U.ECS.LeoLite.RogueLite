@@ -2,6 +2,7 @@ using Gameplay.Movement.Comps;
 using Gameplay.Movement.Direction.Extensions;
 using Gameplay.UnityRef.Transform.Comp;
 using Leopotam.EcsLite;
+using UnityEngine;
 
 namespace Gameplay.Movement.Sys {
    public class DirectionInputSys : IEcsRunSystem, IEcsInitSystem {
@@ -28,12 +29,16 @@ namespace Gameplay.Movement.Sys {
 
       public void Run(IEcsSystems systems) {
          foreach (int e in _filter) {
-            ref MoveTo         moveTo         = ref _moveDirectionPool.Get(e);
-            ref DirectionInput directionInput = ref _directionInputPool.Get(e);
-            ref EcsTransform   transform      = ref _displacementPool.Get(e);
+            ref EcsTransform transform = ref _displacementPool.Get(e);
 
-            moveTo.position = transform.Position + transform.GetDirection(directionInput.value);
+            MoveTo(e, transform.Position + MoveDirection(transform, e));
          }
       }
+
+
+
+      private Vector3             MoveDirection(EcsTransform transform, int e) => transform.GetDirection(DirectionInput(e));
+      private Direction.Direction DirectionInput(int         e)              => _directionInputPool.Get(e).value;
+      private void                MoveTo(int                 e, Vector3 pos) => _moveDirectionPool.Get(e).position = pos;
    }
 }

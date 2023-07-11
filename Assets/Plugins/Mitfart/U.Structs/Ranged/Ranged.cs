@@ -1,10 +1,9 @@
 ﻿using System;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Structs.Ranged {
    [Serializable]
-   public struct Ranged {
+   public class Ranged {
       [SerializeField] private float min;
       [SerializeField] private float max;
       [SerializeField] private bool  rounded;
@@ -46,8 +45,8 @@ namespace Structs.Ranged {
       public float Clamp(float value) => Mathf.Clamp(value, Min, Max);
       public int   Clamp(int   value) => Mathf.RoundToInt(Clamp((float)value));
 
-      public float GetRandom()    => Random.Range(Min, Max);
-      public int   GetRandomInt() => Mathf.RoundToInt(GetRandom());
+      public float Random()    => UnityEngine.Random.Range(Min, Max);
+      public int   RandomInt() => Mathf.RoundToInt(Random());
 
 
       public override string ToString() => $"Value: ({Min}, {Max}),  Edges: ({MinEdge}, {MaxEdge})";

@@ -1,8 +1,10 @@
-﻿using Gameplay.Unit.Behavior.ECS.Comps;
+﻿using Gameplay.Unit.Behavior.Concrete;
+using Gameplay.Unit.Behavior.ECS.Comps;
 using Gameplay.Unit.Comps;
 using Mitfart.LeoECSLite.UniLeo.Providers;
-using Unity.VisualScripting;
+using Structs.Optional;
 using UnityEngine;
+using VContainer;
 
 namespace Gameplay.Unit.Adapters {
    public class UnitAdapter : EcsAdapter<Comps.Unit> {
@@ -11,10 +13,17 @@ namespace Gameplay.Unit.Adapters {
       public InvincibilityDuration invincibilityDuration;
       public Penetration           penetration;
       public ViewRadius            viewRadius;
-      public ScrComponent<AI>      ai;
+      public Optional<ScrBehavior> ai;
 
-      
-      
+      private IObjectResolver _di;
+
+
+
+      [Inject]
+      public void Construct(IObjectResolver di) {
+         _di = di;
+      }
+
       public override void Convert() {
          base.Convert();
 
@@ -24,8 +33,8 @@ namespace Gameplay.Unit.Adapters {
          Set(penetration);
          Set(viewRadius);
 
-         if (!ai.IsUnityNull())
-            Set(ai.Get());
+         if (ai.Enabled)
+            Set(ai.Value.Get()).Behavior.Init(Converter.Entity, Converter.World, _di);
       }
 
 

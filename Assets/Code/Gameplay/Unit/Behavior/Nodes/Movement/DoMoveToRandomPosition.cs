@@ -25,7 +25,7 @@ namespace Gameplay.Unit.Behavior.Nodes.Movement {
 
 
       private Vector3 RandomPosition()         => RelativeRandomPosition() + Position(Entity);
-      private Vector3 RelativeRandomPosition() => (Vector3)Random.insideUnitCircle.normalized * ViewRadius();
+      private Vector3 RelativeRandomPosition() => (Vector3)Random.insideUnitCircle * ViewRadius();
       private float   ViewRadius()             => _viewRadiusPool.Get(Entity).value;
    }
 }

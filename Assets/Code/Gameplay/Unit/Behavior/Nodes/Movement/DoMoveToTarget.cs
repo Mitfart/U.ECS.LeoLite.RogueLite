@@ -16,7 +16,7 @@ namespace Gameplay.Unit.Behavior.Nodes.Movement {
       protected override Vector3 Destination()
          => _targetPool.Get(Entity).Value.Unpack(out _, out int targetE)
             ? Position(targetE)
-            : default;
+            : Position(Entity);
 
    }
 }

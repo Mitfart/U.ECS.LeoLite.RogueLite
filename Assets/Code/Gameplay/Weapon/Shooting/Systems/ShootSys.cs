@@ -3,7 +3,6 @@ using Extensions.Collections;
 using Extensions.Ecs;
 using Gameplay.UnityRef.Transform.Comp;
 using Gameplay.UnityRef.Transform.Extensions;
-using Gameplay.Weapon.Adapters;
 using Gameplay.Weapon.Attack.Comps;
 using Gameplay.Weapon.Shooting.Comps;
 using Infrastructure.Factories.Projectiles;
@@ -72,7 +71,7 @@ namespace Gameplay.Weapon.Shooting.Systems {
             return insTransform;
 
          Vector3 angles = insTransform.EulerAngles();
-         angles.z += angle.GetRandom();
+         angles.z += angle.Random();
          insTransform.SetEulerAngles(angles);
 
          return insTransform;

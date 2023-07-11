@@ -1,23 +1,30 @@
 ﻿using Infrastructure.Services.Time;
+using Structs.Ranged;
 using VContainer;
 
 namespace Gameplay.Unit.Behavior.Tree.Nodes.Structural {
    public class DoWait : BehaviorNode {
-      private readonly float _duration;
+      private readonly Ranged _rangedDuration;
 
       private ITimeService _timeService;
 
+      private float _duration;
       private float _startTime;
 
 
 
-      public DoWait(float duration, params BehaviorNode[] childNodes) : base(childNodes) {
-         _duration = duration;
+      public DoWait(Ranged rangedDuration, params BehaviorNode[] childNodes) : base(childNodes) {
+         _rangedDuration = rangedDuration;
       }
 
-      protected override void OnInit() => _timeService = Di.Resolve<ITimeService>();
+      protected override void OnInit() {
+         _timeService = Di.Resolve<ITimeService>();
+      }
 
-      protected override void OnBegin() => _startTime = _timeService.Time;
+      protected override void OnBegin() {
+         _startTime = _timeService.Time;
+         _duration  = _rangedDuration.Random();
+      }
 
       protected override BehaviorState OnRun()
          => !IsTimerEnd()
@@ -26,6 +33,6 @@ namespace Gameplay.Unit.Behavior.Tree.Nodes.Structural {
 
 
 
-      private bool IsTimerEnd() => _timeService.Time - _startTime >= _duration;
+      private bool IsTimerEnd() => _timeService.PassTime(_startTime, _duration);
    }
 }

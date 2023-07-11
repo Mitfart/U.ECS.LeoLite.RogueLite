@@ -2,23 +2,29 @@
 using System.Collections.Generic;
 using Extensions.Collections.Dictionary;
 using Infrastructure.AssetsManagement;
+using Leopotam.EcsLite;
+using Mitfart.LeoECSLite.UniLeo;
 using UnityEngine;
 
 namespace Infrastructure.Factories {
    public class EnemyFactory : Factory {
       private const string _CONTAINER_NAME = "Enemies";
 
-      private readonly Dictionary<EnemyType, List<GameObject>> _enemies;
+      private readonly Dictionary<EnemyType, List<EntityConverter>> _enemies;
+
+      private readonly EcsWorld _world;
 
 
-      public EnemyFactory(IAssets assets) : base(assets) {
-         _enemies = new Dictionary<EnemyType, List<GameObject>>();
+
+      public EnemyFactory(IAssets assets, EcsWorld world) : base(assets) {
+         _world   = world;
+         _enemies = new Dictionary<EnemyType, List<EntityConverter>>();
       }
 
       public override void Reset() {
          base.Reset();
 
-         foreach (List<GameObject> enemies in _enemies.Values)
+         foreach (List<EntityConverter> enemies in _enemies.Values)
             enemies.Clear();
 
          _enemies.Clear();
@@ -26,26 +32,26 @@ namespace Infrastructure.Factories {
 
 
 
-      public GameObject Spawn(EnemyType enemyType, Vector3 at) {
+      public void Spawn(EnemyType enemyType, Vector3 at) {
          try {
-            GameObject enemyIns = Assets.Ins<GameObject>(
+            EntityConverter enemyIns = Assets.Ins<EntityConverter>(
                AssetPath.EnemyPath(enemyType),
                at,
                Quaternion.identity,
                Container(_CONTAINER_NAME, enemyType.ToString())
             );
 
+            enemyIns.Convert(_world, _world.NewEntity());
+
             Cache(enemyType, enemyIns);
-            return enemyIns;
          } catch (Exception exc) {
             Debug.LogWarning($"Can't Spawn enemy! <{enemyType}> \n {exc}");
-            return null;
          }
       }
 
 
 
-      private void Cache(EnemyType enemyType, GameObject ins)
+      private void Cache(EnemyType enemyType, EntityConverter ins)
          => _enemies
            .GetOrCreate(enemyType)
            .Add(ins);
