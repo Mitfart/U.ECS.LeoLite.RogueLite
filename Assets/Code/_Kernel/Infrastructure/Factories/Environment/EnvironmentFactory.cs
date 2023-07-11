@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using Gameplay.Level;
-using Gameplay.Level.ecs.tmp.Comp;
 using Gameplay.Level.StaticData;
 using Infrastructure.AssetsManagement;
-using Mitfart.LeoECSLite.UniLeo;
 using UnityEngine;
 
 namespace Infrastructure.Factories {
@@ -11,12 +9,12 @@ namespace Infrastructure.Factories {
       private const string _CONTAINER_NAME = "Environment";
       private const string _DOORS_TAG      = "Doors";
 
-      private readonly List<ConvertToEntity> _doors;
+      private readonly List<GameObject> _doors;
 
 
 
       public EnvironmentFactory(IAssets assets) : base(assets) {
-         _doors = new List<ConvertToEntity>();
+         _doors = new List<GameObject>();
       }
 
       public override void Reset() {
@@ -27,16 +25,16 @@ namespace Infrastructure.Factories {
 
 
 
-      public DoorProv CreateDoor(Vector3 at, Location nextLocation, Room nextRoom) => CreateDoor(at, new NextLevel(nextLocation, nextRoom));
+      public GameObject CreateDoor(Vector3 at, Location nextLocation, Room nextRoom) => CreateDoor(at, new NextLevel(nextLocation, nextRoom));
 
-      public DoorProv CreateDoor(Vector3 at, NextLevel nextLevel) {
-         DoorProv doorIns = Assets.Ins<DoorProv>(
+      public GameObject CreateDoor(Vector3 at, NextLevel nextLevel) {
+         GameObject doorIns = Assets.Ins<GameObject>(
             AssetPath.DOOR,
             at,
             Quaternion.identity,
             Container(_CONTAINER_NAME, _DOORS_TAG)
          );
-         doorIns.component.NextLevel = nextLevel;
+         //doorIns.component.NextLevel = nextLevel;
 
          Cache(doorIns);
          return doorIns;
@@ -44,6 +42,6 @@ namespace Infrastructure.Factories {
 
 
 
-      private void Cache(DoorProv doorIns) => _doors.Add(doorIns.GetComponent<ConvertToEntity>());
+      private void Cache(GameObject doorIns) => _doors.Add(doorIns);
    }
 }

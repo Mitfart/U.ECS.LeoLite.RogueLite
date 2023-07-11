@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Infrastructure.AssetsManagement;
-using Mitfart.LeoECSLite.UniLeo;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -8,12 +7,12 @@ namespace Infrastructure.Factories {
    public class PlayerFactory : Factory {
       private const string _CONTAINER_NAME = "Players";
 
-      private readonly List<ConvertToEntity> _players;
+      private readonly List<GameObject> _players;
 
 
 
       public PlayerFactory(IAssets assets) : base(assets) {
-         _players = new List<ConvertToEntity>();
+         _players = new List<GameObject>();
       }
 
       public override void Reset() {
@@ -24,8 +23,8 @@ namespace Infrastructure.Factories {
 
 
 
-      public ConvertToEntity Spawn(Vector3 at) {
-         ConvertToEntity playerIns = Assets.Ins<ConvertToEntity>(
+      public GameObject Spawn(Vector3 at) {
+         GameObject playerIns = Assets.Ins<GameObject>(
             AssetPath.PLAYER,
             at,
             quaternion.identity,
@@ -37,6 +36,6 @@ namespace Infrastructure.Factories {
 
 
 
-      private void Cache(ConvertToEntity playerIns) => _players.Add(playerIns);
+      private void Cache(GameObject playerIns) => _players.Add(playerIns);
    }
 }

@@ -6,5 +6,9 @@
       public float RealTime     => UnityEngine.Time.realtimeSinceStartup;
       public float LevelTime    => UnityEngine.Time.timeSinceLevelLoad;
       public float ReverseDelta => 1f / Delta;
+
+
+      public float Elapsed(float  startTime)                 => Time - startTime;
+      public bool  PassTime(float startTime, float duration) => Elapsed(startTime) >= duration;
    }
 }

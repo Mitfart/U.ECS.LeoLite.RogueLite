@@ -10,14 +10,11 @@ using Gameplay.Unit.Behavior;
 using Gameplay.UnityRef;
 using Gameplay.View;
 using Gameplay.Weapon;
-using Mitfart.LeoECSLite.UniLeo;
 using Mitfart.LeoECSLite.UnityIntegration;
 using Mitfart.LeoECSLite.UnityIntegration.Name;
 
 public class MainSystemsPack : EcsSystemsPack {
    protected override void RegisterSystems() {
-      Add<ConvertSceneSys>();
-
       AddPack<LevelSystems>();
       AddPack<GetUnityDataSystems>();
 
@@ -35,10 +32,6 @@ public class MainSystemsPack : EcsSystemsPack {
 
       AddPack<ClearEventsPack>();
 
-      AddWorldsDebug();
-   }
-
-   private void AddWorldsDebug() {
 #if UNITY_EDITOR
       var nameSettings = new NameSettings(bakeComponents: true);
       AddByInstance(new EcsWorldDebugSystem(nameSettings: nameSettings));

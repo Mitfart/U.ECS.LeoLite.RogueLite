@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1680685930958210536, guid: 800a553deaa78cc46b0fd990b5688d15, type: 3}
+      propertyPath: ai
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6365561691766978327, guid: 800a553deaa78cc46b0fd990b5688d15, type: 3}
       propertyPath: m_Name
       value: DummyNoAI

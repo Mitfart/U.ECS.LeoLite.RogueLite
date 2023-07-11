@@ -1,20 +1,16 @@
 ﻿using Extensions.Ecs;
 using Gameplay.Unit.Behavior.ECS.Comps;
-using Mitfart.LeoECSLite.UniLeo;
-using UnityEngine;
+using Leopotam.EcsLite;
 
 namespace Infrastructure.Factories {
    public static class EnemyWithoutAIExt {
-      public static void WithoutAI(this ConvertToEntity enemy) {
-         if (enemy.IsConverted) {
-            enemy.World
-                 .GetPool<AI>()
-                 .TryDel(enemy.Entity);
-            return;
-         }
+      public static int WithoutAI(this int entity, EcsWorld world) {
+         if (entity.IsAlive(world))
+            world
+              .GetPool<AI>()
+              .TryDel(entity);
 
-         if (enemy.TryGetComponent(out AIProv behaviorProv))
-            Object.Destroy(behaviorProv);
+         return entity;
       }
    }
 }

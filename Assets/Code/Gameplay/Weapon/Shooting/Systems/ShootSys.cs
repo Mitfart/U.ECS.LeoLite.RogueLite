@@ -3,11 +3,11 @@ using Extensions.Collections;
 using Extensions.Ecs;
 using Gameplay.UnityRef.Transform.Comp;
 using Gameplay.UnityRef.Transform.Extensions;
+using Gameplay.Weapon.Adapters;
 using Gameplay.Weapon.Attack.Comps;
 using Gameplay.Weapon.Shooting.Comps;
 using Infrastructure.Factories.Projectiles;
 using Leopotam.EcsLite;
-using Mitfart.LeoECSLite.UniLeo;
 using Structs.Ranged;
 using UnityEngine;
 
@@ -51,7 +51,7 @@ namespace Gameplay.Weapon.Shooting.Systems {
                EcsTransform insTransform = WithSpread(weaponE, shootOrigin.Refresh());
 
                _projectilesFactory.Spawn(
-                  RandomProjectile(weaponE).name,
+                  RandomProjectile(weaponE),
                   insTransform.Position,
                   insTransform.Rotation
                );
@@ -64,7 +64,7 @@ namespace Gameplay.Weapon.Shooting.Systems {
 
 
       private List<EcsTransform> ShootOrigins(int     weaponE) => _shootOriginsPool.Get(weaponE).value;
-      private ConvertToEntity    RandomProjectile(int weaponE) => _projectilesPool.Get(weaponE).value.Random();
+      private string             RandomProjectile(int weaponE) => _projectilesPool.Get(weaponE).value.Random();
       private void               MarkAttacking(int    weaponE) => _isAttackingPool.Add(weaponE);
 
       private EcsTransform WithSpread(int weaponE, EcsTransform insTransform) {

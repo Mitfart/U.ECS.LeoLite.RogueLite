@@ -6,5 +6,8 @@
       float RealTime   { get; }
       float LevelTime  { get; }
       float ReverseDelta  { get; }
+
+      float Elapsed(float  startTime);
+      bool  PassTime(float startTime, float duration);
    }
 }

@@ -1,25 +1,24 @@
 ﻿using System.Collections.Generic;
 using Extensions.Collections.Dictionary;
 using Infrastructure.AssetsManagement;
-using Mitfart.LeoECSLite.UniLeo;
 using UnityEngine;
 
 namespace Infrastructure.Factories.Projectiles {
    public class ProjectilesFactory : Factory {
       private const string _CONTAINER_NAME = "Projectiles";
 
-      private readonly Dictionary<string, List<ConvertToEntity>> _projectiles;
+      private readonly Dictionary<string, List<GameObject>> _projectiles;
 
 
 
       public ProjectilesFactory(IAssets assets) : base(assets) {
-         _projectiles = new Dictionary<string, List<ConvertToEntity>>();
+         _projectiles = new Dictionary<string, List<GameObject>>();
       }
 
       public override void Reset() {
          base.Reset();
 
-         foreach (List<ConvertToEntity> projectiles in _projectiles.Values) {
+         foreach (List<GameObject> projectiles in _projectiles.Values) {
             projectiles.Clear();
          }
 
@@ -28,8 +27,8 @@ namespace Infrastructure.Factories.Projectiles {
 
 
 
-      public ConvertToEntity Spawn(string id, Vector3 at, Quaternion rot) {
-         ConvertToEntity projectileIns = Assets.Ins<ConvertToEntity>(
+      public GameObject Spawn(string id, Vector3 at, Quaternion rot) {
+         GameObject projectileIns = Assets.Ins<GameObject>(
             AssetPath.ProjectilePath(id),
             at,
             rot,
@@ -40,7 +39,7 @@ namespace Infrastructure.Factories.Projectiles {
          return projectileIns;
       }
 
-      private void Cache(string id, ConvertToEntity ins)
+      private void Cache(string id, GameObject ins)
          => _projectiles
            .GetOrCreate(id)
            .Add(ins);

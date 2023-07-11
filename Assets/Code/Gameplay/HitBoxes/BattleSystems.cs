@@ -10,8 +10,8 @@ namespace Gameplay.HitBoxes {
          Add<InvincibilityAfterHitEventSys>();
 
 #if UNITY_EDITOR
-         Add<HitBoxDebugSys>();
-         Add<HitEventDebugSys>();
+         Add<DebugHitBoxSys>();
+         Add<DebugHitEventSys>();
 #endif
       }
    }

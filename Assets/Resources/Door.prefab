@@ -11,9 +11,6 @@ GameObject:
   - component: {fileID: 3301788666800252688}
   - component: {fileID: 1932634245872437655}
   - component: {fileID: 649065631487328746}
-  - component: {fileID: 6823360943908690397}
-  - component: {fileID: 7291757369677338711}
-  - component: {fileID: 6656091948118264815}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -49,7 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 248d32a9388ced148bf5bf196318a019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <WorldName>k__BackingField: 
+  <SerializedAdapters>k__BackingField:
+  - {fileID: 649065631487328746}
+  - {fileID: 649065631487328746}
 --- !u!114 &649065631487328746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,45 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49af0bf67f9e46ec85e1c6f04bdee3ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6823360943908690397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8693222762221195861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63e4ef97f69f4492bc04d835e194deb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7291757369677338711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8693222762221195861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 872d0011f6f948ce97083a4fd4e32fb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  component:
-    value:
-    - {fileID: 7707142594836776213}
---- !u!114 &6656091948118264815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8693222762221195861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0acce4651db4a8386ac7c1bef77764b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  <Converter>k__BackingField: {fileID: 1932634245872437655}
 --- !u!1 &8898563079634150448
 GameObject:
   m_ObjectHideFlags: 0

@@ -25,7 +25,7 @@ namespace Gameplay.Weapon {
          Add<DelHereSys<IsAttacking>>();
 
 #if UNITY_EDITOR
-         Add<DrawAimSys>();
+         Add<DebugAimSys>();
 #endif
       }
    }

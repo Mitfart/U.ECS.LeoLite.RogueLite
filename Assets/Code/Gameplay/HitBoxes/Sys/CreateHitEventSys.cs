@@ -1,11 +1,11 @@
 using Events;
 using Extensions.Ecs;
-using Extensions.Unileo;
 using Gameplay.HitBoxes.Comps;
 using Gameplay.HitBoxes.Structs;
 using Gameplay.UnityRef.Transform.Comp;
 using Gameplay.UnityRef.Transform.Extensions;
 using Leopotam.EcsLite;
+using Mitfart.LeoECSLite.UniLeo.Extensions;
 using UnityEngine;
 
 namespace Gameplay.HitBoxes.Sys {
@@ -44,15 +44,14 @@ namespace Gameplay.HitBoxes.Sys {
             for (var i = 0; i < hitsCount; i++) {
                RaycastHit2D hit = _hits[i];
 
-               if (hit.collider.ParentEntity(out int takerE))
+               if (hit.collider.OnEntity(out int takerE)) {
                   _eventsBus.NewEvent<HitEvent>() = new HitEvent {
                      dealer = dealerE, //
                      taker  = takerE,
                      point  = hit.point,
                      normal = hit.normal
                   };
-               else
-                  UnityEngine.Debug.Log($"Hit non Entity: {hit.collider.name}");
+               }
             }
          }
       }

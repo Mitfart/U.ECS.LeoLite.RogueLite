@@ -1,5 +1,4 @@
 ﻿using Gameplay.Movement.Comps;
-using Gameplay.Player.Comps;
 using Leopotam.EcsLite;
 using UnityEngine;
 

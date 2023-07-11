@@ -2,35 +2,33 @@
 using System.Collections.Generic;
 using Extensions.Collections.Dictionary;
 using Infrastructure.AssetsManagement;
-using Mitfart.LeoECSLite.UniLeo;
 using UnityEngine;
 
 namespace Infrastructure.Factories {
    public class EnemyFactory : Factory {
       private const string _CONTAINER_NAME = "Enemies";
 
-      private readonly Dictionary<EnemyType, List<ConvertToEntity>> _enemies;
+      private readonly Dictionary<EnemyType, List<GameObject>> _enemies;
 
 
       public EnemyFactory(IAssets assets) : base(assets) {
-         _enemies = new Dictionary<EnemyType, List<ConvertToEntity>>();
+         _enemies = new Dictionary<EnemyType, List<GameObject>>();
       }
 
       public override void Reset() {
          base.Reset();
 
-         foreach (List<ConvertToEntity> enemies in _enemies.Values) {
+         foreach (List<GameObject> enemies in _enemies.Values)
             enemies.Clear();
-         }
 
          _enemies.Clear();
       }
 
 
 
-      public ConvertToEntity Spawn(EnemyType enemyType, Vector3 at) {
+      public GameObject Spawn(EnemyType enemyType, Vector3 at) {
          try {
-            ConvertToEntity enemyIns = Assets.Ins<ConvertToEntity>(
+            GameObject enemyIns = Assets.Ins<GameObject>(
                AssetPath.EnemyPath(enemyType),
                at,
                Quaternion.identity,
@@ -47,7 +45,7 @@ namespace Infrastructure.Factories {
 
 
 
-      private void Cache(EnemyType enemyType, ConvertToEntity ins)
+      private void Cache(EnemyType enemyType, GameObject ins)
          => _enemies
            .GetOrCreate(enemyType)
            .Add(ins);
