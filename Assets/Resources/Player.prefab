@@ -242,9 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 248d32a9388ced148bf5bf196318a019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <SerializedAdapters>k__BackingField:
-  - {fileID: 4088682848712238614}
-  - {fileID: -430755168133420800}
+  <Adapters>k__BackingField:
   - {fileID: -430755168133420800}
   - {fileID: 4088682848712238614}
 --- !u!114 &-430755168133420800
