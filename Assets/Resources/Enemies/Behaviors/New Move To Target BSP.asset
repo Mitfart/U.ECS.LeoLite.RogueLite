@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: New Move To Target BSP
   m_EditorClassIdentifier: 
   waitTime:
-    min: 0
-    max: 0
+    min: 1.6924424
+    max: 2.684564
     rounded: 0
     minEdge: 0
     maxEdge: 10
