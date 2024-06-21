@@ -11,7 +11,6 @@ using Gameplay.UnityRef;
 using Gameplay.View;
 using Gameplay.Weapon;
 using Mitfart.LeoECSLite.UnityIntegration;
-using Mitfart.LeoECSLite.UnityIntegration.Name;
 
 public class MainSystemsPack : EcsSystemsPack {
    protected override void RegisterSystems() {
